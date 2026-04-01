@@ -8,8 +8,6 @@ editor: visual
 jupyter: python3
 ---
 
-# 
-
 ## **1. Problem Definition**
 
 Buying a home is the largest financial decision most people will ever make, yet
@@ -43,7 +41,7 @@ second opinion on their financial readiness.
 -   Existing homeowners considering refinancing who want to understand how their
     current profile compares to historical default patterns.
 
--   Financial advisors who want a quick, visual tool to walk clients through
+-   Financial advisers who want a quick, visual tool to walk clients through
     mortgage readiness scenarios.
 
 ### **Core App Features**
@@ -227,7 +225,7 @@ Random Forest and XGBoost model options, the scenario simulator with interactive
 sliders, the feature importance visualization, UI polish using `bslib`, and the
 model transparency tab with evaluation metrics.
 
---------------------------------------------------------------------------------
+![](images/top-border-01.png){fig-align="center"}
 
 ## Bibliography:
 
@@ -252,3 +250,5 @@ modeling and machine learning using tidyverse principles.
 McKee, Amberle. *Mastering Shiny for Python: A Beginner’s Guide to Building
 Interactive Web Applications*, DataCamp, 15 Dec. 2023,
 <https://www.datacamp.com/tutorial/mastering-shiny-for-python-a-beginners-guide-to-building-interactive-web-applications>.
+
+![](images/bottom-border-01.png){fig-align="center"}

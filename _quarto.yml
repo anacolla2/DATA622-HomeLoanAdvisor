@@ -4,8 +4,10 @@ project:
 
 website:
   title: "Home Loan Advisor"
-  navbar:
-    left:
+  sidebar:
+    style: "docked"
+    background: light
+    contents:
       - href: index.qmd
         text: Overview
       - href: proposal.qmd
@@ -20,6 +22,7 @@ website:
         text: App
       - href: about.qmd
         text: About the Group
+
 
 format:
   html:

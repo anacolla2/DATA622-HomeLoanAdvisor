@@ -4,167 +4,219 @@
     "href": "data.html",
     "title": "data",
     "section": "",
-    "text": "4"
+    "text": "4",
+    "crumbs": [
+      "Data"
+    ]
   },
   {
-    "objectID": "data.html#content-coming-soon",
-    "href": "data.html#content-coming-soon",
+    "objectID": "data.html#section",
+    "href": "data.html#section",
     "title": "data",
     "section": "",
-    "text": "4"
+    "text": "4",
+    "crumbs": [
+      "Data"
+    ]
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "about",
     "section": "",
-    "text": "4"
+    "text": "4",
+    "crumbs": [
+      "About the Group"
+    ]
   },
   {
     "objectID": "about.html#content-coming-soon",
     "href": "about.html#content-coming-soon",
     "title": "about",
     "section": "",
-    "text": "4"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Home Loan Advisor",
-    "section": "",
-    "text": "Many borrowers walk into a mortgage hoping for the best. The Home Loan Adviser is a machine learning tool, trained on real Freddie Mac mortgages, that informs the borrower where they stand before ever engaging with a lender.\n\n\n\n\n\n\nKnow your risk before your lenders do.\n\n\n\nThe interactive simulator produces a risk score in plain english, so users can examine their “what ifs?” before one of the largest decisions of their lives."
-  },
-  {
-    "objectID": "index.html#content-coming-soon",
-    "href": "index.html#content-coming-soon",
-    "title": "index",
-    "section": "",
-    "text": "4"
-  },
-  {
-    "objectID": "models.html",
-    "href": "models.html",
-    "title": "models",
-    "section": "",
-    "text": "4"
-  },
-  {
-    "objectID": "models.html#content-coming-soon",
-    "href": "models.html#content-coming-soon",
-    "title": "models",
-    "section": "",
-    "text": "4"
-  },
-  {
-    "objectID": "results.html",
-    "href": "results.html",
-    "title": "results",
-    "section": "",
-    "text": "4"
-  },
-  {
-    "objectID": "results.html#content-coming-soon",
-    "href": "results.html#content-coming-soon",
-    "title": "results",
-    "section": "",
-    "text": "4"
-  },
-  {
-    "objectID": "app.html",
-    "href": "app.html",
-    "title": "app",
-    "section": "",
-    "text": "4"
-  },
-  {
-    "objectID": "app.html#content-coming-soon",
-    "href": "app.html#content-coming-soon",
-    "title": "app",
-    "section": "",
-    "text": "4"
-  },
-  {
-    "objectID": "proposal.html",
-    "href": "proposal.html",
-    "title": "Project Proposal",
-    "section": "",
-    "text": "Buying a home is the largest financial decision most people will ever make, yet consumers rarely have access to the same analytic tools that banks and lenders use when evaluating mortgage applications. Most prospective home buyers do not know how their personal financial profile — income, credit score, debt load, down payment — affects their real risk of being unable to repay a mortgage, or how changes in interest rates and economic conditions might impact that risk over time.\nThis project proposes the development of the Home Loan Advisor, a consumer-facing machine learning application that helps individuals understand whether taking on a home loan is financially advisable given their personal characteristics. Unlike traditional bank-side default prediction systems, this app flips the perspective: it empowers the borrower to make smarter, data-driven decisions before committing to a mortgage. The app will use a model trained on real mortgage performance data from Freddie Mac to provide personalized risk assessments and scenario-based projections.\n\n\n\nThe primary target users are consumers — specifically individuals who are considering taking on a home mortgage and want an independent, data-driven second opinion on their financial readiness.\n\n\n\nFirst-time homebuyers who are unfamiliar with how mortgage risk is assessed and want guidance before approaching a lender.\nExisting homeowners considering refinancing who want to understand how their current profile compares to historical default patterns.\nFinancial advisors who want a quick, visual tool to walk clients through mortgage readiness scenarios.\n\n\n\n\n\nPersonal profile input form: fields for annual income, credit score, loan amount, property value, down payment percentage, employment status, and debt-to-income ratio.\nRisk assessment output: a clear affordability score and risk tier (Low / Moderate / High) with a plain-English explanation of what is driving the score.\nScenario simulator: an interactive panel allowing users to adjust variables (e.g., ‘What if my income drops by 15%?’ or ‘What if interest rates rise by 2%?’) and instantly see how their risk score changes.\nFeature influence panel: a chart showing which personal factors most affect the prediction, helping users understand what to improve before applying.\nModel transparency tab: displays model performance metrics (AUC-ROC, confusion matrix) so users can trust the underlying system.\n\n\n\n\n\nThe application will be built using R Shiny. Shiny is the recommended interface for this course and is well-suited for this project because the underlying model is trained in R using the tidymodels framework, the data is tabular, and Shiny’s reactive programming model naturally supports real-time updates as users adjust sliders and inputs in the scenario simulator.\nThe app layout will use the bslib package for a modern, clean UI and will consist of three tabs:\n\nMy Profile — the input form and risk assessment output\nScenario Simulator — interactive sliders for exploring what-if scenarios\nAbout the Model — performance metrics and data transparency information. The app will be designed to be accessible to non-technical users, with plain-English labels and color-coded risk indicators.\n\n\n\n\nThe primary data source will be the Freddie Mac Single Family Loan-Level Dataset, publicly available at https://www.freddiemac.com/research/datasets/sf-loanlevel-dataset. This dataset requires a free registration but is fully accessible and contains loan-level origination and performance data on millions of mortgages from 1999 to the present. It is one of the most comprehensive and credible public mortgage datasets available and was specifically recommended by the course professor.\nTo keep the project manageable in scope, we will use loan origination vintages from 2018 to 2022, which provides a rich and recent snapshot of mortgage performance while remaining computationally feasible. Key features available in this dataset include:\n\n\n\n\n\n\n\n\nFeature\nDescription\nType\n\n\n\n\noriginal_interest_rate\nInterest rate at origination\nnumeric\n\n\noriginal_upb\nOriginal unpaid principal balance (loan amount)\nnumeric\n\n\noriginal_ltv\nLoan-to-value ratio at origination\nnumeric\n\n\noriginal_dti\nDebt-to-income ratio at origination\nnumeric\n\n\nborrower_credit_score\nFICO credit score at origination\nnumeric\n\n\nnumber_of_units\nNumber of property units\ncategorical\n\n\noccupancy_status\nPrimary residence, second home, or investment\ncategorical\n\n\nloan_purpose\nPurchase, refinance, or cash-out refinance\ncategorical\n\n\never_delinquent\nTarget: whether loan became 90+ days delinquent\nbinary\n\n\n\nPre-processing steps will include subsetting to the relevant vintage years, handling missing values, encoding categorical variables, constructing the binary target variable (ever 90+ days delinquent), and addressing class imbalance using SMOTE or weighted sampling.\n\n\n\nThis is a binary classification problem. The target variable is whether a mortgage borrower ever became seriously delinquent (90+ days past due) on their loan — a strong proxy for default risk from the consumer’s perspective. The following model types will be explored in order of increasing complexity:\n\nLogistic Regression — interpretable baseline model. Coefficients provide direct insight into which features increase or decrease default probability, which supports the app’s explainability goals.\nRandom Forest — captures non-linear relationships and feature interactions. Provides built-in variable importance scores that can be visualized in the app’s feature influence panel.\nGradient Boosting (XGBoost) — typically the best-performing model on tabular financial data. Will be hyperparameter-tuned using cross-validation as the candidate production model.\n\nAll models will be implemented using the tidymodels framework in R. The final selected model will be serialized as an .rds file and loaded into the Shiny app for real-time inference.\n\n\n\n\n\n\nAUC-ROC: primary metric, measuring the model’s ability to rank borrowers by delinquency risk across all classification thresholds.\nPrecision, Recall, and F1-Score: evaluated for the delinquent class to capture practical usefulness given class imbalance.\nConfusion Matrix: to visualize the trade-off between false positives (overcautious advice) and false negatives (missed high-risk borrowers).\nCalibration plot: to verify that the model’s predicted probabilities are well-calibrated and meaningful to end users.\n\n\n\n\n\nPrediction latency: the app should return a risk score within 2 seconds of user input submission.\nUsability testing: the app will be evaluated by 3–5 peers playing the role of first-time homebuyers, assessed on clarity and ease of use.\nScenario accuracy: the scenario simulator outputs will be verified to respond logically and consistently to input changes.\n\n\n\n\n\nModel training will be batch-based. The model will be trained once on the Freddie Mac 2018–2022 vintage data, validated on a held-out test set, and the final model object will be serialized to an .rds file that is loaded by the Shiny app at startup for inference. This approach is appropriate because historical mortgage performance data is stable, and real-time retraining is not necessary for a consumer advisory tool.\nIf time allows, a periodic retraining schedule (e.g., triggered annually as new Freddie Mac vintage data becomes available) could be explored using GitHub Actions as a stretch goal, but this is outside the core project scope.\n\n\n\nThis project does not require large neural networks, LLMs, GPUs, or TPUs. Logistic Regression, Random Forest, and XGBoost are all computationally lightweight models that train efficiently on a standard laptop. The Freddie Mac dataset for 2018–2022 vintages is large but manageable — a random stratified sample of 500,000 to 1,000,000 loans will be used for training to balance representativeness with training speed.\nHosting plan:\n\nPrimary: shinyapps.io free tier — sufficient for a course project with low concurrent traffic and a pre-trained model loaded at startup.\nBackup: Render.com free tier or AWS EC2 t2.micro running open-source Shiny Server, if shinyapps.io resource limits are exceeded.\n\nNo significant cloud computing costs are anticipated. All model training will be performed locally, and only the serialized model file and Shiny app code will be deployed to the hosting platform.\n\n\n\nThe MVP will be a functional end-to-end prototype demonstrating feasibility, to be delivered at the midterm checkpoint. It will include:\n\nA cleaned and preprocessed subset of the Freddie Mac dataset (2018–2020 vintages) with the binary delinquency target variable defined.\nA trained Logistic Regression baseline model with AUC-ROC reported on a held-out test set.\nA deployed Shiny app with:\n\na basic input form for borrower characteristics\na real-time default probability output\na simple risk tier label (Low/Moderate/High).\n\nThe app accessible via a public shinyapps.io URL for review.\n\nPost-MVP iterations will add:\nRandom Forest and XGBoost model options, the scenario simulator with interactive sliders, the feature importance visualization, UI polish using bslib, and the model transparency tab with evaluation metrics.\n\n\n\n\nChen, T., & Guestrin, C. (2016). XGBoost: A scalable tree boosting system. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining.\nChang, W., Cheng, J., Allaire, J., Xie, Y., & McPherson, J. (2023). shiny: Web application framework for R. https://shiny.posit.co\nChawla, N. V., Bowyer, K. W., Hall, L. O., & Kegelmeyer, W. P. (2002). SMOTE: Synthetic minority over-sampling technique. Journal of Artificial Intelligence Research, 16, 321–357.\nFreddie Mac. (n.d.). Single family loan-level dataset. https://www.freddiemac.com/research/datasets/sf-loanlevel-dataset\nKuhn, M., & Wickham, H. (2020). Tidymodels: A collection of packages for modeling and machine learning using tidyverse principles. https://www.tidymodels.org\nMcKee, Amberle. Mastering Shiny for Python: A Beginner’s Guide to Building Interactive Web Applications, DataCamp, 15 Dec. 2023, https://www.datacamp.com/tutorial/mastering-shiny-for-python-a-beginners-guide-to-building-interactive-web-applications."
-  },
-  {
-    "objectID": "proposal.html#problem-definition",
-    "href": "proposal.html#problem-definition",
-    "title": "Project Proposal",
-    "section": "",
-    "text": "Buying a home is the largest financial decision most people will ever make, yet consumers rarely have access to the same analytic tools that banks and lenders use when evaluating mortgage applications. Most prospective home buyers do not know how their personal financial profile — income, credit score, debt load, down payment — affects their real risk of being unable to repay a mortgage, or how changes in interest rates and economic conditions might impact that risk over time.\nThis project proposes the development of the Home Loan Advisor, a consumer-facing machine learning application that helps individuals understand whether taking on a home loan is financially advisable given their personal characteristics. Unlike traditional bank-side default prediction systems, this app flips the perspective: it empowers the borrower to make smarter, data-driven decisions before committing to a mortgage. The app will use a model trained on real mortgage performance data from Freddie Mac to provide personalized risk assessments and scenario-based projections."
-  },
-  {
-    "objectID": "proposal.html#target-users-app-features",
-    "href": "proposal.html#target-users-app-features",
-    "title": "Project Proposal",
-    "section": "",
-    "text": "The primary target users are consumers — specifically individuals who are considering taking on a home mortgage and want an independent, data-driven second opinion on their financial readiness.\n\n\n\nFirst-time homebuyers who are unfamiliar with how mortgage risk is assessed and want guidance before approaching a lender.\nExisting homeowners considering refinancing who want to understand how their current profile compares to historical default patterns.\nFinancial advisors who want a quick, visual tool to walk clients through mortgage readiness scenarios.\n\n\n\n\n\nPersonal profile input form: fields for annual income, credit score, loan amount, property value, down payment percentage, employment status, and debt-to-income ratio.\nRisk assessment output: a clear affordability score and risk tier (Low / Moderate / High) with a plain-English explanation of what is driving the score.\nScenario simulator: an interactive panel allowing users to adjust variables (e.g., ‘What if my income drops by 15%?’ or ‘What if interest rates rise by 2%?’) and instantly see how their risk score changes.\nFeature influence panel: a chart showing which personal factors most affect the prediction, helping users understand what to improve before applying.\nModel transparency tab: displays model performance metrics (AUC-ROC, confusion matrix) so users can trust the underlying system."
-  },
-  {
-    "objectID": "proposal.html#application-interface",
-    "href": "proposal.html#application-interface",
-    "title": "Project Proposal",
-    "section": "",
-    "text": "The application will be built using R Shiny. Shiny is the recommended interface for this course and is well-suited for this project because the underlying model is trained in R using the tidymodels framework, the data is tabular, and Shiny’s reactive programming model naturally supports real-time updates as users adjust sliders and inputs in the scenario simulator.\nThe app layout will use the bslib package for a modern, clean UI and will consist of three tabs:\n\nMy Profile — the input form and risk assessment output\nScenario Simulator — interactive sliders for exploring what-if scenarios\nAbout the Model — performance metrics and data transparency information. The app will be designed to be accessible to non-technical users, with plain-English labels and color-coded risk indicators."
-  },
-  {
-    "objectID": "proposal.html#data-sources",
-    "href": "proposal.html#data-sources",
-    "title": "Project Proposal",
-    "section": "",
-    "text": "The primary data source will be the Freddie Mac Single Family Loan-Level Dataset, publicly available at https://www.freddiemac.com/research/datasets/sf-loanlevel-dataset. This dataset requires a free registration but is fully accessible and contains loan-level origination and performance data on millions of mortgages from 1999 to the present. It is one of the most comprehensive and credible public mortgage datasets available and was specifically recommended by the course professor.\nTo keep the project manageable in scope, we will use loan origination vintages from 2018 to 2022, which provides a rich and recent snapshot of mortgage performance while remaining computationally feasible. Key features available in this dataset include:\n\n\n\n\n\n\n\n\nFeature\nDescription\nType\n\n\n\n\noriginal_interest_rate\nInterest rate at origination\nnumeric\n\n\noriginal_upb\nOriginal unpaid principal balance (loan amount)\nnumeric\n\n\noriginal_ltv\nLoan-to-value ratio at origination\nnumeric\n\n\noriginal_dti\nDebt-to-income ratio at origination\nnumeric\n\n\nborrower_credit_score\nFICO credit score at origination\nnumeric\n\n\nnumber_of_units\nNumber of property units\ncategorical\n\n\noccupancy_status\nPrimary residence, second home, or investment\ncategorical\n\n\nloan_purpose\nPurchase, refinance, or cash-out refinance\ncategorical\n\n\never_delinquent\nTarget: whether loan became 90+ days delinquent\nbinary\n\n\n\nPre-processing steps will include subsetting to the relevant vintage years, handling missing values, encoding categorical variables, constructing the binary target variable (ever 90+ days delinquent), and addressing class imbalance using SMOTE or weighted sampling."
-  },
-  {
-    "objectID": "proposal.html#machine-learning-problem-initial-models",
-    "href": "proposal.html#machine-learning-problem-initial-models",
-    "title": "Project Proposal",
-    "section": "",
-    "text": "This is a binary classification problem. The target variable is whether a mortgage borrower ever became seriously delinquent (90+ days past due) on their loan — a strong proxy for default risk from the consumer’s perspective. The following model types will be explored in order of increasing complexity:\n\nLogistic Regression — interpretable baseline model. Coefficients provide direct insight into which features increase or decrease default probability, which supports the app’s explainability goals.\nRandom Forest — captures non-linear relationships and feature interactions. Provides built-in variable importance scores that can be visualized in the app’s feature influence panel.\nGradient Boosting (XGBoost) — typically the best-performing model on tabular financial data. Will be hyperparameter-tuned using cross-validation as the candidate production model.\n\nAll models will be implemented using the tidymodels framework in R. The final selected model will be serialized as an .rds file and loaded into the Shiny app for real-time inference."
-  },
-  {
-    "objectID": "proposal.html#model-app-performance-evaluation",
-    "href": "proposal.html#model-app-performance-evaluation",
-    "title": "Project Proposal",
-    "section": "",
-    "text": "AUC-ROC: primary metric, measuring the model’s ability to rank borrowers by delinquency risk across all classification thresholds.\nPrecision, Recall, and F1-Score: evaluated for the delinquent class to capture practical usefulness given class imbalance.\nConfusion Matrix: to visualize the trade-off between false positives (overcautious advice) and false negatives (missed high-risk borrowers).\nCalibration plot: to verify that the model’s predicted probabilities are well-calibrated and meaningful to end users.\n\n\n\n\n\nPrediction latency: the app should return a risk score within 2 seconds of user input submission.\nUsability testing: the app will be evaluated by 3–5 peers playing the role of first-time homebuyers, assessed on clarity and ease of use.\nScenario accuracy: the scenario simulator outputs will be verified to respond logically and consistently to input changes."
-  },
-  {
-    "objectID": "proposal.html#model-training-mode",
-    "href": "proposal.html#model-training-mode",
-    "title": "Project Proposal",
-    "section": "",
-    "text": "Model training will be batch-based. The model will be trained once on the Freddie Mac 2018–2022 vintage data, validated on a held-out test set, and the final model object will be serialized to an .rds file that is loaded by the Shiny app at startup for inference. This approach is appropriate because historical mortgage performance data is stable, and real-time retraining is not necessary for a consumer advisory tool.\nIf time allows, a periodic retraining schedule (e.g., triggered annually as new Freddie Mac vintage data becomes available) could be explored using GitHub Actions as a stretch goal, but this is outside the core project scope."
-  },
-  {
-    "objectID": "proposal.html#computational-needs-hosting",
-    "href": "proposal.html#computational-needs-hosting",
-    "title": "Project Proposal",
-    "section": "",
-    "text": "This project does not require large neural networks, LLMs, GPUs, or TPUs. Logistic Regression, Random Forest, and XGBoost are all computationally lightweight models that train efficiently on a standard laptop. The Freddie Mac dataset for 2018–2022 vintages is large but manageable — a random stratified sample of 500,000 to 1,000,000 loans will be used for training to balance representativeness with training speed.\nHosting plan:\n\nPrimary: shinyapps.io free tier — sufficient for a course project with low concurrent traffic and a pre-trained model loaded at startup.\nBackup: Render.com free tier or AWS EC2 t2.micro running open-source Shiny Server, if shinyapps.io resource limits are exceeded.\n\nNo significant cloud computing costs are anticipated. All model training will be performed locally, and only the serialized model file and Shiny app code will be deployed to the hosting platform."
-  },
-  {
-    "objectID": "proposal.html#minimally-viable-product-mvp",
-    "href": "proposal.html#minimally-viable-product-mvp",
-    "title": "Project Proposal",
-    "section": "",
-    "text": "The MVP will be a functional end-to-end prototype demonstrating feasibility, to be delivered at the midterm checkpoint. It will include:\n\nA cleaned and preprocessed subset of the Freddie Mac dataset (2018–2020 vintages) with the binary delinquency target variable defined.\nA trained Logistic Regression baseline model with AUC-ROC reported on a held-out test set.\nA deployed Shiny app with:\n\na basic input form for borrower characteristics\na real-time default probability output\na simple risk tier label (Low/Moderate/High).\n\nThe app accessible via a public shinyapps.io URL for review.\n\nPost-MVP iterations will add:\nRandom Forest and XGBoost model options, the scenario simulator with interactive sliders, the feature importance visualization, UI polish using bslib, and the model transparency tab with evaluation metrics."
-  },
-  {
-    "objectID": "proposal.html#bibliography",
-    "href": "proposal.html#bibliography",
-    "title": "Project Proposal",
-    "section": "",
-    "text": "Chen, T., & Guestrin, C. (2016). XGBoost: A scalable tree boosting system. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining.\nChang, W., Cheng, J., Allaire, J., Xie, Y., & McPherson, J. (2023). shiny: Web application framework for R. https://shiny.posit.co\nChawla, N. V., Bowyer, K. W., Hall, L. O., & Kegelmeyer, W. P. (2002). SMOTE: Synthetic minority over-sampling technique. Journal of Artificial Intelligence Research, 16, 321–357.\nFreddie Mac. (n.d.). Single family loan-level dataset. https://www.freddiemac.com/research/datasets/sf-loanlevel-dataset\nKuhn, M., & Wickham, H. (2020). Tidymodels: A collection of packages for modeling and machine learning using tidyverse principles. https://www.tidymodels.org\nMcKee, Amberle. Mastering Shiny for Python: A Beginner’s Guide to Building Interactive Web Applications, DataCamp, 15 Dec. 2023, https://www.datacamp.com/tutorial/mastering-shiny-for-python-a-beginners-guide-to-building-interactive-web-applications."
+    "text": "4",
+    "crumbs": [
+      "About the Group"
+    ]
   },
   {
     "objectID": "index.html#section",
     "href": "index.html#section",
     "title": "Home Loan Advisor",
     "section": "",
-    "text": "Many borrowers walk into a mortgage hoping for the best. The Home Loan Adviser is a machine learning tool, trained on real Freddie Mac mortgages, that informs the borrower where they stand before ever engaging with a lender.\n\n\n\n\n\n\nKnow your risk before your lenders do.\n\n\n\nThe interactive simulator produces a risk score in plain english, so users can examine their “what ifs?” before one of the largest decisions of their lives."
+    "text": "Many borrowers walk into a mortgage hoping for the best. The Home Loan Adviser is a machine learning tool, trained on real Freddie Mac mortgages, that informs the borrower where they stand before ever engaging with a lender.\n\n\n\n\n\n\nKnow your risk before your lenders do.\n\n\n\nThe interactive simulator produces a risk score in plain english, so users can examine their “what ifs?” before one of the largest decisions of their lives.",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "models.html",
+    "href": "models.html",
+    "title": "models",
+    "section": "",
+    "text": "4",
+    "crumbs": [
+      "Models"
+    ]
+  },
+  {
+    "objectID": "models.html#content-coming-soon",
+    "href": "models.html#content-coming-soon",
+    "title": "models",
+    "section": "",
+    "text": "4",
+    "crumbs": [
+      "Models"
+    ]
+  },
+  {
+    "objectID": "results.html",
+    "href": "results.html",
+    "title": "results",
+    "section": "",
+    "text": "4",
+    "crumbs": [
+      "Results"
+    ]
+  },
+  {
+    "objectID": "results.html#content-coming-soon",
+    "href": "results.html#content-coming-soon",
+    "title": "results",
+    "section": "",
+    "text": "4",
+    "crumbs": [
+      "Results"
+    ]
+  },
+  {
+    "objectID": "app.html",
+    "href": "app.html",
+    "title": "app",
+    "section": "",
+    "text": "4",
+    "crumbs": [
+      "App"
+    ]
+  },
+  {
+    "objectID": "app.html#content-coming-soon",
+    "href": "app.html#content-coming-soon",
+    "title": "app",
+    "section": "",
+    "text": "4",
+    "crumbs": [
+      "App"
+    ]
+  },
+  {
+    "objectID": "proposal.html",
+    "href": "proposal.html",
+    "title": "Project Proposal",
+    "section": "",
+    "text": "Buying a home is the largest financial decision most people will ever make, yet consumers rarely have access to the same analytic tools that banks and lenders use when evaluating mortgage applications. Most prospective home buyers do not know how their personal financial profile — income, credit score, debt load, down payment — affects their real risk of being unable to repay a mortgage, or how changes in interest rates and economic conditions might impact that risk over time.\nThis project proposes the development of the Home Loan Advisor, a consumer-facing machine learning application that helps individuals understand whether taking on a home loan is financially advisable given their personal characteristics. Unlike traditional bank-side default prediction systems, this app flips the perspective: it empowers the borrower to make smarter, data-driven decisions before committing to a mortgage. The app will use a model trained on real mortgage performance data from Freddie Mac to provide personalized risk assessments and scenario-based projections.",
+    "crumbs": [
+      "Proposal"
+    ]
+  },
+  {
+    "objectID": "proposal.html#problem-definition",
+    "href": "proposal.html#problem-definition",
+    "title": "Project Proposal",
+    "section": "",
+    "text": "Buying a home is the largest financial decision most people will ever make, yet consumers rarely have access to the same analytic tools that banks and lenders use when evaluating mortgage applications. Most prospective home buyers do not know how their personal financial profile — income, credit score, debt load, down payment — affects their real risk of being unable to repay a mortgage, or how changes in interest rates and economic conditions might impact that risk over time.\nThis project proposes the development of the Home Loan Advisor, a consumer-facing machine learning application that helps individuals understand whether taking on a home loan is financially advisable given their personal characteristics. Unlike traditional bank-side default prediction systems, this app flips the perspective: it empowers the borrower to make smarter, data-driven decisions before committing to a mortgage. The app will use a model trained on real mortgage performance data from Freddie Mac to provide personalized risk assessments and scenario-based projections.",
+    "crumbs": [
+      "Proposal"
+    ]
+  },
+  {
+    "objectID": "proposal.html#target-users-app-features",
+    "href": "proposal.html#target-users-app-features",
+    "title": "Project Proposal",
+    "section": "2. Target Users & App Features",
+    "text": "2. Target Users & App Features\nThe primary target users are consumers — specifically individuals who are considering taking on a home mortgage and want an independent, data-driven second opinion on their financial readiness.\n\nTarget Users\n\nFirst-time homebuyers who are unfamiliar with how mortgage risk is assessed and want guidance before approaching a lender.\nExisting homeowners considering refinancing who want to understand how their current profile compares to historical default patterns.\nFinancial advisers who want a quick, visual tool to walk clients through mortgage readiness scenarios.\n\n\n\nCore App Features\n\nPersonal profile input form: fields for annual income, credit score, loan amount, property value, down payment percentage, employment status, and debt-to-income ratio.\nRisk assessment output: a clear affordability score and risk tier (Low / Moderate / High) with a plain-English explanation of what is driving the score.\nScenario simulator: an interactive panel allowing users to adjust variables (e.g., ‘What if my income drops by 15%?’ or ‘What if interest rates rise by 2%?’) and instantly see how their risk score changes.\nFeature influence panel: a chart showing which personal factors most affect the prediction, helping users understand what to improve before applying.\nModel transparency tab: displays model performance metrics (AUC-ROC, confusion matrix) so users can trust the underlying system.",
+    "crumbs": [
+      "Proposal"
+    ]
+  },
+  {
+    "objectID": "proposal.html#application-interface",
+    "href": "proposal.html#application-interface",
+    "title": "Project Proposal",
+    "section": "3. Application Interface",
+    "text": "3. Application Interface\nThe application will be built using R Shiny. Shiny is the recommended interface for this course and is well-suited for this project because the underlying model is trained in R using the tidymodels framework, the data is tabular, and Shiny’s reactive programming model naturally supports real-time updates as users adjust sliders and inputs in the scenario simulator.\nThe app layout will use the bslib package for a modern, clean UI and will consist of three tabs:\n\nMy Profile — the input form and risk assessment output\nScenario Simulator — interactive sliders for exploring what-if scenarios\nAbout the Model — performance metrics and data transparency information. The app will be designed to be accessible to non-technical users, with plain-English labels and color-coded risk indicators.",
+    "crumbs": [
+      "Proposal"
+    ]
+  },
+  {
+    "objectID": "proposal.html#data-sources",
+    "href": "proposal.html#data-sources",
+    "title": "Project Proposal",
+    "section": "4. Data Sources",
+    "text": "4. Data Sources\nThe primary data source will be the Freddie Mac Single Family Loan-Level Dataset, publicly available at https://www.freddiemac.com/research/datasets/sf-loanlevel-dataset. This dataset requires a free registration but is fully accessible and contains loan-level origination and performance data on millions of mortgages from 1999 to the present. It is one of the most comprehensive and credible public mortgage datasets available and was specifically recommended by the course professor.\nTo keep the project manageable in scope, we will use loan origination vintages from 2018 to 2022, which provides a rich and recent snapshot of mortgage performance while remaining computationally feasible. Key features available in this dataset include:\n\n\n\n\n\n\n\n\nFeature\nDescription\nType\n\n\n\n\noriginal_interest_rate\nInterest rate at origination\nnumeric\n\n\noriginal_upb\nOriginal unpaid principal balance (loan amount)\nnumeric\n\n\noriginal_ltv\nLoan-to-value ratio at origination\nnumeric\n\n\noriginal_dti\nDebt-to-income ratio at origination\nnumeric\n\n\nborrower_credit_score\nFICO credit score at origination\nnumeric\n\n\nnumber_of_units\nNumber of property units\ncategorical\n\n\noccupancy_status\nPrimary residence, second home, or investment\ncategorical\n\n\nloan_purpose\nPurchase, refinance, or cash-out refinance\ncategorical\n\n\never_delinquent\nTarget: whether loan became 90+ days delinquent\nbinary\n\n\n\nPre-processing steps will include subsetting to the relevant vintage years, handling missing values, encoding categorical variables, constructing the binary target variable (ever 90+ days delinquent), and addressing class imbalance using SMOTE or weighted sampling.",
+    "crumbs": [
+      "Proposal"
+    ]
+  },
+  {
+    "objectID": "proposal.html#machine-learning-problem-initial-models",
+    "href": "proposal.html#machine-learning-problem-initial-models",
+    "title": "Project Proposal",
+    "section": "5. Machine Learning Problem & Initial Models",
+    "text": "5. Machine Learning Problem & Initial Models\nThis is a binary classification problem. The target variable is whether a mortgage borrower ever became seriously delinquent (90+ days past due) on their loan — a strong proxy for default risk from the consumer’s perspective. The following model types will be explored in order of increasing complexity:\n\nLogistic Regression — interpretable baseline model. Coefficients provide direct insight into which features increase or decrease default probability, which supports the app’s explainability goals.\nRandom Forest — captures non-linear relationships and feature interactions. Provides built-in variable importance scores that can be visualized in the app’s feature influence panel.\nGradient Boosting (XGBoost) — typically the best-performing model on tabular financial data. Will be hyperparameter-tuned using cross-validation as the candidate production model.\n\nAll models will be implemented using the tidymodels framework in R. The final selected model will be serialized as an .rds file and loaded into the Shiny app for real-time inference.",
+    "crumbs": [
+      "Proposal"
+    ]
+  },
+  {
+    "objectID": "proposal.html#model-app-performance-evaluation",
+    "href": "proposal.html#model-app-performance-evaluation",
+    "title": "Project Proposal",
+    "section": "6. Model & App Performance Evaluation",
+    "text": "6. Model & App Performance Evaluation\n\nModel Evaluation\n\nAUC-ROC: primary metric, measuring the model’s ability to rank borrowers by delinquency risk across all classification thresholds.\nPrecision, Recall, and F1-Score: evaluated for the delinquent class to capture practical usefulness given class imbalance.\nConfusion Matrix: to visualize the trade-off between false positives (overcautious advice) and false negatives (missed high-risk borrowers).\nCalibration plot: to verify that the model’s predicted probabilities are well-calibrated and meaningful to end users.\n\n\n\nApp Evaluation\n\nPrediction latency: the app should return a risk score within 2 seconds of user input submission.\nUsability testing: the app will be evaluated by 3–5 peers playing the role of first-time homebuyers, assessed on clarity and ease of use.\nScenario accuracy: the scenario simulator outputs will be verified to respond logically and consistently to input changes.",
+    "crumbs": [
+      "Proposal"
+    ]
+  },
+  {
+    "objectID": "proposal.html#model-training-mode",
+    "href": "proposal.html#model-training-mode",
+    "title": "Project Proposal",
+    "section": "7. Model Training Mode",
+    "text": "7. Model Training Mode\nModel training will be batch-based. The model will be trained once on the Freddie Mac 2018–2022 vintage data, validated on a held-out test set, and the final model object will be serialized to an .rds file that is loaded by the Shiny app at startup for inference. This approach is appropriate because historical mortgage performance data is stable, and real-time retraining is not necessary for a consumer advisory tool.\nIf time allows, a periodic retraining schedule (e.g., triggered annually as new Freddie Mac vintage data becomes available) could be explored using GitHub Actions as a stretch goal, but this is outside the core project scope.",
+    "crumbs": [
+      "Proposal"
+    ]
+  },
+  {
+    "objectID": "proposal.html#computational-needs-hosting",
+    "href": "proposal.html#computational-needs-hosting",
+    "title": "Project Proposal",
+    "section": "8. Computational Needs & Hosting",
+    "text": "8. Computational Needs & Hosting\nThis project does not require large neural networks, LLMs, GPUs, or TPUs. Logistic Regression, Random Forest, and XGBoost are all computationally lightweight models that train efficiently on a standard laptop. The Freddie Mac dataset for 2018–2022 vintages is large but manageable — a random stratified sample of 500,000 to 1,000,000 loans will be used for training to balance representativeness with training speed.\nHosting plan:\n\nPrimary: shinyapps.io free tier — sufficient for a course project with low concurrent traffic and a pre-trained model loaded at startup.\nBackup: Render.com free tier or AWS EC2 t2.micro running open-source Shiny Server, if shinyapps.io resource limits are exceeded.\n\nNo significant cloud computing costs are anticipated. All model training will be performed locally, and only the serialized model file and Shiny app code will be deployed to the hosting platform.",
+    "crumbs": [
+      "Proposal"
+    ]
+  },
+  {
+    "objectID": "proposal.html#minimally-viable-product-mvp",
+    "href": "proposal.html#minimally-viable-product-mvp",
+    "title": "Project Proposal",
+    "section": "9. Minimally Viable Product (MVP)",
+    "text": "9. Minimally Viable Product (MVP)\nThe MVP will be a functional end-to-end prototype demonstrating feasibility, to be delivered at the midterm checkpoint. It will include:\n\nA cleaned and preprocessed subset of the Freddie Mac dataset (2018–2020 vintages) with the binary delinquency target variable defined.\nA trained Logistic Regression baseline model with AUC-ROC reported on a held-out test set.\nA deployed Shiny app with:\n\na basic input form for borrower characteristics\na real-time default probability output\na simple risk tier label (Low/Moderate/High).\n\nThe app accessible via a public shinyapps.io URL for review.\n\nPost-MVP iterations will add:\nRandom Forest and XGBoost model options, the scenario simulator with interactive sliders, the feature importance visualization, UI polish using bslib, and the model transparency tab with evaluation metrics.",
+    "crumbs": [
+      "Proposal"
+    ]
+  },
+  {
+    "objectID": "proposal.html#bibliography",
+    "href": "proposal.html#bibliography",
+    "title": "Project Proposal",
+    "section": "Bibliography:",
+    "text": "Bibliography:\nChen, T., & Guestrin, C. (2016). XGBoost: A scalable tree boosting system. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining.\nChang, W., Cheng, J., Allaire, J., Xie, Y., & McPherson, J. (2023). shiny: Web application framework for R. https://shiny.posit.co\nChawla, N. V., Bowyer, K. W., Hall, L. O., & Kegelmeyer, W. P. (2002). SMOTE: Synthetic minority over-sampling technique. Journal of Artificial Intelligence Research, 16, 321–357.\nFreddie Mac. (n.d.). Single family loan-level dataset. https://www.freddiemac.com/research/datasets/sf-loanlevel-dataset\nKuhn, M., & Wickham, H. (2020). Tidymodels: A collection of packages for modeling and machine learning using tidyverse principles. https://www.tidymodels.org\nMcKee, Amberle. Mastering Shiny for Python: A Beginner’s Guide to Building Interactive Web Applications, DataCamp, 15 Dec. 2023, https://www.datacamp.com/tutorial/mastering-shiny-for-python-a-beginners-guide-to-building-interactive-web-applications.",
+    "crumbs": [
+      "Proposal"
+    ]
   }
 ]
