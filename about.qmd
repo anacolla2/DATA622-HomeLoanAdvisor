@@ -1,0 +1,13 @@
+---
+title: "about"
+format: html
+editor: visual
+jupyter: python3
+---
+
+## Content coming soon
+
+```{python}
+#| echo: false
+2 * 2
+```

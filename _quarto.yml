@@ -1,0 +1,22 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Home Loan Advisor"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Overview
+      - href: proposal.qmd
+        text: Proposal
+      - href: data.qmd
+        text: Data
+      - href: models.qmd
+        text: Models
+      - href: results.qmd
+        text: Results
+      - href: app.qmd
+        text: App
+      - href: about.qmd
+        text: About the Group
