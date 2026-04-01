@@ -6,7 +6,7 @@ website:
   title: "Home Loan Advisor"
   sidebar:
     style: "docked"
-    background: light
+    background: dark
     contents:
       - href: index.qmd
         text: Overview
@@ -27,3 +27,4 @@ website:
 format:
   html:
     theme: litera
+sidebar: true
