@@ -1,9 +1,11 @@
 ---
-title: "Project Overview"
+title: ""
 format: html
 editor: visual
 jupyter: python3
 ---
+
+![](images/top-border.png){fig-align="center"}
 
 ## ![](images/DATA622-HomeLoanAdvisor-Cover-01.png)
 
@@ -11,9 +13,11 @@ Many borrowers walk into a mortgage hoping for the best. The Home Loan Adviser
 is a machine learning tool, trained on real Freddie Mac mortgages, that informs
 the borrower where they stand before ever engaging with a lender.
 
-::: {.callout-warning style="text-align: center;" appearance="minimal" icon="false"}
+::: {.callout-important style="text-align: center;" appearance="minimal" icon="false"}
 *Know your risk before your lenders do.*
 :::
 
 The interactive simulator produces a risk score in plain english, so users can
 examine their "what ifs?" before one of the largest decisions of their lives.
+
+![](images/bottom-border.png){fig-align="center"}
