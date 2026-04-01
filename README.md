@@ -1,1 +1,1 @@
-<img width="893" height="504" alt="DATA622-HomeLoanAdvisor-Cover" src="https://github.com/user-attachments/assets/2e677991-ec24-462c-b20e-b49673667f63" />
+<img width="924" height="518" alt="DATA622-HomeLoanAdvisor-Cover" src="https://github.com/user-attachments/assets/d513b7ef-36e0-47c6-a196-6972e4068803" />
