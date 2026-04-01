@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Ariba Razzaq, Ana Collado, Sabina Baralli, Jayden Jiang">
 
-<title>proposal – Home Loan Advisor</title>
+<title>data – Home Loan Advisor</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,11 +92,11 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./proposal.html" aria-current="page"> 
+    <a class="nav-link" href="./proposal.html"> 
 <span class="menu-text">Proposal</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./data.html"> 
+    <a class="nav-link active" href="./data.html" aria-current="page"> 
 <span class="menu-text">Data</span></a>
   </li>  
   <li class="nav-item">
@@ -133,19 +132,13 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">proposal</h1>
+<h1 class="title">data</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Ariba Razzaq, Ana Collado, Sabina Baralli, Jayden Jiang </p>
-          </div>
-  </div>
     
   
     
@@ -156,186 +149,15 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="project-proposal" class="level1">
-<h1>Project Proposal</h1>
-<section id="problem-definition" class="level2">
-<h2 class="anchored" data-anchor-id="problem-definition"><strong>1. Problem Definition</strong></h2>
-<p>Buying a home is the largest financial decision most people will ever make, yet consumers rarely have access to the same analytic tools that banks and lenders use when evaluating mortgage applications. Most prospective home buyers do not know how their personal financial profile — income, credit score, debt load, down payment — affects their real risk of being unable to repay a mortgage, or how changes in interest rates and economic conditions might impact that risk over time.</p>
-<p>This project proposes the development of the Home Loan Advisor, a consumer-facing machine learning application that helps individuals understand whether taking on a home loan is financially advisable given their personal characteristics. Unlike traditional bank-side default prediction systems, this app flips the perspective: it empowers the borrower to make smarter, data-driven decisions before committing to a mortgage. The app will use a model trained on real mortgage performance data from Freddie Mac to provide personalized risk assessments and scenario-based projections.</p>
-</section>
-<section id="target-users-app-features" class="level2">
-<h2 class="anchored" data-anchor-id="target-users-app-features"><strong>2. Target Users &amp; App Features</strong></h2>
-<p>The primary target users are consumers — specifically individuals who are considering taking on a home mortgage and want an independent, data-driven second opinion on their financial readiness.</p>
-<section id="target-users" class="level3">
-<h3 class="anchored" data-anchor-id="target-users"><strong>Target Users</strong></h3>
-<ul>
-<li><p>First-time homebuyers who are unfamiliar with how mortgage risk is assessed and want guidance before approaching a lender.</p></li>
-<li><p>Existing homeowners considering refinancing who want to understand how their current profile compares to historical default patterns.</p></li>
-<li><p>Financial advisors who want a quick, visual tool to walk clients through mortgage readiness scenarios.</p></li>
-</ul>
-</section>
-<section id="core-app-features" class="level3">
-<h3 class="anchored" data-anchor-id="core-app-features"><strong>Core App Features</strong></h3>
-<ul>
-<li><p><strong>Personal profile input form:</strong> fields for annual income, credit score, loan amount, property value, down payment percentage, employment status, and debt-to-income ratio.</p></li>
-<li><p><strong>Risk assessment output:</strong> a clear affordability score and risk tier (Low / Moderate / High) with a plain-English explanation of what is driving the score.</p></li>
-<li><p><strong>Scenario simulator:</strong> an interactive panel allowing users to adjust variables (e.g., ‘What if my income drops by 15%?’ or ‘What if interest rates rise by 2%?’) and instantly see how their risk score changes.</p></li>
-<li><p><strong>Feature influence panel:</strong> a chart showing which personal factors most affect the prediction, helping users understand what to improve before applying.</p></li>
-<li><p><strong>Model transparency tab:</strong> displays model performance metrics (AUC-ROC, confusion matrix) so users can trust the underlying system.</p></li>
-</ul>
-</section>
-</section>
-<section id="application-interface" class="level2">
-<h2 class="anchored" data-anchor-id="application-interface"><strong>3. Application Interface</strong></h2>
-<p>The application will be built using R Shiny. Shiny is the recommended interface for this course and is well-suited for this project because the underlying model is trained in R using the tidymodels framework, the data is tabular, and Shiny’s reactive programming model naturally supports real-time updates as users adjust sliders and inputs in the scenario simulator.</p>
-<p>The app layout will use the <code>bslib</code> package for a modern, clean UI and will consist of three tabs:</p>
-<ol type="1">
-<li>My Profile — the input form and risk assessment output</li>
-<li>Scenario Simulator — interactive sliders for exploring what-if scenarios</li>
-<li>About the Model — performance metrics and data transparency information. The app will be designed to be accessible to non-technical users, with plain-English labels and color-coded risk indicators.</li>
-</ol>
-</section>
-<section id="data-sources" class="level2">
-<h2 class="anchored" data-anchor-id="data-sources"><strong>4. Data Sources</strong></h2>
-<p>The primary data source will be the Freddie Mac Single Family Loan-Level Dataset, publicly available at <a href="https://www.freddiemac.com/research/datasets/sf-loanlevel-dataset" class="uri">https://www.freddiemac.com/research/datasets/sf-loanlevel-dataset</a>. This dataset requires a free registration but is fully accessible and contains loan-level origination and performance data on millions of mortgages from 1999 to the present. It is one of the most comprehensive and credible public mortgage datasets available and was specifically recommended by the course professor.</p>
-<p>To keep the project manageable in scope, we will use loan origination vintages from 2018 to 2022, which provides a rich and recent snapshot of mortgage performance while remaining computationally feasible. Key features available in this dataset include:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 37%">
-<col style="width: 37%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Feature</th>
-<th>Description</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>original_interest_rate</td>
-<td>Interest rate at origination</td>
-<td>numeric</td>
-</tr>
-<tr class="even">
-<td>original_upb</td>
-<td>Original unpaid principal balance (loan amount)</td>
-<td>numeric</td>
-</tr>
-<tr class="odd">
-<td>original_ltv</td>
-<td>Loan-to-value ratio at origination</td>
-<td>numeric</td>
-</tr>
-<tr class="even">
-<td>original_dti</td>
-<td>Debt-to-income ratio at origination</td>
-<td>numeric</td>
-</tr>
-<tr class="odd">
-<td>borrower_credit_score</td>
-<td>FICO credit score at origination</td>
-<td>numeric</td>
-</tr>
-<tr class="even">
-<td>number_of_units</td>
-<td>Number of property units</td>
-<td>categorical</td>
-</tr>
-<tr class="odd">
-<td>occupancy_status</td>
-<td>Primary residence, second home, or investment</td>
-<td>categorical</td>
-</tr>
-<tr class="even">
-<td>loan_purpose</td>
-<td>Purchase, refinance, or cash-out refinance</td>
-<td>categorical</td>
-</tr>
-<tr class="odd">
-<td>ever_delinquent</td>
-<td>Target: whether loan became 90+ days delinquent</td>
-<td>binary</td>
-</tr>
-</tbody>
-</table>
-<p>Pre-processing steps will include subsetting to the relevant vintage years, handling missing values, encoding categorical variables, constructing the binary target variable (ever 90+ days delinquent), and addressing class imbalance using <strong>SMOTE</strong> or weighted sampling.</p>
-</section>
-<section id="machine-learning-problem-initial-models" class="level2">
-<h2 class="anchored" data-anchor-id="machine-learning-problem-initial-models"><strong>5. Machine Learning Problem &amp; Initial Models</strong></h2>
-<p>This is a binary classification problem. The target variable is whether a mortgage borrower ever became seriously delinquent (90+ days past due) on their loan — a strong proxy for default risk from the consumer’s perspective. The following model types will be explored in order of increasing complexity:</p>
-<ul>
-<li><p>Logistic Regression — interpretable baseline model. Coefficients provide direct insight into which features increase or decrease default probability, which supports the app’s explainability goals.</p></li>
-<li><p>Random Forest — captures non-linear relationships and feature interactions. Provides built-in variable importance scores that can be visualized in the app’s feature influence panel.</p></li>
-<li><p>Gradient Boosting (XGBoost) — typically the best-performing model on tabular financial data. Will be hyperparameter-tuned using cross-validation as the candidate production model.</p></li>
-</ul>
-<p>All models will be implemented using the tidymodels framework in R. The final selected model will be serialized as an .rds file and loaded into the Shiny app for real-time inference.</p>
-</section>
-<section id="model-app-performance-evaluation" class="level2">
-<h2 class="anchored" data-anchor-id="model-app-performance-evaluation"><strong>6. Model &amp; App Performance Evaluation</strong></h2>
-<section id="model-evaluation" class="level3">
-<h3 class="anchored" data-anchor-id="model-evaluation"><strong>Model Evaluation</strong></h3>
-<ul>
-<li><p>AUC-ROC: primary metric, measuring the model’s ability to rank borrowers by delinquency risk across all classification thresholds.</p></li>
-<li><p>Precision, Recall, and F1-Score: evaluated for the delinquent class to capture practical usefulness given class imbalance.</p></li>
-<li><p>Confusion Matrix: to visualize the trade-off between false positives (overcautious advice) and false negatives (missed high-risk borrowers).</p></li>
-<li><p>Calibration plot: to verify that the model’s predicted probabilities are well-calibrated and meaningful to end users.</p></li>
-</ul>
-</section>
-<section id="app-evaluation" class="level3">
-<h3 class="anchored" data-anchor-id="app-evaluation"><strong>App Evaluation</strong></h3>
-<ul>
-<li><p>Prediction latency: the app should return a risk score within 2 seconds of user input submission.</p></li>
-<li><p>Usability testing: the app will be evaluated by 3–5 peers playing the role of first-time homebuyers, assessed on clarity and ease of use.</p></li>
-<li><p>Scenario accuracy: the scenario simulator outputs will be verified to respond logically and consistently to input changes.</p></li>
-</ul>
-</section>
-</section>
-<section id="model-training-mode" class="level2">
-<h2 class="anchored" data-anchor-id="model-training-mode"><strong>7. Model Training Mode</strong></h2>
-<p>Model training will be batch-based. The model will be trained once on the Freddie Mac 2018–2022 vintage data, validated on a held-out test set, and the final model object will be serialized to an .rds file that is loaded by the Shiny app at startup for inference. This approach is appropriate because historical mortgage performance data is stable, and real-time retraining is not necessary for a consumer advisory tool.</p>
-<p>If time allows, a periodic retraining schedule (e.g., triggered annually as new Freddie Mac vintage data becomes available) could be explored using GitHub Actions as a stretch goal, but this is outside the core project scope.</p>
-</section>
-<section id="computational-needs-hosting" class="level2">
-<h2 class="anchored" data-anchor-id="computational-needs-hosting"><strong>8. Computational Needs &amp; Hosting</strong></h2>
-<p>This project does not require large neural networks, LLMs, GPUs, or TPUs. Logistic Regression, Random Forest, and XGBoost are all computationally lightweight models that train efficiently on a standard laptop. The Freddie Mac dataset for 2018–2022 vintages is large but manageable — a random stratified sample of 500,000 to 1,000,000 loans will be used for training to balance representativeness with training speed.</p>
-<p>Hosting plan:</p>
-<ul>
-<li><p><strong>Primary:</strong> shinyapps.io free tier — sufficient for a course project with low concurrent traffic and a pre-trained model loaded at startup.</p></li>
-<li><p><strong>Backup:</strong> Render.com free tier or AWS EC2 t2.micro running open-source Shiny Server, if shinyapps.io resource limits are exceeded.</p></li>
-</ul>
-<p>No significant cloud computing costs are anticipated. All model training will be performed locally, and only the serialized model file and Shiny app code will be deployed to the hosting platform.</p>
-</section>
-<section id="minimally-viable-product-mvp" class="level2">
-<h2 class="anchored" data-anchor-id="minimally-viable-product-mvp"><strong>9. Minimally Viable Product (MVP)</strong></h2>
-<p>The MVP will be a functional end-to-end prototype demonstrating feasibility, to be delivered at the midterm checkpoint. It will include:</p>
-<ul>
-<li><p>A cleaned and preprocessed subset of the Freddie Mac dataset (2018–2020 vintages) with the binary delinquency target variable defined.</p></li>
-<li><p>A trained Logistic Regression baseline model with AUC-ROC reported on a held-out test set.</p></li>
-<li><p>A deployed Shiny app with:</p>
-<ul>
-<li><p>a basic input form for borrower characteristics</p></li>
-<li><p>a real-time default probability output</p></li>
-<li><p>a simple risk tier label (Low/Moderate/High).</p></li>
-</ul></li>
-<li><p>The app accessible via a public shinyapps.io URL for review.</p></li>
-</ul>
-<p><strong>Post-MVP iterations will add:</strong></p>
-<p>Random Forest and XGBoost model options, the scenario simulator with interactive sliders, the feature importance visualization, UI polish using <code>bslib</code>, and the model transparency tab with evaluation metrics.</p>
-<hr>
-</section>
-<section id="bibliography" class="level2">
-<h2 class="anchored" data-anchor-id="bibliography">Bibliography:</h2>
-<p>Chen, T., &amp; Guestrin, C. (2016). XGBoost: A scalable tree boosting system. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining.</p>
-<p>Chang, W., Cheng, J., Allaire, J., Xie, Y., &amp; McPherson, J. (2023). shiny: Web application framework for R. <a href="https://shiny.posit.co" class="uri">https://shiny.posit.co</a></p>
-<p>Chawla, N. V., Bowyer, K. W., Hall, L. O., &amp; Kegelmeyer, W. P. (2002). SMOTE: Synthetic minority over-sampling technique. Journal of Artificial Intelligence Research, 16, 321–357.</p>
-<p>Freddie Mac. (n.d.). Single family loan-level dataset. <a href="https://www.freddiemac.com/research/datasets/sf-loanlevel-dataset" class="uri">https://www.freddiemac.com/research/datasets/sf-loanlevel-dataset</a></p>
-<p>Kuhn, M., &amp; Wickham, H. (2020). Tidymodels: A collection of packages for modeling and machine learning using tidyverse principles. <a href="https://www.tidymodels.org" class="uri">https://www.tidymodels.org</a></p>
-<p>McKee, Amberle. <em>Mastering Shiny for Python: A Beginner’s Guide to Building Interactive Web Applications</em>, DataCamp, 15 Dec.&nbsp;2023, <a href="https://www.datacamp.com/tutorial/mastering-shiny-for-python-a-beginners-guide-to-building-interactive-web-applications" class="uri">https://www.datacamp.com/tutorial/mastering-shiny-for-python-a-beginners-guide-to-building-interactive-web-applications</a>.</p>
+<section id="content-coming-soon" class="level2">
+<h2 class="anchored" data-anchor-id="content-coming-soon">Content coming soon</h2>
+<div id="8f29971e" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>4</code></pre>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

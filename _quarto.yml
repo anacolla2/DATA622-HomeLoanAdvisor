@@ -20,3 +20,6 @@ website:
         text: App
       - href: about.qmd
         text: About the Group
+format: 
+  html:
+    theme: Litera

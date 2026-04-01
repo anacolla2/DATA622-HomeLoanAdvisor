@@ -1,5 +1,89 @@
 [
   {
+    "objectID": "data.html",
+    "href": "data.html",
+    "title": "data",
+    "section": "",
+    "text": "4"
+  },
+  {
+    "objectID": "data.html#content-coming-soon",
+    "href": "data.html#content-coming-soon",
+    "title": "data",
+    "section": "",
+    "text": "4"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "about",
+    "section": "",
+    "text": "4"
+  },
+  {
+    "objectID": "about.html#content-coming-soon",
+    "href": "about.html#content-coming-soon",
+    "title": "about",
+    "section": "",
+    "text": "4"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "index",
+    "section": "",
+    "text": "4"
+  },
+  {
+    "objectID": "index.html#content-coming-soon",
+    "href": "index.html#content-coming-soon",
+    "title": "index",
+    "section": "",
+    "text": "4"
+  },
+  {
+    "objectID": "models.html",
+    "href": "models.html",
+    "title": "models",
+    "section": "",
+    "text": "4"
+  },
+  {
+    "objectID": "models.html#content-coming-soon",
+    "href": "models.html#content-coming-soon",
+    "title": "models",
+    "section": "",
+    "text": "4"
+  },
+  {
+    "objectID": "results.html",
+    "href": "results.html",
+    "title": "results",
+    "section": "",
+    "text": "4"
+  },
+  {
+    "objectID": "results.html#content-coming-soon",
+    "href": "results.html#content-coming-soon",
+    "title": "results",
+    "section": "",
+    "text": "4"
+  },
+  {
+    "objectID": "app.html",
+    "href": "app.html",
+    "title": "app",
+    "section": "",
+    "text": "4"
+  },
+  {
+    "objectID": "app.html#content-coming-soon",
+    "href": "app.html#content-coming-soon",
+    "title": "app",
+    "section": "",
+    "text": "4"
+  },
+  {
     "objectID": "proposal.html",
     "href": "proposal.html",
     "title": "proposal",
@@ -75,75 +159,5 @@
     "title": "proposal",
     "section": "",
     "text": "Chen, T., & Guestrin, C. (2016). XGBoost: A scalable tree boosting system. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining.\nChang, W., Cheng, J., Allaire, J., Xie, Y., & McPherson, J. (2023). shiny: Web application framework for R. https://shiny.posit.co\nChawla, N. V., Bowyer, K. W., Hall, L. O., & Kegelmeyer, W. P. (2002). SMOTE: Synthetic minority over-sampling technique. Journal of Artificial Intelligence Research, 16, 321–357.\nFreddie Mac. (n.d.). Single family loan-level dataset. https://www.freddiemac.com/research/datasets/sf-loanlevel-dataset\nKuhn, M., & Wickham, H. (2020). Tidymodels: A collection of packages for modeling and machine learning using tidyverse principles. https://www.tidymodels.org\nMcKee, Amberle. Mastering Shiny for Python: A Beginner’s Guide to Building Interactive Web Applications, DataCamp, 15 Dec. 2023, https://www.datacamp.com/tutorial/mastering-shiny-for-python-a-beginners-guide-to-building-interactive-web-applications."
-  },
-  {
-    "objectID": "app.html",
-    "href": "app.html",
-    "title": "app",
-    "section": "",
-    "text": "4"
-  },
-  {
-    "objectID": "app.html#content-coming-soon",
-    "href": "app.html#content-coming-soon",
-    "title": "app",
-    "section": "",
-    "text": "4"
-  },
-  {
-    "objectID": "results.html",
-    "href": "results.html",
-    "title": "results",
-    "section": "",
-    "text": "4"
-  },
-  {
-    "objectID": "results.html#content-coming-soon",
-    "href": "results.html#content-coming-soon",
-    "title": "results",
-    "section": "",
-    "text": "4"
-  },
-  {
-    "objectID": "models.html",
-    "href": "models.html",
-    "title": "models",
-    "section": "",
-    "text": "4"
-  },
-  {
-    "objectID": "models.html#content-coming-soon",
-    "href": "models.html#content-coming-soon",
-    "title": "models",
-    "section": "",
-    "text": "4"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "index",
-    "section": "",
-    "text": "4"
-  },
-  {
-    "objectID": "index.html#content-coming-soon",
-    "href": "index.html#content-coming-soon",
-    "title": "index",
-    "section": "",
-    "text": "4"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "about",
-    "section": "",
-    "text": "4"
-  },
-  {
-    "objectID": "about.html#content-coming-soon",
-    "href": "about.html#content-coming-soon",
-    "title": "about",
-    "section": "",
-    "text": "4"
   }
 ]
