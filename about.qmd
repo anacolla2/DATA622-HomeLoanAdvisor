@@ -5,9 +5,10 @@ editor: visual
 jupyter: python3
 ---
 
-## Content coming soon
+![](images/top-border.png)
+
+. . . blank
 
 ```{python}
-#| echo: false
-2 * 2
+# code
 ```

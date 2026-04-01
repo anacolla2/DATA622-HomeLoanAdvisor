@@ -1,13 +1,16 @@
 ---
-title: "data"
+title: "The Data"
 format: html
+toc: true
+toc-depth: 6
 editor: visual
 jupyter: python3
 ---
 
-## 
+## ![](images/top-border.png)
+
+. . .blank
 
 ```{python}
-#| echo: false
-2 * 2
+#code
 ```

@@ -2,9 +2,9 @@
   {
     "objectID": "data.html",
     "href": "data.html",
-    "title": "data",
+    "title": "The Data",
     "section": "",
-    "text": "4",
+    "text": ". . .blank\n\n#code",
     "crumbs": [
       "Data"
     ]
@@ -12,9 +12,9 @@
   {
     "objectID": "data.html#section",
     "href": "data.html#section",
-    "title": "data",
+    "title": "The Data",
     "section": "",
-    "text": "4",
+    "text": ". . .blank\n\n#code",
     "crumbs": [
       "Data"
     ]
@@ -24,17 +24,7 @@
     "href": "about.html",
     "title": "about",
     "section": "",
-    "text": "4",
-    "crumbs": [
-      "About the Group"
-    ]
-  },
-  {
-    "objectID": "about.html#content-coming-soon",
-    "href": "about.html#content-coming-soon",
-    "title": "about",
-    "section": "",
-    "text": "4",
+    "text": ". . . blank\n\n# code",
     "crumbs": [
       "About the Group"
     ]
@@ -54,17 +44,17 @@
     "href": "models.html",
     "title": "models",
     "section": "",
-    "text": "4",
+    "text": ". . . blank\n\n\n4",
     "crumbs": [
       "Models"
     ]
   },
   {
-    "objectID": "models.html#content-coming-soon",
-    "href": "models.html#content-coming-soon",
+    "objectID": "models.html#section",
+    "href": "models.html#section",
     "title": "models",
     "section": "",
-    "text": "4",
+    "text": ". . . blank\n\n\n4",
     "crumbs": [
       "Models"
     ]
@@ -74,17 +64,17 @@
     "href": "results.html",
     "title": "results",
     "section": "",
-    "text": "4",
+    "text": ". . . blank\n\n#code",
     "crumbs": [
       "Results"
     ]
   },
   {
-    "objectID": "results.html#content-coming-soon",
-    "href": "results.html#content-coming-soon",
+    "objectID": "results.html#section",
+    "href": "results.html#section",
     "title": "results",
     "section": "",
-    "text": "4",
+    "text": ". . . blank\n\n#code",
     "crumbs": [
       "Results"
     ]
@@ -94,37 +84,27 @@
     "href": "app.html",
     "title": "app",
     "section": "",
-    "text": "4",
+    "text": ". . .blank\n\n#code",
     "crumbs": [
       "App"
     ]
   },
   {
-    "objectID": "app.html#content-coming-soon",
-    "href": "app.html#content-coming-soon",
+    "objectID": "app.html#section",
+    "href": "app.html#section",
     "title": "app",
     "section": "",
-    "text": "4",
+    "text": ". . .blank\n\n#code",
     "crumbs": [
       "App"
-    ]
-  },
-  {
-    "objectID": "proposal.html",
-    "href": "proposal.html",
-    "title": "Project Proposal",
-    "section": "",
-    "text": "Buying a home is the largest financial decision most people will ever make, yet consumers rarely have access to the same analytic tools that banks and lenders use when evaluating mortgage applications. Most prospective home buyers do not know how their personal financial profile — income, credit score, debt load, down payment — affects their real risk of being unable to repay a mortgage, or how changes in interest rates and economic conditions might impact that risk over time.\nThis project proposes the development of the Home Loan Advisor, a consumer-facing machine learning application that helps individuals understand whether taking on a home loan is financially advisable given their personal characteristics. Unlike traditional bank-side default prediction systems, this app flips the perspective: it empowers the borrower to make smarter, data-driven decisions before committing to a mortgage. The app will use a model trained on real mortgage performance data from Freddie Mac to provide personalized risk assessments and scenario-based projections.",
-    "crumbs": [
-      "Proposal"
     ]
   },
   {
     "objectID": "proposal.html#problem-definition",
     "href": "proposal.html#problem-definition",
     "title": "Project Proposal",
-    "section": "",
-    "text": "Buying a home is the largest financial decision most people will ever make, yet consumers rarely have access to the same analytic tools that banks and lenders use when evaluating mortgage applications. Most prospective home buyers do not know how their personal financial profile — income, credit score, debt load, down payment — affects their real risk of being unable to repay a mortgage, or how changes in interest rates and economic conditions might impact that risk over time.\nThis project proposes the development of the Home Loan Advisor, a consumer-facing machine learning application that helps individuals understand whether taking on a home loan is financially advisable given their personal characteristics. Unlike traditional bank-side default prediction systems, this app flips the perspective: it empowers the borrower to make smarter, data-driven decisions before committing to a mortgage. The app will use a model trained on real mortgage performance data from Freddie Mac to provide personalized risk assessments and scenario-based projections.",
+    "section": "1. Problem Definition",
+    "text": "1. Problem Definition\nBuying a home is the largest financial decision most people will ever make, yet consumers rarely have access to the same analytic tools that banks and lenders use when evaluating mortgage applications. Most prospective home buyers do not know how their personal financial profile — income, credit score, debt load, down payment — affects their real risk of being unable to repay a mortgage, or how changes in interest rates and economic conditions might impact that risk over time.\nThis project proposes the development of the Home Loan Advisor, a consumer-facing machine learning application that helps individuals understand whether taking on a home loan is financially advisable given their personal characteristics. Unlike traditional bank-side default prediction systems, this app flips the perspective: it empowers the borrower to make smarter, data-driven decisions before committing to a mortgage. The app will use a model trained on real mortgage performance data from Freddie Mac to provide personalized risk assessments and scenario-based projections.",
     "crumbs": [
       "Proposal"
     ]

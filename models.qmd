@@ -5,7 +5,9 @@ editor: visual
 jupyter: python3
 ---
 
-## Content coming soon
+## ![](images/top-border-03.png)
+
+. . . blank
 
 ```{python}
 #| echo: false

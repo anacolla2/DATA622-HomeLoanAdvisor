@@ -8,6 +8,8 @@ editor: visual
 jupyter: python3
 ---
 
+![](images/top-border-02.png){fig-align="center"}
+
 ## **1. Problem Definition**
 
 Buying a home is the largest financial decision most people will ever make, yet
@@ -98,7 +100,7 @@ performance while remaining computationally feasible. Key features available in
 this dataset include:
 
 | Feature                | Description                                     | Type        |
-|---------------------|------------------------------|------------------------------|
+|------------------------|-------------------------------------------------|-------------|
 | original_interest_rate | Interest rate at origination                    | numeric     |
 | original_upb           | Original unpaid principal balance (loan amount) | numeric     |
 | original_ltv           | Loan-to-value ratio at origination              | numeric     |
