@@ -6,7 +6,7 @@ website:
   title: "Home Loan Advisor"
   sidebar:
     style: "docked"
-    background: dark
+    background: light
     contents:
       - href: index.qmd
         text: Overview
@@ -22,7 +22,6 @@ website:
         text: App
       - href: about.qmd
         text: About the Group
-
 
 format:
   html:
