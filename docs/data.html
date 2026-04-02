@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -113,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data.html">Data</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data.html">The Data</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -141,37 +107,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Overview</span></a>
+ <span class="menu-text">An Overview</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./proposal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Proposal</span></a>
+ <span class="menu-text">App Proposal</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Data</span></a>
+ <span class="menu-text">The Data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Models</span></a>
+ <span class="menu-text">The Models</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./results.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Results</span></a>
+ <span class="menu-text">Our Results</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./app.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">App</span></a>
+ <span class="menu-text">The App</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -191,6 +157,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"><img src="images/top-border.png" class="img-fluid"></a></li>
+  <li><a href="#about-freddie-mac" id="toc-about-freddie-mac" class="nav-link" data-scroll-target="#about-freddie-mac">About Freddie Mac</a></li>
+  <li><a href="#about-the-raw-data" id="toc-about-the-raw-data" class="nav-link" data-scroll-target="#about-the-raw-data">About the Raw Data</a></li>
+  <li><a href="#data-load-clean" id="toc-data-load-clean" class="nav-link" data-scroll-target="#data-load-clean">Data Load &amp; Clean</a></li>
+  <li><a href="#data-exploration" id="toc-data-exploration" class="nav-link" data-scroll-target="#data-exploration">Data Exploration</a></li>
+  <li><a href="#data-visualizations" id="toc-data-visualizations" class="nav-link" data-scroll-target="#data-visualizations">Data Visualizations</a></li>
   </ul>
 </nav>
     </div>
@@ -218,10 +189,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="section" class="level2">
 <h2 class="anchored" data-anchor-id="section"><img src="images/top-border.png" class="img-fluid"></h2>
-<p>. . .blank</p>
-<div id="89c69211" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="about-freddie-mac" class="level2">
+<h2 class="anchored" data-anchor-id="about-freddie-mac">About Freddie Mac</h2>
+<p>The data originates from Freddy Mac a group created by congress in an effort to make mortgages more accessible to Americans. This accessibility is derived from Freddie Mac’s mortgage purchases. Lenders sell the mortgage loans to Freddie Mac who in turn uses the assets as securities sold to investors. Securities give one the right to something else– a financial contract. In this case mortgages, as securities, give investors a monthly stream of income for decades.</p>
+<p>As a main purchaser of mortgages, Freddie Mac has a large amount of mortgage data across the entire US. These datapoints are ideal for the Home Loan Adviser model.</p>
+</section>
+<section id="about-the-raw-data" class="level2">
+<h2 class="anchored" data-anchor-id="about-the-raw-data">About the Raw Data</h2>
+<p>The data is provided by Freddie Mac in zip files by year. Each year is composed of quarters, which are alrso individually zipped. Each quarter has two files, one contains loan origination data and the other contains the performances of each loan. Their key is a column named <code>loan_sequence_number</code> for joining.</p>
+<p>The raw data is in .txt format separated by <code>|</code> vertical bars, or “pipes” instead of commas or tabs.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/FreddieMac-Raw data.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
 </div>
+<p>The download is available <a href="https://claritydownload.fmapps.freddiemac.com/CRT/#/sflld">here</a></p>
+</section>
+<section id="data-load-clean" class="level2">
+<h2 class="anchored" data-anchor-id="data-load-clean">Data Load &amp; Clean</h2>
+<p>(load data)</p>
+</section>
+<section id="data-exploration" class="level2">
+<h2 class="anchored" data-anchor-id="data-exploration">Data Exploration</h2>
+<p>(data exploration and descriptive stats)</p>
+</section>
+<section id="data-visualizations" class="level2">
+<h2 class="anchored" data-anchor-id="data-visualizations">Data Visualizations</h2>
 
 
 </section>

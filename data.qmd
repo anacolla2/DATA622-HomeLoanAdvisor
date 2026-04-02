@@ -9,8 +9,52 @@ jupyter: python3
 
 ## ![](images/top-border.png)
 
-. . .blank
+```{python}
+#| echo: false
+#| eval: true
+
+import pandas as pd
+import numpy as np
+```
+
+## About Freddie Mac
+
+The data originates from Freddy Mac a group created by congress in an effort to
+make mortgages more accessible to Americans. This accessibility is derived from
+Freddie Mac's mortgage purchases. Lenders sell the mortgage loans to Freddie Mac
+who in turn uses the assets as securities sold to investors. Securities give one
+the right to something else– a financial contract. In this case mortgages, as
+securities, give investors a monthly stream of income for decades.
+
+As a main purchaser of mortgages, Freddie Mac has a large amount of mortgage
+data across the entire US. These datapoints are ideal for the Home Loan Adviser
+model.
+
+## About the Raw Data
+
+The data is provided by Freddie Mac in zip files by year. Each year is composed
+of quarters, which are alrso individually zipped. Each quarter has two files,
+one contains loan origination data and the other contains the performances of
+each loan. Their key is a column named `loan_sequence_number` for joining.
+
+The raw data is in .txt format separated by `|` vertical bars, or "pipes"
+instead of commas or tabs.
+
+![](images/FreddieMac-Raw data.png){fig-align="center"}
 
 ```{python}
-#code
+
 ```
+
+The download is available
+[here](https://claritydownload.fmapps.freddiemac.com/CRT/#/sflld)
+
+## Data Load & Clean
+
+(load data)
+
+## Data Exploration
+
+(data exploration and descriptive stats)
+
+## Data Visualizations

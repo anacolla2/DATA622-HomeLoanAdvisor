@@ -9,17 +9,17 @@ website:
     background: light
     contents:
       - href: index.qmd
-        text: Overview
+        text: An Overview
       - href: proposal.qmd
-        text: Proposal
+        text: App Proposal
       - href: data.qmd
-        text: Data
+        text: The Data
       - href: models.qmd
-        text: Models
+        text: The Models
       - href: results.qmd
-        text: Results
+        text: Our Results
       - href: app.qmd
-        text: App
+        text: The App
       - href: about.qmd
         text: About the Group
 

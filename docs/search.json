@@ -198,5 +198,55 @@
     "crumbs": [
       "Proposal"
     ]
+  },
+  {
+    "objectID": "data.html#about-freddie-mac",
+    "href": "data.html#about-freddie-mac",
+    "title": "The Data",
+    "section": "About Freddie Mac",
+    "text": "About Freddie Mac\nThe data originates from Freddy Mac a group created by congress in an effort to make mortgages more accessible to Americans. This accessibility is derived from Freddie Mac’s mortgage purchases. Lenders sell the mortgage loans to Freddie Mac who in turn uses the assets as securities sold to investors. Securities give one the right to something else– a financial contract. In this case mortgages, as securities, give investors a monthly stream of income for decades.\nAs a main purchaser of mortgages, Freddie Mac has a large amount of mortgage data across the entire US. These datapoints are ideal for the Home Loan Adviser model.",
+    "crumbs": [
+      "The Data"
+    ]
+  },
+  {
+    "objectID": "data.html#about-the-raw-data",
+    "href": "data.html#about-the-raw-data",
+    "title": "The Data",
+    "section": "About the Raw Data",
+    "text": "About the Raw Data\nThe data is provided by Freddie Mac in zip files by year. Each year is composed of quarters, which are alrso individually zipped. Each quarter has two files, one contains loan origination data and the other contains the performances of each loan. Their key is a column named loan_sequence_number for joining.\nThe raw data is in .txt format separated by | vertical bars, or “pipes” instead of commas or tabs.\n\n\n\n\n\nThe download is available here",
+    "crumbs": [
+      "The Data"
+    ]
+  },
+  {
+    "objectID": "data.html#data-load-clean",
+    "href": "data.html#data-load-clean",
+    "title": "The Data",
+    "section": "Data Load & Clean",
+    "text": "Data Load & Clean\n(load data)",
+    "crumbs": [
+      "The Data"
+    ]
+  },
+  {
+    "objectID": "data.html#data-exploration",
+    "href": "data.html#data-exploration",
+    "title": "The Data",
+    "section": "Data Exploration",
+    "text": "Data Exploration\n(data exploration and descriptive stats)",
+    "crumbs": [
+      "The Data"
+    ]
+  },
+  {
+    "objectID": "data.html#data-visualizations",
+    "href": "data.html#data-visualizations",
+    "title": "The Data",
+    "section": "Data Visualizations",
+    "text": "Data Visualizations",
+    "crumbs": [
+      "The Data"
+    ]
   }
 ]
