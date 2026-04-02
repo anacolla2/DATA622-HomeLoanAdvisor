@@ -36,29 +36,80 @@ model.
 
 ## About the Raw Data
 
-The data is provided by Freddie Mac in zip files by year. Each year is composed
-of quarters, which are alrso individually zipped. Each quarter has two files,
-one contains loan origination data and the other contains the performances of
-each loan. Their key is a column named `loan_sequence_number` for joining.
+The data is provided by Freddie Mac in zip files by year. The download is
+available [here](https://claritydownload.fmapps.freddiemac.com/CRT/#/sflld). A
+guide is also provided
+[here](https://www.freddiemac.com/fmac-resources/research/pdf/user_guide.pdf).
 
-The raw data is in .txt format separated by `|` vertical bars, or "pipes"
-instead of commas or tabs.
+Each year of the SFLL data is composed of quarters, which are provided in zip
+files as well. Each quarter then contains two files, one contains loan
+origination data and the other contains the performances of each loan. Their
+"key" is a column named `loan_sequence_number` to be used for joining if needed.
+
+```{bash}
+#| eval: false
+#--to extract automatically (on mac)-- 
+cd ~/Downloads
+unzip "historical_data_*.zip"
+
+#-- remove the main zip from folder and re-run to extract quarters--
+unzip "historical_data_*.zip"
+```
+
+Once the nested zip files were extracted, there were a total of 40 files. The
+raw data is in .txt format separated by `|` vertical bars, or "pipes" instead of
+commas or tabs. There are no headers so all columns were named upon importing.
 
 ![](images/FreddieMac-Raw%20data.png){fig-align="center"}
 
-```{python}
+### Data Dictionary
 
+```{python}
+#| echo: false
+#| eval: true
+
+#-- Loan Origination Dictionary Table--
+dd_origination= pd.read_csv("data/origination_data_file.csv", header= 0)
+dd_origination.columns= ["position", "column_name", "type", "max_length"]
+dd_origination
+#--Loan Performance Dictionary Table--
+
+dd_performance= pd.read_csv("data/monthly_performance_data_file.csv", header= 0)
+dd_performance.columns= ["position", "column_name", "type", "max_length"]
+dd_performance
 ```
 
-The download is available
-[here](https://claritydownload.fmapps.freddiemac.com/CRT/#/sflld)
+--------------------------------------------------------------------------------
+
+```{python}
+or_2018= pd.read_csv("data/historical_data_2018Q1.txt", sep="|", header= None)
+or_2018.shape
+```
+
+--------------------------------------------------------------------------------
 
 ## Data Load & Clean
 
-(load data)
+### About Missing Values
+
+(how were handling missing values)
+
+### Categorical Variable
+
+("encoding the categorical values")
+
+### Target Variable
+
+("ever 90+ days delinquent")
+
+### Sampling
+
+(about imbalances, "weighted sampling or SMOTE")
 
 ## Data Exploration
 
 (data exploration and descriptive stats)
 
 ## Data Visualizations
+
+(Are we showing distributions and such?)
