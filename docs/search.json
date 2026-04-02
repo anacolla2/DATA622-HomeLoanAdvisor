@@ -14,7 +14,7 @@
     "href": "data.html#about-the-raw-data",
     "title": "Home Loan Advisor",
     "section": "About the Raw Data",
-    "text": "About the Raw Data\nThe data is provided by Freddie Mac in zip files by year. The download is available here. A guide is also provided here.\nEach year of the SFLL data is composed of quarters, which are provided in zip files as well. Each quarter then contains two files, one contains loan origination data and the other contains the performances of each loan. Their “key” is a column named loan_sequence_number to be used for joining if needed.\n#| eval: false\n#--to extract automatically (on mac)-- \ncd ~/Downloads\nunzip \"historical_data_*.zip\"\n\n#-- remove the main zip from folder and re-run to extract quarters--\nunzip \"historical_data_*.zip\"\nOnce the nested zip files were extracted, there were a total of 40 files. The raw data is in .txt format separated by | vertical bars, or “pipes” instead of commas or tabs. There are no headers so all columns were named upon importing.\n\n\n\n\n\n\nData Dictionary\n\n\n\n\n\n\n\n\n\nposition\ncolumn_name\ntype\nmax_length\n\n\n\n\n0\n1\nLoan Sequence Number\nAlpha Numeric - PYYQnXXXXXXX\n12\n\n\n1\n2\nMonthly Reporting Period\nDate\n6\n\n\n2\n3\nCurrent Actual UPB\nNumeric - 12,2\n12\n\n\n3\n4\nCurrent Loan Delinquency Status\nAlpha Numeric\n3\n\n\n4\n5\nLoan Age\nNumeric\n3\n\n\n5\n6\nRemaining Months to Legal Maturity\nNumeric\n3\n\n\n6\n7\nDefect Settlement Date\nDate\n6\n\n\n7\n8\nModification Flag\nAlpha\n1\n\n\n8\n9\nZero Balance Code\nNumeric\n2\n\n\n9\n10\nZero Balance Effective Date\nDate\n6\n\n\n10\n11\nCurrent Interest Rate\nNumeric - 8,3\n8\n\n\n11\n12\nCurrent Deferred UPB\nNumeric\n12\n\n\n12\n13\nDue Date of Last Paid Installment (DDLPI)\nDate\n6\n\n\n13\n14\nMI Recoveries\nNumeric - 12,2\n12\n\n\n14\n15\nNet Sales Proceeds\nAlpha-Numeric\n14\n\n\n15\n16\nNon MI Recoveries\nNumeric - 12,2\n12\n\n\n16\n17\nExpenses\nNumeric - 12,2\n12\n\n\n17\n18\nLegal Costs\nNumeric - 12,2\n12\n\n\n18\n19\nMaintenance and Preservation Costs\nNumeric - 12,2\n12\n\n\n19\n20\nTaxes and Insurance\nNumeric - 12,2\n12\n\n\n20\n21\nMiscellaneous Expenses\nNumeric - 12,2\n12\n\n\n21\n22\nActual Loss Calculation\nNumeric - 12,2\n12\n\n\n22\n23\nModification Cost\nNumeric - 12,2\n12\n\n\n23\n24\nStep Modification Flag\nAlpha\n1\n\n\n24\n25\nDeferred Payment Plan\nAlpha\n1\n\n\n25\n26\nEstimated Loan-to-Value (ELTV)\nNumeric\n4\n\n\n26\n27\nZero Balance Removal UPB\nNumeric - 12,2\n12\n\n\n27\n28\nDelinquent Accrued Interest\nNumeric - 12,2\n12\n\n\n28\n29\nDelinquency Due to Disaster\nAlpha\n1\n\n\n29\n30\nBorrower Assistance Status Code\nAlpha\n1\n\n\n30\n31\nCurrent Month Modification Cost\nNumeric - 12,2\n12\n\n\n31\n32\nInterest Bearing UPB\nNumeric - 12,2\n12\n\n\n\n\n\n\n\n\n\nor_2018= pd.read_csv(\"data/historical_data_2018Q1.txt\", sep=\"|\", header= None)\nor_2018.shape\n\n/var/folders/gp/9_5r6kf96qzfffz19kzmmjr00000gn/T/ipykernel_38320/3847200941.py:1: DtypeWarning: Columns (26,28) have mixed types. Specify dtype option on import or set low_memory=False.\n  or_2018= pd.read_csv(\"data/historical_data_2018Q1.txt\", sep=\"|\", header= None)\n\n\n(296816, 32)",
+    "text": "About the Raw Data\nThe data is provided by Freddie Mac in zip files by year. The download is available here. A guide is also provided here.\nEach year of the SFLL data is composed of quarters, which are provided in zip files as well. Each quarter then contains two files, one contains loan origination data and the other contains the performances of each loan. Their “key” is a column named loan_sequence_number to be used for joining if needed.\n#| eval: false\n#--to extract automatically (on mac)-- \ncd ~/Downloads\nunzip \"historical_data_*.zip\"\n\n#-- remove the main zip from folder and re-run to extract quarters--\nunzip \"historical_data_*.zip\"\nOnce the nested zip files were extracted, there were a total of 40 files. The raw data is in .txt format separated by | vertical bars, or “pipes” instead of commas or tabs. There are no headers so all columns were named upon importing.",
     "crumbs": [
       "The Data"
     ]
@@ -24,7 +24,7 @@
     "href": "data.html#data-load-clean",
     "title": "Home Loan Advisor",
     "section": "Data Load & Clean",
-    "text": "Data Load & Clean\n\nAbout Missing Values\n(how were handling missing values)\n\n\nCategorical Variable\n(encoding the categorical values)\n\n\nTarget Variable\n(“ever 90+ days delinquent”)\n\n\nSampling\n(about imbalances, weighted samplnig or SMOTE)",
+    "text": "Data Load & Clean\n\nAbout Missing Values\n(how were handling missing values)\n\n\nCategorical Variable\n(“encoding the categorical values”)\n\n\nTarget Variable\n(“ever 90+ days delinquent”)\n\n\nSampling\n(about imbalances, “weighted sampling or SMOTE”)",
     "crumbs": [
       "The Data"
     ]
@@ -44,7 +44,7 @@
     "href": "data.html#data-visualizations",
     "title": "Home Loan Advisor",
     "section": "Data Visualizations",
-    "text": "Data Visualizations",
+    "text": "Data Visualizations\n(Are we showing distributions and such?)",
     "crumbs": [
       "The Data"
     ]
@@ -54,7 +54,7 @@
     "href": "about.html",
     "title": "Home Loan Advisor",
     "section": "",
-    "text": ". . . blank\n\n# code",
+    "text": "Ariba Razzaq\n\n\nRole\n(blurb example)\nConceptualized the Home Loan Advisor, identified the Freddie Mac dataset as the project’s data foundation, outlined the project, its problem definition, target users and technical roadmap.\nProfile link \n\n\n\n\n\n\nAna Collado\n\n\nRole\n(blurb example)\nDeveloped the project’s web presence, site structure, implemented bootstrap based UI, managed the Github repository and version control, and built the pipeline for loading and processing the Freddie Mac loan level datatset\n\nAna’s Profile\n\n\n\n\n\nSabina Baraili\n\n\nRole\n(blurb)\nProfile link \n\n\n\n\n\n\n\n\nJayden Jiang\n\n\nRole\n(blurb)\nProfile link",
     "crumbs": [
       "About the Group"
     ]
@@ -64,7 +64,7 @@
     "href": "index.html#section",
     "title": "Home Loan Advisor",
     "section": "",
-    "text": "Many borrowers walk into a mortgage hoping for the best. The Home Loan Adviser is a machine learning tool, trained on real Freddie Mac mortgages, that informs the borrower where they stand before ever engaging with a lender.\n\n\n\n\n\n\nKnow your risk before your lenders do.\n\n\n\nThe interactive simulator produces a risk score in plain English, so users can examine their “what ifs?” before one of the largest decisions of their lives.",
+    "text": "Many borrowers walk into a mortgage hoping for the best. The Home Loan Adviser is a machine learning tool, trained on real Freddie Mac mortgages, that informs the borrower where they stand before ever engaging with a lender.\n\nIts better to know your risk before your lenders do.\n\nThe interactive simulator produces a risk score in plain English, so users can examine their “what ifs?” before one of the largest decisions of their lives.",
     "crumbs": [
       "An Overview"
     ]
@@ -227,6 +227,66 @@
     "text": "Bibliography:\nChen, T., & Guestrin, C. (2016). XGBoost: A scalable tree boosting system. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining.\nChang, W., Cheng, J., Allaire, J., Xie, Y., & McPherson, J. (2023). shiny: Web application framework for R. https://shiny.posit.co\nChawla, N. V., Bowyer, K. W., Hall, L. O., & Kegelmeyer, W. P. (2002). SMOTE: Synthetic minority over-sampling technique. Journal of Artificial Intelligence Research, 16, 321–357.\nFreddie Mac. (n.d.). Single family loan-level dataset. https://www.freddiemac.com/research/datasets/sf-loanlevel-dataset\nKuhn, M., & Wickham, H. (2020). Tidymodels: A collection of packages for modeling and machine learning using tidyverse principles. https://www.tidymodels.org\nMcKee, Amberle. Mastering Shiny for Python: A Beginner’s Guide to Building Interactive Web Applications, DataCamp, 15 Dec. 2023, https://www.datacamp.com/tutorial/mastering-shiny-for-python-a-beginners-guide-to-building-interactive-web-applications.",
     "crumbs": [
       "App Proposal"
+    ]
+  },
+  {
+    "objectID": "data.html#origination-data",
+    "href": "data.html#origination-data",
+    "title": "Home Loan Advisor",
+    "section": "Origination Data",
+    "text": "Origination Data\n\n\n\n\n\n\n\n\n\nposition\ncolumn_name\ntype\nmax_length\n\n\n\n\n0\n1\nCredit Score\nNumeric\n4\n\n\n1\n2\nFirst Payment Date\nDate\n6\n\n\n2\n3\nFirst Time Homebuyer Flag\nAlpha\n1\n\n\n3\n4\nMaturity Date\nDate\n6\n\n\n4\n5\nMetropolitan Statistical Area (MSA) Or Metropo...\nNumeric\n5\n\n\n5\n6\nMortgage Insurance Percentage (MI %)\nNumeric\n3\n\n\n6\n7\nNumber of Units\nNumeric\n2\n\n\n7\n8\nOccupancy Status\nAlpha\n1\n\n\n8\n9\nOriginal Combined Loan-to-Value (CLTV)\nNumeric\n3\n\n\n9\n10\nOriginal Debt-to-Income (DTI) Ratio\nNumeric\n3\n\n\n10\n11\nOriginal UPB\nNumeric\n12\n\n\n11\n12\nOriginal Loan-to-Value (LTV)\nNumeric\n3\n\n\n12\n13\nOriginal Interest Rate\nNumeric - 6,3\n6\n\n\n13\n14\nChannel\nAlpha\n1\n\n\n14\n15\nPrepayment Penalty Mortgage (PPM) Flag\nAlpha\n1\n\n\n15\n16\nAmortization Type (Formerly Product Type)\nAlpha\n5\n\n\n16\n17\nProperty State\nAlpha\n2\n\n\n17\n18\nProperty Type\nAlpha\n2\n\n\n18\n19\nPostal Code\nNumeric\n5\n\n\n19\n20\nLoan Sequence Number\nAlpha Numeric - PYYQnXXXXXXX\n12\n\n\n20\n21\nLoan Purpose\nAlpha\n1\n\n\n21\n22\nOriginal Loan Term\nNumeric\n3\n\n\n22\n23\nNumber of Borrowers\nNumeric\n2\n\n\n23\n24\nSeller Name\nAlpha Numeric\n60\n\n\n24\n25\nServicer Name\nAlpha Numeric\n60\n\n\n25\n26\nSuper Conforming Flag\nAlpha\n1\n\n\n26\n27\nPre-HARP Loan Sequence Number\nAlpha Numeric - PYYQnXXXXXXX\n12\n\n\n27\n28\nProgram Indicator\nAlpha Numeric\n1\n\n\n28\n29\nHARP Indicator\nAlpha\n1\n\n\n29\n30\nProperty Valuation Method\nNumeric\n1\n\n\n30\n31\nInterest Only (I/O) Indicator\nAlpha\n1\n\n\n31\n32\nMortgage Insurance Cancellation Indicator\nAlpha\n1",
+    "crumbs": [
+      "The Data"
+    ]
+  },
+  {
+    "objectID": "data.html#performance-data",
+    "href": "data.html#performance-data",
+    "title": "Home Loan Advisor",
+    "section": "Performance Data",
+    "text": "Performance Data\n\n\n\n\n\n\n\n\n\nposition\ncolumn_name\ntype\nmax_length\n\n\n\n\n0\n1\nLoan Sequence Number\nAlpha Numeric - PYYQnXXXXXXX\n12\n\n\n1\n2\nMonthly Reporting Period\nDate\n6\n\n\n2\n3\nCurrent Actual UPB\nNumeric - 12,2\n12\n\n\n3\n4\nCurrent Loan Delinquency Status\nAlpha Numeric\n3\n\n\n4\n5\nLoan Age\nNumeric\n3\n\n\n5\n6\nRemaining Months to Legal Maturity\nNumeric\n3\n\n\n6\n7\nDefect Settlement Date\nDate\n6\n\n\n7\n8\nModification Flag\nAlpha\n1\n\n\n8\n9\nZero Balance Code\nNumeric\n2\n\n\n9\n10\nZero Balance Effective Date\nDate\n6\n\n\n10\n11\nCurrent Interest Rate\nNumeric - 8,3\n8\n\n\n11\n12\nCurrent Deferred UPB\nNumeric\n12\n\n\n12\n13\nDue Date of Last Paid Installment (DDLPI)\nDate\n6\n\n\n13\n14\nMI Recoveries\nNumeric - 12,2\n12\n\n\n14\n15\nNet Sales Proceeds\nAlpha-Numeric\n14\n\n\n15\n16\nNon MI Recoveries\nNumeric - 12,2\n12\n\n\n16\n17\nExpenses\nNumeric - 12,2\n12\n\n\n17\n18\nLegal Costs\nNumeric - 12,2\n12\n\n\n18\n19\nMaintenance and Preservation Costs\nNumeric - 12,2\n12\n\n\n19\n20\nTaxes and Insurance\nNumeric - 12,2\n12\n\n\n20\n21\nMiscellaneous Expenses\nNumeric - 12,2\n12\n\n\n21\n22\nActual Loss Calculation\nNumeric - 12,2\n12\n\n\n22\n23\nModification Cost\nNumeric - 12,2\n12\n\n\n23\n24\nStep Modification Flag\nAlpha\n1\n\n\n24\n25\nDeferred Payment Plan\nAlpha\n1\n\n\n25\n26\nEstimated Loan-to-Value (ELTV)\nNumeric\n4\n\n\n26\n27\nZero Balance Removal UPB\nNumeric - 12,2\n12\n\n\n27\n28\nDelinquent Accrued Interest\nNumeric - 12,2\n12\n\n\n28\n29\nDelinquency Due to Disaster\nAlpha\n1\n\n\n29\n30\nBorrower Assistance Status Code\nAlpha\n1\n\n\n30\n31\nCurrent Month Modification Cost\nNumeric - 12,2\n12\n\n\n31\n32\nInterest Bearing UPB\nNumeric - 12,2\n12",
+    "crumbs": [
+      "The Data"
+    ]
+  },
+  {
+    "objectID": "data.html",
+    "href": "data.html",
+    "title": "Home Loan Advisor",
+    "section": "",
+    "text": "or_2018= pd.read_csv(\"data/historical_data_2018Q1.txt\", sep=\"|\", header= None)\nor_2018.shape\n\n/var/folders/gp/9_5r6kf96qzfffz19kzmmjr00000gn/T/ipykernel_39154/3847200941.py:1: DtypeWarning: Columns (26,28) have mixed types. Specify dtype option on import or set low_memory=False.\n  or_2018= pd.read_csv(\"data/historical_data_2018Q1.txt\", sep=\"|\", header= None)\n\n\n(296816, 32)",
+    "crumbs": [
+      "The Data"
+    ]
+  },
+  {
+    "objectID": "data.html#data-dictionary",
+    "href": "data.html#data-dictionary",
+    "title": "Home Loan Advisor",
+    "section": "Data Dictionary",
+    "text": "Data Dictionary\n\nOrigination DataPerformance Data\n\n\n\n\n\n\n\n\n\n\n\ncolumn_name\ntype\nmax_length\n\n\n\n\n0\nCredit Score\nNumeric\n4\n\n\n1\nFirst Payment Date\nDate\n6\n\n\n2\nFirst Time Homebuyer Flag\nAlpha\n1\n\n\n3\nMaturity Date\nDate\n6\n\n\n4\nMetropolitan Statistical Area (MSA) Or Metropo...\nNumeric\n5\n\n\n5\nMortgage Insurance Percentage (MI %)\nNumeric\n3\n\n\n6\nNumber of Units\nNumeric\n2\n\n\n7\nOccupancy Status\nAlpha\n1\n\n\n8\nOriginal Combined Loan-to-Value (CLTV)\nNumeric\n3\n\n\n9\nOriginal Debt-to-Income (DTI) Ratio\nNumeric\n3\n\n\n10\nOriginal UPB\nNumeric\n12\n\n\n11\nOriginal Loan-to-Value (LTV)\nNumeric\n3\n\n\n12\nOriginal Interest Rate\nNumeric - 6,3\n6\n\n\n13\nChannel\nAlpha\n1\n\n\n14\nPrepayment Penalty Mortgage (PPM) Flag\nAlpha\n1\n\n\n15\nAmortization Type (Formerly Product Type)\nAlpha\n5\n\n\n16\nProperty State\nAlpha\n2\n\n\n17\nProperty Type\nAlpha\n2\n\n\n18\nPostal Code\nNumeric\n5\n\n\n19\nLoan Sequence Number\nAlpha Numeric - PYYQnXXXXXXX\n12\n\n\n20\nLoan Purpose\nAlpha\n1\n\n\n21\nOriginal Loan Term\nNumeric\n3\n\n\n22\nNumber of Borrowers\nNumeric\n2\n\n\n23\nSeller Name\nAlpha Numeric\n60\n\n\n24\nServicer Name\nAlpha Numeric\n60\n\n\n25\nSuper Conforming Flag\nAlpha\n1\n\n\n26\nPre-HARP Loan Sequence Number\nAlpha Numeric - PYYQnXXXXXXX\n12\n\n\n27\nProgram Indicator\nAlpha Numeric\n1\n\n\n28\nHARP Indicator\nAlpha\n1\n\n\n29\nProperty Valuation Method\nNumeric\n1\n\n\n30\nInterest Only (I/O) Indicator\nAlpha\n1\n\n\n31\nMortgage Insurance Cancellation Indicator\nAlpha\n1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ncolumn_name\ntype\nmax_length\n\n\n\n\n0\nLoan Sequence Number\nAlpha Numeric - PYYQnXXXXXXX\n12\n\n\n1\nMonthly Reporting Period\nDate\n6\n\n\n2\nCurrent Actual UPB\nNumeric - 12,2\n12\n\n\n3\nCurrent Loan Delinquency Status\nAlpha Numeric\n3\n\n\n4\nLoan Age\nNumeric\n3\n\n\n5\nRemaining Months to Legal Maturity\nNumeric\n3\n\n\n6\nDefect Settlement Date\nDate\n6\n\n\n7\nModification Flag\nAlpha\n1\n\n\n8\nZero Balance Code\nNumeric\n2\n\n\n9\nZero Balance Effective Date\nDate\n6\n\n\n10\nCurrent Interest Rate\nNumeric - 8,3\n8\n\n\n11\nCurrent Deferred UPB\nNumeric\n12\n\n\n12\nDue Date of Last Paid Installment (DDLPI)\nDate\n6\n\n\n13\nMI Recoveries\nNumeric - 12,2\n12\n\n\n14\nNet Sales Proceeds\nAlpha-Numeric\n14\n\n\n15\nNon MI Recoveries\nNumeric - 12,2\n12\n\n\n16\nExpenses\nNumeric - 12,2\n12\n\n\n17\nLegal Costs\nNumeric - 12,2\n12\n\n\n18\nMaintenance and Preservation Costs\nNumeric - 12,2\n12\n\n\n19\nTaxes and Insurance\nNumeric - 12,2\n12\n\n\n20\nMiscellaneous Expenses\nNumeric - 12,2\n12\n\n\n21\nActual Loss Calculation\nNumeric - 12,2\n12\n\n\n22\nModification Cost\nNumeric - 12,2\n12\n\n\n23\nStep Modification Flag\nAlpha\n1\n\n\n24\nDeferred Payment Plan\nAlpha\n1\n\n\n25\nEstimated Loan-to-Value (ELTV)\nNumeric\n4\n\n\n26\nZero Balance Removal UPB\nNumeric - 12,2\n12\n\n\n27\nDelinquent Accrued Interest\nNumeric - 12,2\n12\n\n\n28\nDelinquency Due to Disaster\nAlpha\n1\n\n\n29\nBorrower Assistance Status Code\nAlpha\n1\n\n\n30\nCurrent Month Modification Cost\nNumeric - 12,2\n12\n\n\n31\nInterest Bearing UPB\nNumeric - 12,2\n12",
+    "crumbs": [
+      "The Data"
+    ]
+  },
+  {
+    "objectID": "about.html#ana-collado",
+    "href": "about.html#ana-collado",
+    "title": "Home Loan Advisor",
+    "section": "Ana Collado",
+    "text": "Ana Collado",
+    "crumbs": [
+      "About the Group"
+    ]
+  },
+  {
+    "objectID": "about.html#ariba-razzaq",
+    "href": "about.html#ariba-razzaq",
+    "title": "Home Loan Advisor",
+    "section": "Ariba Razzaq",
+    "text": "Ariba Razzaq",
+    "crumbs": [
+      "About the Group"
     ]
   }
 ]

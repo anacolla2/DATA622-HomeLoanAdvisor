@@ -62,33 +62,49 @@ commas or tabs. There are no headers so all columns were named upon importing.
 
 ![](images/FreddieMac-Raw%20data.png){fig-align="center"}
 
-### Data Dictionary
+:::{.card .border-secondary}
+
+## Data Dictionary
+
+::: panel-tabset
+## Origination Data
+
+```{python}
+#| echo: false
+#| eval: true
+#-- Loan Origination Dictionary Table--
+dd_origination= pd.read_csv("data/origination_data_file.csv", header= 0)
+dd_origination.columns= ["position", "column_name", "type", "max_length"]
+dd_origination= dd_origination.drop(columns= ["position"])
+dd_origination
+```
+
+## Performance Data
 
 ```{python}
 #| echo: false
 #| eval: true
 
-#-- Loan Origination Dictionary Table--
-dd_origination= pd.read_csv("data/origination_data_file.csv", header= 0)
-dd_origination.columns= ["position", "column_name", "type", "max_length"]
-dd_origination
 #--Loan Performance Dictionary Table--
-
 dd_performance= pd.read_csv("data/monthly_performance_data_file.csv", header= 0)
 dd_performance.columns= ["position", "column_name", "type", "max_length"]
+dd_performance= dd_performance.drop(columns= ["position"])
 dd_performance
 ```
+:::
 
---------------------------------------------------------------------------------
-
-```{python}
-or_2018= pd.read_csv("data/historical_data_2018Q1.txt", sep="|", header= None)
-or_2018.shape
-```
+:::
 
 --------------------------------------------------------------------------------
 
 ## Data Load & Clean
+
+```{python}
+#| echo: false
+#| eval: false
+
+or_2018= pd.read_csv("data/historical_data_2018Q1.txt", sep="|", header= None)
+```
 
 ### About Missing Values
 
