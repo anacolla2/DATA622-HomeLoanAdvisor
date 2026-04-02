@@ -1,22 +1,52 @@
 [
   {
-    "objectID": "data.html",
-    "href": "data.html",
-    "title": "The Data",
-    "section": "",
-    "text": ". . .blank\n\n#code",
+    "objectID": "data.html#about-freddie-mac",
+    "href": "data.html#about-freddie-mac",
+    "title": "Home Loan Advisor",
+    "section": "About Freddie Mac",
+    "text": "About Freddie Mac\nThe data originates from Freddy Mac a group created by congress in an effort to make mortgages more accessible to Americans. This accessibility is derived from Freddie Mac’s mortgage purchases. Lenders sell the mortgage loans to Freddie Mac who in turn uses the assets as securities sold to investors. Securities give one the right to something else– a financial contract. In this case mortgages, as securities, give investors a monthly stream of income for decades.\nAs a main purchaser of mortgages, Freddie Mac has a large amount of mortgage data across the entire US. These datapoints are ideal for the Home Loan Adviser model.",
     "crumbs": [
-      "Data"
+      "The Data"
     ]
   },
   {
-    "objectID": "data.html#section",
-    "href": "data.html#section",
-    "title": "The Data",
-    "section": "",
-    "text": ". . .blank\n\n#code",
+    "objectID": "data.html#about-the-raw-data",
+    "href": "data.html#about-the-raw-data",
+    "title": "Home Loan Advisor",
+    "section": "About the Raw Data",
+    "text": "About the Raw Data\nThe data is provided by Freddie Mac in zip files by year. Each year is composed of quarters, which are alrso individually zipped. Each quarter has two files, one contains loan origination data and the other contains the performances of each loan. Their key is a column named loan_sequence_number for joining.\nThe raw data is in .txt format separated by | vertical bars, or “pipes” instead of commas or tabs.\n\n\n\n\n\nThe download is available here",
     "crumbs": [
-      "Data"
+      "The Data"
+    ]
+  },
+  {
+    "objectID": "data.html#data-load-clean",
+    "href": "data.html#data-load-clean",
+    "title": "Home Loan Advisor",
+    "section": "Data Load & Clean",
+    "text": "Data Load & Clean\n(load data)",
+    "crumbs": [
+      "The Data"
+    ]
+  },
+  {
+    "objectID": "data.html#data-exploration",
+    "href": "data.html#data-exploration",
+    "title": "Home Loan Advisor",
+    "section": "Data Exploration",
+    "text": "Data Exploration\n(data exploration and descriptive stats)",
+    "crumbs": [
+      "The Data"
+    ]
+  },
+  {
+    "objectID": "data.html#data-visualizations",
+    "href": "data.html#data-visualizations",
+    "title": "Home Loan Advisor",
+    "section": "Data Visualizations",
+    "text": "Data Visualizations",
+    "crumbs": [
+      "The Data"
     ]
   },
   {
@@ -36,7 +66,7 @@
     "section": "",
     "text": "Many borrowers walk into a mortgage hoping for the best. The Home Loan Adviser is a machine learning tool, trained on real Freddie Mac mortgages, that informs the borrower where they stand before ever engaging with a lender.\n\n\n\n\n\n\nKnow your risk before your lenders do.\n\n\n\nThe interactive simulator produces a risk score in plain english, so users can examine their “what ifs?” before one of the largest decisions of their lives.",
     "crumbs": [
-      "Overview"
+      "An Overview"
     ]
   },
   {
@@ -103,8 +133,8 @@
     "objectID": "proposal.html#problem-definition",
     "href": "proposal.html#problem-definition",
     "title": "Home Loan Advisor",
-    "section": "1. Problem Definition",
-    "text": "1. Problem Definition\nBuying a home is the largest financial decision most people will ever make, yet consumers rarely have access to the same analytic tools that banks and lenders use when evaluating mortgage applications. Most prospective home buyers do not know how their personal financial profile — income, credit score, debt load, down payment — affects their real risk of being unable to repay a mortgage, or how changes in interest rates and economic conditions might impact that risk over time.\nThis project proposes the development of the Home Loan Advisor, a consumer-facing machine learning application that helps individuals understand whether taking on a home loan is financially advisable given their personal characteristics. Unlike traditional bank-side default prediction systems, this app flips the perspective: it empowers the borrower to make smarter, data-driven decisions before committing to a mortgage. The app will use a model trained on real mortgage performance data from Freddie Mac to provide personalized risk assessments and scenario-based projections.",
+    "section": "** 1. Problem Definition**",
+    "text": "** 1. Problem Definition**\nBuying a home is the largest financial decision most people will ever make, yet consumers rarely have access to the same analytic tools that banks and lenders use when evaluating mortgage applications. Most prospective home buyers do not know how their personal financial profile — income, credit score, debt load, down payment — affects their real risk of being unable to repay a mortgage, or how changes in interest rates and economic conditions might impact that risk over time.\nThis project proposes the development of the Home Loan Advisor, a consumer-facing machine learning application that helps individuals understand whether taking on a home loan is financially advisable given their personal characteristics. Unlike traditional bank-side default prediction systems, this app flips the perspective: it empowers the borrower to make smarter, data-driven decisions before committing to a mortgage. The app will use a model trained on real mortgage performance data from Freddie Mac to provide personalized risk assessments and scenario-based projections.",
     "crumbs": [
       "App Proposal"
     ]
@@ -197,56 +227,6 @@
     "text": "Bibliography:\nChen, T., & Guestrin, C. (2016). XGBoost: A scalable tree boosting system. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining.\nChang, W., Cheng, J., Allaire, J., Xie, Y., & McPherson, J. (2023). shiny: Web application framework for R. https://shiny.posit.co\nChawla, N. V., Bowyer, K. W., Hall, L. O., & Kegelmeyer, W. P. (2002). SMOTE: Synthetic minority over-sampling technique. Journal of Artificial Intelligence Research, 16, 321–357.\nFreddie Mac. (n.d.). Single family loan-level dataset. https://www.freddiemac.com/research/datasets/sf-loanlevel-dataset\nKuhn, M., & Wickham, H. (2020). Tidymodels: A collection of packages for modeling and machine learning using tidyverse principles. https://www.tidymodels.org\nMcKee, Amberle. Mastering Shiny for Python: A Beginner’s Guide to Building Interactive Web Applications, DataCamp, 15 Dec. 2023, https://www.datacamp.com/tutorial/mastering-shiny-for-python-a-beginners-guide-to-building-interactive-web-applications.",
     "crumbs": [
       "App Proposal"
-    ]
-  },
-  {
-    "objectID": "data.html#about-freddie-mac",
-    "href": "data.html#about-freddie-mac",
-    "title": "The Data",
-    "section": "About Freddie Mac",
-    "text": "About Freddie Mac\nThe data originates from Freddy Mac a group created by congress in an effort to make mortgages more accessible to Americans. This accessibility is derived from Freddie Mac’s mortgage purchases. Lenders sell the mortgage loans to Freddie Mac who in turn uses the assets as securities sold to investors. Securities give one the right to something else– a financial contract. In this case mortgages, as securities, give investors a monthly stream of income for decades.\nAs a main purchaser of mortgages, Freddie Mac has a large amount of mortgage data across the entire US. These datapoints are ideal for the Home Loan Adviser model.",
-    "crumbs": [
-      "The Data"
-    ]
-  },
-  {
-    "objectID": "data.html#about-the-raw-data",
-    "href": "data.html#about-the-raw-data",
-    "title": "The Data",
-    "section": "About the Raw Data",
-    "text": "About the Raw Data\nThe data is provided by Freddie Mac in zip files by year. Each year is composed of quarters, which are alrso individually zipped. Each quarter has two files, one contains loan origination data and the other contains the performances of each loan. Their key is a column named loan_sequence_number for joining.\nThe raw data is in .txt format separated by | vertical bars, or “pipes” instead of commas or tabs.\n\n\n\n\n\nThe download is available here",
-    "crumbs": [
-      "The Data"
-    ]
-  },
-  {
-    "objectID": "data.html#data-load-clean",
-    "href": "data.html#data-load-clean",
-    "title": "The Data",
-    "section": "Data Load & Clean",
-    "text": "Data Load & Clean\n(load data)",
-    "crumbs": [
-      "The Data"
-    ]
-  },
-  {
-    "objectID": "data.html#data-exploration",
-    "href": "data.html#data-exploration",
-    "title": "The Data",
-    "section": "Data Exploration",
-    "text": "Data Exploration\n(data exploration and descriptive stats)",
-    "crumbs": [
-      "The Data"
-    ]
-  },
-  {
-    "objectID": "data.html#data-visualizations",
-    "href": "data.html#data-visualizations",
-    "title": "The Data",
-    "section": "Data Visualizations",
-    "text": "Data Visualizations",
-    "crumbs": [
-      "The Data"
     ]
   }
 ]

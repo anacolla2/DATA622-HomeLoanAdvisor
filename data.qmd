@@ -1,5 +1,5 @@
 ---
-title: "The Data"
+title: ""
 format: html
 toc: true
 toc-depth: 6
@@ -9,6 +9,8 @@ jupyter: python3
 
 ## ![](images/TheData-Banner.png)
 
+--------------------------------------------------------------------------------
+
 ```{python}
 #| echo: false
 #| eval: true
@@ -16,6 +18,8 @@ jupyter: python3
 import pandas as pd
 import numpy as np
 ```
+
+--------------------------------------------------------------------------------
 
 ## About Freddie Mac
 
