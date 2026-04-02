@@ -5,6 +5,8 @@ editor: visual
 jupyter: python3
 ---
 
+--------------------------------------------------------------------------------
+
 ![](images/top-border.png){fig-align="center"}
 
 ## ![](images/DATA622-HomeLoanAdvisor-Cover-01.png)
@@ -17,7 +19,7 @@ the borrower where they stand before ever engaging with a lender.
 *Know your risk before your lenders do.*
 :::
 
-The interactive simulator produces a risk score in plain english, so users can
+The interactive simulator produces a risk score in plain English, so users can
 examine their "what ifs?" before one of the largest decisions of their lives.
 
 ![](images/bottom-border.png){fig-align="center"}

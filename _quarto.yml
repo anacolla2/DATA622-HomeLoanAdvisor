@@ -26,4 +26,5 @@ website:
 format:
   html:
     theme: litera
+    title-block-banner: false
 sidebar: true
