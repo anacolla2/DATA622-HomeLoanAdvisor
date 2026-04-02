@@ -1,6 +1,5 @@
 ---
-title: "Project Proposal"
-author: "Ariba Razzaq, Ana Collado, Sabina Baralli, Jayden Jiang"
+title: ""
 format: html
 toc: true
 toc-depth: 6
@@ -8,7 +7,7 @@ editor: visual
 jupyter: python3
 ---
 
-![](images/top-border-02.png){fig-align="center"}
+![](images/TheProposal-banner.png){fig-align="center"}
 
 ## **1. Problem Definition**
 
@@ -100,7 +99,7 @@ performance while remaining computationally feasible. Key features available in
 this dataset include:
 
 | Feature                | Description                                     | Type        |
-|------------------------|-------------------------------------------------|-------------|
+|--------------------|------------------------------------------|------------------|
 | original_interest_rate | Interest rate at origination                    | numeric     |
 | original_upb           | Original unpaid principal balance (loan amount) | numeric     |
 | original_ltv           | Loan-to-value ratio at origination              | numeric     |

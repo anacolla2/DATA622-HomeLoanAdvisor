@@ -7,7 +7,7 @@ editor: visual
 jupyter: python3
 ---
 
-## ![](images/top-border.png)
+## ![](images/TheData-Banner.png)
 
 ```{python}
 #| echo: false
@@ -40,7 +40,7 @@ each loan. Their key is a column named `loan_sequence_number` for joining.
 The raw data is in .txt format separated by `|` vertical bars, or "pipes"
 instead of commas or tabs.
 
-![](images/FreddieMac-Raw data.png){fig-align="center"}
+![](images/FreddieMac-Raw%20data.png){fig-align="center"}
 
 ```{python}
 

@@ -1,11 +1,11 @@
 ---
-title: "results"
+title: ""
 format: html
 editor: visual
 jupyter: python3
 ---
 
-## ![](images/top-border.png)
+## ![](images/TheResults-banner.png)
 
 . . . blank
 

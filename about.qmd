@@ -1,11 +1,11 @@
 ---
-title: "about"
+title: ""
 format: html
 editor: visual
 jupyter: python3
 ---
 
-![](images/top-border.png)
+![](images/AboutOurGroup-banner.png){fig-align="center"}
 
 . . . blank
 

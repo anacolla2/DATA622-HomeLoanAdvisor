@@ -1,11 +1,11 @@
 ---
-title: "app"
+title: ""
 format: html
 editor: visual
 jupyter: python3
 ---
 
-## ![](images/top-border.png)
+## ![](images/TheApp-banner.png)
 
 . . .blank
 
