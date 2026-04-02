@@ -11,7 +11,7 @@ jupyter: python3
 
 --------------------------------------------------------------------------------
 
-## ** 1. Problem Definition**
+## 1. Problem Definition
 
 Buying a home is the largest financial decision most people will ever make, yet
 consumers rarely have access to the same analytic tools that banks and lenders
@@ -101,7 +101,7 @@ performance while remaining computationally feasible. Key features available in
 this dataset include:
 
 | Feature                | Description                                     | Type        |
-|--------------------|-----------------------------------------|--------------------|
+|--------------------|----------------------------------------|--------------------|
 | original_interest_rate | Interest rate at origination                    | numeric     |
 | original_upb           | Original unpaid principal balance (loan amount) | numeric     |
 | original_ltv           | Loan-to-value ratio at origination              | numeric     |
