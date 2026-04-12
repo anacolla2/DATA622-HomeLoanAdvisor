@@ -9,69 +9,29 @@ jupyter: python3
 
 --------------------------------------------------------------------------------
 
-::::: {.card .p-4}
-::: {.h1 .text-danger .text-center .p-4}
-**Ariba Razzaq**
+:::: {.card .p-4}
+::: {.card .card-body}
+\
+(add Ariba's card)
 :::
+::::
+
+:::: {.card .p-4}
+::: {.card .card-body}
+
+![](images/Github Profile Card.png)
+:::
+::::
+
+:::: {.card .p-4}
 
 ::: {.card .card-body}
-**Role**
-
-(blurb example)
-
-Conceptualized the Home Loan Advisor, identified the Freddie Mac dataset as the
-project's data foundation, outlined the project, its problem definition, target
-users and technical roadmap.
-
-<a href= "social media link" class= "btn btn-danger">Ariba's Profile </a>\
+(add Sabina's card)
 :::
-:::::
+::::
 
-::::: {.card .p-4}
-::: {.h1 .text-danger .text-center .p-4}
-**Ana Collado**
-:::
-
+:::: {.card .p-4}
 ::: {.card .card-body}
-**Role**
-
-(blurb example)
-
-Developed the project's web presence, site structure, implemented bootstrap
-based UI, managed the Github repository and version control, and built the
-pipeline for loading and processing the Freddie Mac loan level datatset\
-
-<a href= "https://github.com/anacolla2" class= "btn btn-danger">Ana's
-Profile</a>
+(add Jayden's Card)
 :::
-:::::
-
-::::: {.card .p-4}
-::: {.h1 .text-danger .text-center .p-4}
-**Sabina Baraili**
-:::
-
-::: {.card .card-body}
-**Role**
-
-(blurb)
-
-<a href= "https://github.com/anacolla2" class= "btn btn-danger">Sabina's
-Profile</a>
-:::
-:::::
-
-::::: {.card .p-4}
-::: {.h1 .text-danger .text-center .p-4}
-**Jayden Jiang**
-:::
-
-::: {.card .card-body}
-**Role**
-
-(blurb)
-
-<a href= "https://github.com/anacolla2" class= "btn btn-danger">Jayden's
-Profile</a>
-:::
-:::::
+::::

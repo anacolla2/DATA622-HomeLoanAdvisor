@@ -62,8 +62,7 @@ commas or tabs. There are no headers so all columns were named upon importing.
 
 ![](images/FreddieMac-Raw%20data.png){fig-align="center"}
 
-:::{.card .border-secondary}
-
+:::: {.card .border-secondary}
 ## Data Dictionary
 
 ::: panel-tabset
@@ -92,27 +91,138 @@ dd_performance= dd_performance.drop(columns= ["position"])
 dd_performance
 ```
 :::
-
-:::
+::::
 
 --------------------------------------------------------------------------------
 
-## Data Load & Clean
+## Data Load & Clean- Origination
 
 ```{python}
-#| echo: false
-#| eval: false
+#| echo: true
+#| eval: true
+#| cache: true
 
-or_2018= pd.read_csv("data/historical_data_2018Q1.txt", sep="|", header= None)
+#-- data load-- (including NA values mentioned in dictionary)--
+or_2018= pd.read_csv("data/historical_data_2018Q1.txt", sep="|", header= None, na_values= ["", "9999", "999", "9", "   ", "X"])
+
+#-- column names--
+or_2018.columns= ["credit_score", "first_payment_date", "first_time_buyer", "maturity_date", "msa", "mi_percent", "num_units", "occupancy", "cltv", "dti", "upb", "ltv", "or_interest_rate", "channel", "ppm", "amortization", "prop_state", "prop_type", "zipcode", "loan_id", "loan_purpose", "or_loan_term", "num_borrowers", "seller", "servicer", "super_conforming", "pre_harp_loan_id", "program_indicator", "harp_indicator", "prop_valuation", "interest_only", "mi_cancel"]
+
+#-- date format-- 
+or_2018["first_payment_date"]= pd.to_datetime(or_2018["first_payment_date"], format="%Y%m", errors="coerce").dt.strftime("%Y-%m")
+
+or_2018["maturity_date"]= pd.to_datetime(or_2018["maturity_date"], format="%Y%m", errors="coerce").dt.strftime("%Y-%m")
 ```
 
-### About Missing Values
+For our application we will drop several variables.The HARP program helped
+borrowers refinance their home when their home's value was less than their
+mortgage. [^1] The data points that identify with HARP will also be dropped
+because the data points represent a borrower that would not typically meet
+Freddie Mac's qualifications. Zipcode will be dropped because its high
+cardinality is not worth keeping, we can use msa later for a metro or rural
+flag. CLTV will be dropped because only 1% differs from LTV. We'll keep Load ID
+as a join key.
 
-(how were handling missing values)
+[^1]: <https://www.fhfa.gov/news/fact-sheet/home-affordable-refinance-program-harp>
 
-### Categorical Variable
+```{python}
+#-- removing HARP--
+or_2018= or_2018[or_2018["harp_indicator"].isna()].copy()
 
-("encoding the categorical values")
+#-- dropping irrelevant variables--
+drop=["pre_harp_loan_id", "harp_indicator", "program_indicator", "seller", "servicer", "first_payment_date", "maturity_date", "zipcode", "cltv"]
+or_2018= or_2018.drop(columns=drop)
+```
+
+```{python}
+#-- using loan_id as index--
+or_2018= or_2018.set_index("loan_id")
+```
+
+### Encoding
+
+The data dictionary provided by Freddie Mac specifies what the missing values
+are. The `msa` variable for example, has missing values that may mean a property
+is not in a metropolitan area, or may actually mean "unknown". Zip code data
+appears in every entry so imputation is possible using overlap. But a more
+simple and reliable approach is to code a new variable using `msa` column as
+binary; metro area or not.
+
+```{python}
+#-- msa to metro area binary--
+or_2018["metro_area"]= or_2018["msa"].notna().astype(int)
+or_2018= or_2018.drop(columns="msa")
+
+#--super conforming to binary--
+or_2018["super_conforming"]= or_2018["super_conforming"].fillna(0)
+or_2018["super_conforming"]= (or_2018["super_conforming"] == "Y").astype(int)
+```
+
+There are columns with low carnality that can't be coded as binary but are
+better served in one hot encoding.
+
+```{python}
+categorical_cols=["first_time_buyer","loan_purpose","prop_type","occupancy","channel"]
+or_2018= pd.get_dummies(or_2018, columns=categorical_cols, drop_first=True, dtype=int)
+```
+
+```{python}
+#--numeric imputation--
+numeric_impute= ["credit_score", "dti", "ltv", "mi_percent", "prop_valuation", "upb"]
+for col in numeric_impute:
+    or_2018[col]= or_2018[col].fillna(or_2018[col].median())
+
+#--flag imputation--
+for col in ["interest_only", "mi_cancel", "ppm"]:
+    or_2018[col]= or_2018[col].fillna(0)
+```
+
+### Data Clean Final Check
+
+```{python}
+or_2018.isnull().sum()
+```
+
+The data is clean and ready for analysis. We'll create a function to apply the
+cleaning to all the origination datasets coming from Freddie Macs standard
+files.
+
+### Origination Data Cleaning Function:
+
+## Data Load & Clean- Performance
+
+```{python}
+perf_2018= pd.read_csv("data/historical_data_time_2018Q1.txt", sep="|", header= None, na_values= ["", "9999", "999", "9", "   ", "X"])
+```
+
+```{python}
+perf_2018.columns= ["loan_id", "report_period", "current_upb", "delinquency_status", "loan_age", "remaining_months", "defect_settlement_date", "modification_flag", "zero_balance_code", "zero_balance_effective_date", "current_rate", "current_deferred_upb", "ddlpi", "mi_recoveries", "net_sales_proceeds", "non_mi_recoveries", "expenses", "legal_costs", "maintenance_costs", "taxes_insurance", "misc_expenses", "actual_loss", "modification_cost", "step_modification_flag", "deferred_payment_plan", "eltv", "zero_balance_removal_upb", "delinquent_accrued_interest", "disaster_delinquency", "borrower_assistance", "current_month_mod_cost", "interest_bearing_upb"]
+```
+
+```{python}
+keeping= ["loan_id", "report_period", "current_upb", "delinquency_status", "loan_age", "remaining_months", "zero_balance_code", "current_rate", "modification_flag", "disaster_delinquency", "borrower_assistance"]
+perf_2018= perf_2018[keeping]
+perf_2018= perf_2018.set_index("loan_id")
+```
+
+### Encoding
+
+We'll use the industry standard \>90 days delinquent.
+
+```{python}
+perf_2018["delinquency_status"]= pd.to_numeric(perf_2018["delinquency_status"], errors="coerce")
+
+target= (perf_2018.groupby("loan_id")["delinquency_status"].max().ge(3).astype(int).reset_index().rename(columns={"delinquency_status": "any_90_dpd"}))
+```
+
+zero_balance_code will be useful because
+
+```{python}
+zero_bal= (perf_2018.groupby("loan_id")["zero_balance_code"].max().reset_index().rename(columns={"zero_balance_code": "termin_code"}))
+
+#--joining--
+target= target.merge(zero_bal, on="loan_id", how="left")
+```
 
 ### Target Variable
 

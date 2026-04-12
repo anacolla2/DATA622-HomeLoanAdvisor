@@ -30,11 +30,21 @@
     ]
   },
   {
-    "objectID": "data.html#data-load-clean",
-    "href": "data.html#data-load-clean",
+    "objectID": "data.html#data-load-clean--origination",
+    "href": "data.html#data-load-clean--origination",
     "title": "Home Loan Advisor",
-    "section": "Data Load & Clean",
-    "text": "Data Load & Clean\n\nAbout Missing Values\n(how were handling missing values)\n\n\nCategorical Variable\n(“encoding the categorical values”)\n\n\nTarget Variable\n(“ever 90+ days delinquent”)\n\n\nSampling\n(about imbalances, “weighted sampling or SMOTE”)",
+    "section": "Data Load & Clean- Origination",
+    "text": "Data Load & Clean- Origination\n\n#-- data load-- (including NA values mentioned in dictionary)--\nor_2018= pd.read_csv(\"data/historical_data_2018Q1.txt\", sep=\"|\", header= None, na_values= [\"\", \"9999\", \"999\", \"9\", \"   \", \"X\"])\n\n#-- column names--\nor_2018.columns= [\"credit_score\", \"first_payment_date\", \"first_time_buyer\", \"maturity_date\", \"msa\", \"mi_percent\", \"num_units\", \"occupancy\", \"cltv\", \"dti\", \"upb\", \"ltv\", \"or_interest_rate\", \"channel\", \"ppm\", \"amortization\", \"prop_state\", \"prop_type\", \"zipcode\", \"loan_id\", \"loan_purpose\", \"or_loan_term\", \"num_borrowers\", \"seller\", \"servicer\", \"super_conforming\", \"pre_harp_loan_id\", \"program_indicator\", \"harp_indicator\", \"prop_valuation\", \"interest_only\", \"mi_cancel\"]\n\n#-- date format-- \nor_2018[\"first_payment_date\"]= pd.to_datetime(or_2018[\"first_payment_date\"], format=\"%Y%m\", errors=\"coerce\").dt.strftime(\"%Y-%m\")\n\nor_2018[\"maturity_date\"]= pd.to_datetime(or_2018[\"maturity_date\"], format=\"%Y%m\", errors=\"coerce\").dt.strftime(\"%Y-%m\")\n\n/var/folders/gp/9_5r6kf96qzfffz19kzmmjr00000gn/T/ipykernel_69026/1054125044.py:2: DtypeWarning: Columns (26,28) have mixed types. Specify dtype option on import or set low_memory=False.\n  or_2018= pd.read_csv(\"data/historical_data_2018Q1.txt\", sep=\"|\", header= None, na_values= [\"\", \"9999\", \"999\", \"9\", \"   \", \"X\"])\n\n\nFor our application we will drop several variables.The HARP program helped borrowers refinance their home when their home’s value was less than their mortgage. 1 The data points that identify with HARP will also be dropped because the data points represent a borrower that would not typically meet Freddie Mac’s qualifications. Zipcode will be dropped because its high cardinality is not worth keeping, we can use msa later for a metro or rural flag. CLTV will be dropped because only 1% differs from LTV. We’ll keep Load ID as a join key.\n\n#-- removing HARP--\nor_2018= or_2018[or_2018[\"harp_indicator\"].isna()].copy()\n\n#-- dropping irrelevant variables--\ndrop=[\"pre_harp_loan_id\", \"harp_indicator\", \"program_indicator\", \"seller\", \"servicer\", \"first_payment_date\", \"maturity_date\", \"zipcode\", \"cltv\"]\nor_2018= or_2018.drop(columns=drop)\n\n\n#-- using loan_id as index--\nor_2018= or_2018.set_index(\"loan_id\")\n\n\nEncoding\nThe data dictionary provided by Freddie Mac specifies what the missing values are. The msa variable for example, has missing values that may mean a property is not in a metropolitan area, or may actually mean “unknown”. Zip code data appears in every entry so imputation is possible using overlap. But a more simple and reliable approach is to code a new variable using msa column as binary; metro area or not.\n\n#-- msa to metro area binary--\nor_2018[\"metro_area\"]= or_2018[\"msa\"].notna().astype(int)\nor_2018= or_2018.drop(columns=\"msa\")\n\n#--super conforming to binary--\nor_2018[\"super_conforming\"]= or_2018[\"super_conforming\"].fillna(0)\nor_2018[\"super_conforming\"]= (or_2018[\"super_conforming\"] == \"Y\").astype(int)\n\nThere are columns with low carnality that can’t be coded as binary but are better served in one hot encoding.\n\ncategorical_cols=[\"first_time_buyer\",\"loan_purpose\",\"prop_type\",\"occupancy\",\"channel\"]\nor_2018= pd.get_dummies(or_2018, columns=categorical_cols, drop_first=True, dtype=int)\n\n\n#--numeric imputation--\nnumeric_impute= [\"credit_score\", \"dti\", \"ltv\", \"mi_percent\", \"prop_valuation\", \"upb\"]\nfor col in numeric_impute:\n    or_2018[col]= or_2018[col].fillna(or_2018[col].median())\n\n#--flag imputation--\nfor col in [\"interest_only\", \"mi_cancel\", \"ppm\"]:\n    or_2018[col]= or_2018[col].fillna(0)\n\n\n\nData Clean Final Check\n\nor_2018.isnull().sum()\n\ncredit_score          0\nmi_percent            0\nnum_units             0\ndti                   0\nupb                   0\nltv                   0\nor_interest_rate      0\nppm                   0\namortization          0\nprop_state            0\nor_loan_term          0\nnum_borrowers         0\nsuper_conforming      0\nprop_valuation        0\ninterest_only         0\nmi_cancel             0\nmetro_area            0\nfirst_time_buyer_Y    0\nloan_purpose_N        0\nloan_purpose_P        0\nprop_type_CP          0\nprop_type_MH          0\nprop_type_PU          0\nprop_type_SF          0\noccupancy_P           0\noccupancy_S           0\nchannel_C             0\nchannel_R             0\ndtype: int64\n\n\nThe data is clean and ready for analysis. We’ll create a function to apply the cleaning to all the origination datasets coming from Freddie Macs standard files.\n\n\nOrigination Data Cleaning Function:",
+    "crumbs": [
+      "The Data"
+    ]
+  },
+  {
+    "objectID": "data.html#data-load-clean--performance",
+    "href": "data.html#data-load-clean--performance",
+    "title": "Home Loan Advisor",
+    "section": "Data Load & Clean- Performance",
+    "text": "Data Load & Clean- Performance\n\nperf_2018= pd.read_csv(\"data/historical_data_time_2018Q1.txt\", sep=\"|\", header= None, na_values= [\"\", \"9999\", \"999\", \"9\", \"   \", \"X\"])\n\n/var/folders/gp/9_5r6kf96qzfffz19kzmmjr00000gn/T/ipykernel_69026/3574103294.py:1: DtypeWarning: Columns (3,7,23) have mixed types. Specify dtype option on import or set low_memory=False.\n  perf_2018= pd.read_csv(\"data/historical_data_time_2018Q1.txt\", sep=\"|\", header= None, na_values= [\"\", \"9999\", \"999\", \"9\", \"   \", \"X\"])\n\n\n\nperf_2018.columns= [\"loan_id\", \"report_period\", \"current_upb\", \"delinquency_status\", \"loan_age\", \"remaining_months\", \"defect_settlement_date\", \"modification_flag\", \"zero_balance_code\", \"zero_balance_effective_date\", \"current_rate\", \"current_deferred_upb\", \"ddlpi\", \"mi_recoveries\", \"net_sales_proceeds\", \"non_mi_recoveries\", \"expenses\", \"legal_costs\", \"maintenance_costs\", \"taxes_insurance\", \"misc_expenses\", \"actual_loss\", \"modification_cost\", \"step_modification_flag\", \"deferred_payment_plan\", \"eltv\", \"zero_balance_removal_upb\", \"delinquent_accrued_interest\", \"disaster_delinquency\", \"borrower_assistance\", \"current_month_mod_cost\", \"interest_bearing_upb\"]\n\n\nkeeping= [\"loan_id\", \"report_period\", \"current_upb\", \"delinquency_status\", \"loan_age\", \"remaining_months\", \"zero_balance_code\", \"current_rate\", \"modification_flag\", \"disaster_delinquency\", \"borrower_assistance\"]\nperf_2018= perf_2018[keeping]\nperf_2018= perf_2018.set_index(\"loan_id\")\n\n\nEncoding\nWe’ll use the industry standard &gt;90 days delinquent.\n\nperf_2018[\"delinquency_status\"]= pd.to_numeric(perf_2018[\"delinquency_status\"], errors=\"coerce\")\n\ntarget= (perf_2018.groupby(\"loan_id\")[\"delinquency_status\"].max().ge(3).astype(int).reset_index().rename(columns={\"delinquency_status\": \"any_90_dpd\"}))\n\nzero_balance_code will be useful because\n\nzero_bal= (perf_2018.groupby(\"loan_id\")[\"zero_balance_code\"].max().reset_index().rename(columns={\"zero_balance_code\": \"termin_code\"}))\n\n#--joining--\ntarget= target.merge(zero_bal, on=\"loan_id\", how=\"left\")\n\n\n\nTarget Variable\n(“ever 90+ days delinquent”)\n\n\nSampling\n(about imbalances, “weighted sampling or SMOTE”)",
     "crumbs": [
       "The Data"
     ]
@@ -60,11 +70,21 @@
     ]
   },
   {
+    "objectID": "data.html#footnotes",
+    "href": "data.html#footnotes",
+    "title": "Home Loan Advisor",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nhttps://www.fhfa.gov/news/fact-sheet/home-affordable-refinance-program-harp↩︎",
+    "crumbs": [
+      "The Data"
+    ]
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "Home Loan Advisor",
     "section": "",
-    "text": "Ariba Razzaq\n\n\nRole\n(blurb example)\nConceptualized the Home Loan Advisor, identified the Freddie Mac dataset as the project’s data foundation, outlined the project, its problem definition, target users and technical roadmap.\nAriba’s Profile \n\n\n\n\n\nAna Collado\n\n\nRole\n(blurb example)\nDeveloped the project’s web presence, site structure, implemented bootstrap based UI, managed the Github repository and version control, and built the pipeline for loading and processing the Freddie Mac loan level datatset\n\nAna’s Profile\n\n\n\n\nSabina Baraili\n\n\nRole\n(blurb)\nSabina’s Profile\n\n\n\n\nJayden Jiang\n\n\nRole\n(blurb)\nJayden’s Profile",
+    "text": "(add Ariba’s card)\n\n\n\n\n\n\n\n\n\n(add Sabina’s card)\n\n\n\n\n(add Jayden’s Card)",
     "crumbs": [
       "About the Group"
     ]
