@@ -12,26 +12,26 @@ jupyter: python3
 :::: {.card .p-4}
 ::: {.card .card-body}
 \
-(add Ariba's card)
+![](images/Githubcard- Ariba.png){width="600"}
 :::
 ::::
 
 :::: {.card .p-4}
 ::: {.card .card-body}
 
-![](images/Github Profile Card.png)
+![](images/Github Profile Card.png){width="600"}
 :::
 ::::
 
 :::: {.card .p-4}
 
 ::: {.card .card-body}
-(add Sabina's card)
+![![](images/Githubcard_Sabina.png)](){fig-align="center"}
 :::
 ::::
 
 :::: {.card .p-4}
 ::: {.card .card-body}
-(add Jayden's Card)
+![](images/Githubcard_Jayden.png){fig-align="center"}
 :::
 ::::
