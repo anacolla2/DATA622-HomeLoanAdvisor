@@ -1,6 +1,8 @@
 ---
 title: ""
 format: html
+toc: true
+toc-depth: 6
 editor: visual
 jupyter: python3
 ---
@@ -9,9 +11,94 @@ jupyter: python3
 
 --------------------------------------------------------------------------------
 
-. . . blank
+### Package Load
 
 ```{python}
-#| echo: false
-2 * 2
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import classification_report, roc_auc_score, roc_curve, RocCurveDisplay
 ```
+
+# Model 1- Logistic Regression
+
+Logistic regression is the better choice for our binary target variable. After
+scaling the ROC outputs show how efficient the model is.
+
+```{python}
+#-- loading clean data--
+final_2018= pd.read_csv("data/final_2018.csv", index_col="loan_id")
+
+#--without target--
+x= final_2018.drop(columns="any_90_dpd")
+
+#--target only--
+y= final_2018["any_90_dpd"]
+
+#--test--
+trainx, testx, trainy, testy= train_test_split(x, y, test_size=0.2,
+random_state=42, stratify=y)
+```
+
+```{python}
+
+#--scaling--
+scaler= StandardScaler()
+trainx_scaled= scaler.fit_transform(trainx)
+testx_scaled= scaler.transform(testx)
+
+#--fitting--
+lr= LogisticRegression(class_weight="balanced", max_iter=1000, random_state=42)
+lr.fit(trainx_scaled, trainy)
+
+#--results--
+y_pred= lr.predict(testx_scaled)
+y_prob= lr.predict_proba(testx_scaled)[:, 1]
+
+print(classification_report(testy, y_pred))
+print(f"ROC-AUC: {roc_auc_score(testy, y_prob):.4f}")
+```
+
+### Comparing Coefficients
+
+```{python}
+comparing_coefficients= pd.DataFrame({"variable": x.columns, "coefficient":lr.coef_[0]}).sort_values("coefficient", key=abs, ascending=False)
+```
+
+To make this interpretable we'll raise eulers number to each coefficient of each
+variable.
+
+```{python}
+e=2.71828
+comparing_coefficients["interpret"]= (e ** comparing_coefficients["coefficient"]).round(2)-1
+print(comparing_coefficients)
+```
+
+**(create visualization of odds for slides\*\*\*)**
+
+Higher credit scores reducr defaulting odds by 48%, higher debt to income ratio
+increases defaulting odds by 43%
+
+### Model Performance: Plotting ROC Curve
+
+```{python}
+
+fpr, tpr, thresholds= roc_curve(testy, y_prob)
+
+fig, ax= plt.subplots(figsize=(8, 6))
+ax.plot(fpr, tpr, color="#1C1F23", lw=2, label=f"Logistic Regression (AUC= 0.7449)")
+ax.plot([0, 1], [0, 1], color="#828182", linestyle="--", label="Random Classifier")
+ax.set_xlabel("False Positive Rate")
+ax.set_ylabel("True Positive Rate")
+ax.set_title("ROC Curve — Default Prediction Model")
+ax.legend(loc="lower right")
+plt.tight_layout()
+plt.show()
+plt.close()
+```
+
+# Model 2- Random Forest
