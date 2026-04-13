@@ -84,7 +84,7 @@
     "href": "mvp-presentation.html",
     "title": "Home Loan Advisor",
     "section": "",
-    "text": "from IPython.display import HTML\nHTML('''\n&lt;iframe \n  style=\"border: 1px solid rgba(0, 0, 0, 0.1);\" \n  width=\"100%\" \n  height=\"500\" \n  src=\"https://embed.figma.com/slides/YnfG51nUTfHEdkxT5WyNpI/DATA620-The-Home-Loan-Advisor-Presentation-Slides?node-id=1-310&embed-host=share\" \n  allowfullscreen&gt;\n&lt;/iframe&gt;\n''')",
+    "text": "from IPython.display import HTML\nHTML('''\n&lt;iframe style=\"border: 1px solid rgba(0, 0, 0, 0.1);\" width=\"800\" height=\"450\" src=\"https://embed.figma.com/slides/YnfG51nUTfHEdkxT5WyNpI/DATA620-The-Home-Loan-Advisor-Presentation-Slides?node-id=1-310&embed-host=share\" allowfullscreen&gt;&lt;/iframe&gt;\n''')",
     "crumbs": [
       "MVP Slideshow"
     ]
@@ -116,7 +116,7 @@
     "section": "",
     "text": ". . . blank\n\n#code",
     "crumbs": [
-      "MVP Presentation"
+      "Our Results"
     ]
   },
   {
@@ -126,7 +126,7 @@
     "section": "",
     "text": ". . . blank\n\n#code",
     "crumbs": [
-      "MVP Presentation"
+      "Our Results"
     ]
   },
   {
