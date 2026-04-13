@@ -1,18 +1,21 @@
 ---
 title: ""
 format: html
-toc: true
-toc-depth: 6
 editor: visual
 jupyter: python3
 ---
 
 ![](images/mvp-banner.png){fig-align="center"}
 
-``` HTML
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/slides/YnfG51nUTfHEdkxT5WyNpI/DATA620-The-Home-Loan-Advisor-Presentation-Slides?node-id=1-310&embed-host=share" allowfullscreen></iframe>
+```{python}
+from IPython.display import HTML
+HTML('''
+<iframe 
+  style="border: 1px solid rgba(0, 0, 0, 0.1);" 
+  width="100%" 
+  height="500" 
+  src="https://www.figma.com/deck/YnfG51nUTfHEdkxT5WyNpI/DATA620-The-Home-Loan-Advisor-Presentation-Slides?node-id=1-310&t=0CgWDlTMb6yr5Ssc-1" 
+  allowfullscreen>
+</iframe>
+''')
 ```
-
-\<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450"
-src="[https://embed.figma.com/slides/YnfG51nUTfHEdkxT5WyNpI/DATA620-The-Home-Loan-Advisor-Presentation-Slides?node-id=1-310&embed-host=share"](https://embed.figma.com/slides/YnfG51nUTfHEdkxT5WyNpI/DATA620-The-Home-Loan-Advisor-Presentation-Slides?node-id=1-310&embed-host=share")
-allowfullscreen\></iframe>

@@ -272,7 +272,7 @@ unzip "historical_data_*.zip"</code></pre>
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Origination Data</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Performance Data</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div id="6a88de54" class="cell" data-execution_count="2">
+<div id="410cde4f" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
@@ -487,7 +487,7 @@ unzip "historical_data_*.zip"</code></pre>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div id="d2cb20a7" class="cell" data-execution_count="3">
+<div id="038d0a06" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
@@ -712,7 +712,7 @@ unzip "historical_data_*.zip"</code></pre>
 </blockquote>
 <section id="data-load-clean--origination" class="level2">
 <h2 class="anchored" data-anchor-id="data-load-clean--origination">Data Load &amp; Clean- Origination</h2>
-<div id="a2aaf48f" class="cell" data-cache="true" data-execution_count="4">
+<div id="cdde6386" class="cell" data-cache="true" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- data load-- (including NA values mentioned in dictionary)--</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>or_2018<span class="op">=</span> pd.read_csv(<span class="st">"data/historical_data_2018Q1.txt"</span>, sep<span class="op">=</span><span class="st">"|"</span>, header<span class="op">=</span> <span class="va">None</span>, na_values<span class="op">=</span> [<span class="st">""</span>, <span class="st">"9999"</span>, <span class="st">"999"</span>, <span class="st">"9"</span>, <span class="st">"   "</span>, <span class="st">"X"</span>])</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -725,21 +725,21 @@ unzip "historical_data_*.zip"</code></pre>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>or_2018[<span class="st">"maturity_date"</span>]<span class="op">=</span> pd.to_datetime(or_2018[<span class="st">"maturity_date"</span>], <span class="bu">format</span><span class="op">=</span><span class="st">"%Y%m"</span>, errors<span class="op">=</span><span class="st">"coerce"</span>).dt.strftime(<span class="st">"%Y-%m"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For our application we will drop several variables.The HARP program helped borrowers refinance their home when their home’s value was less than their mortgage. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The data points that identify with HARP will also be dropped because the data points represent a borrower that would not typically meet Freddie Mac’s qualifications. Zipcode will be dropped because its high cardinality is not worth keeping, we can use msa later for a metro or rural flag. CLTV will be dropped because only 1% differs from LTV. We’ll keep Load ID as a join key.</p>
-<div id="bdcd83a9" class="cell" data-cache="true" data-execution_count="5">
+<div id="16d9e1b1" class="cell" data-cache="true" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- removing HARP--</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>or_2018<span class="op">=</span> or_2018[or_2018[<span class="st">"harp_indicator"</span>].isna()].copy()</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#-- dropping irrelevant variables--</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>drop<span class="op">=</span>[<span class="st">"pre_harp_loan_id"</span>,<span class="st">"amortization"</span>, <span class="st">"harp_indicator"</span>, <span class="st">"program_indicator"</span>, <span class="st">"seller"</span>, <span class="st">"servicer"</span>, <span class="st">"first_payment_date"</span>, <span class="st">"maturity_date"</span>, <span class="st">"zipcode"</span>, <span class="st">"cltv"</span>]</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>or_2018<span class="op">=</span> or_2018.drop(columns<span class="op">=</span>drop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="e2a66f34" class="cell" data-execution_count="6">
+<div id="0222d280" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- using loan_id as index--</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>or_2018<span class="op">=</span> or_2018.set_index(<span class="st">"loan_id"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="encoding" class="level3">
 <h3 class="anchored" data-anchor-id="encoding">Encoding</h3>
 <p>The data dictionary provided by Freddie Mac specifies what the missing values are. The <code>msa</code> variable for example, has missing values that may mean a property is not in a metropolitan area, or may actually mean “unknown”. Zip code data appears in every entry so imputation is possible using overlap. But a more simple and reliable approach is to code a new variable using <code>msa</code> column as binary; metro area or not.</p>
-<div id="35c26982" class="cell" data-execution_count="7">
+<div id="6bc69d80" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- msa to metro area binary--</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>or_2018[<span class="st">"metro_area"</span>]<span class="op">=</span> or_2018[<span class="st">"msa"</span>].notna().astype(<span class="bu">int</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>or_2018<span class="op">=</span> or_2018.drop(columns<span class="op">=</span><span class="st">"msa"</span>)</span>
@@ -749,11 +749,11 @@ unzip "historical_data_*.zip"</code></pre>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>or_2018[<span class="st">"super_conforming"</span>]<span class="op">=</span> (or_2018[<span class="st">"super_conforming"</span>] <span class="op">==</span> <span class="st">"Y"</span>).astype(<span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There are columns with low carnality that can’t be coded as binary but are better served in one hot encoding.</p>
-<div id="3d0c59a7" class="cell" data-execution_count="8">
+<div id="e5267b8b" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>categorical_cols<span class="op">=</span>[<span class="st">"first_time_buyer"</span>,<span class="st">"loan_purpose"</span>,<span class="st">"prop_type"</span>,<span class="st">"occupancy"</span>,<span class="st">"channel"</span>, <span class="st">"num_units"</span>]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>or_2018<span class="op">=</span> pd.get_dummies(or_2018, columns<span class="op">=</span>categorical_cols, drop_first<span class="op">=</span><span class="va">True</span>, dtype<span class="op">=</span><span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="fd1a107e" class="cell" data-execution_count="9">
+<div id="4b528107" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#--numeric imputation--</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>numeric_impute<span class="op">=</span> [<span class="st">"credit_score"</span>, <span class="st">"dti"</span>, <span class="st">"ltv"</span>, <span class="st">"mi_percent"</span>, <span class="st">"prop_valuation"</span>, <span class="st">"upb"</span>]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> numeric_impute:</span>
@@ -766,7 +766,7 @@ unzip "historical_data_*.zip"</code></pre>
 </section>
 <section id="data-clean-final-check" class="level3">
 <h3 class="anchored" data-anchor-id="data-clean-final-check">Data Clean Final Check</h3>
-<div id="1dde8410" class="cell" data-execution_count="10">
+<div id="5889a254" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>or_2018.isnull().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>credit_score          0
@@ -806,13 +806,13 @@ dtype: int64</code></pre>
 </section>
 <section id="data-load-clean--performance" class="level2">
 <h2 class="anchored" data-anchor-id="data-load-clean--performance">Data Load &amp; Clean- Performance</h2>
-<div id="62773285" class="cell" data-execution_count="11">
+<div id="02ecd612" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>perf_2018<span class="op">=</span> pd.read_csv(<span class="st">"data/historical_data_time_2018Q1.txt"</span>, sep<span class="op">=</span><span class="st">"|"</span>, header<span class="op">=</span> <span class="va">None</span>, na_values<span class="op">=</span> [<span class="st">""</span>, <span class="st">"9999"</span>, <span class="st">"999"</span>, <span class="st">"9"</span>, <span class="st">"   "</span>, <span class="st">"X"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="a4274334" class="cell" data-execution_count="12">
+<div id="16822d22" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>perf_2018.columns<span class="op">=</span> [<span class="st">"loan_id"</span>, <span class="st">"report_period"</span>, <span class="st">"current_upb"</span>, <span class="st">"delinquency_status"</span>, <span class="st">"loan_age"</span>, <span class="st">"remaining_months"</span>, <span class="st">"defect_settlement_date"</span>, <span class="st">"modification_flag"</span>, <span class="st">"zero_balance_code"</span>, <span class="st">"zero_balance_effective_date"</span>, <span class="st">"current_rate"</span>, <span class="st">"current_deferred_upb"</span>, <span class="st">"ddlpi"</span>, <span class="st">"mi_recoveries"</span>, <span class="st">"net_sales_proceeds"</span>, <span class="st">"non_mi_recoveries"</span>, <span class="st">"expenses"</span>, <span class="st">"legal_costs"</span>, <span class="st">"maintenance_costs"</span>, <span class="st">"taxes_insurance"</span>, <span class="st">"misc_expenses"</span>, <span class="st">"actual_loss"</span>, <span class="st">"modification_cost"</span>, <span class="st">"step_modification_flag"</span>, <span class="st">"deferred_payment_plan"</span>, <span class="st">"eltv"</span>, <span class="st">"zero_balance_removal_upb"</span>, <span class="st">"delinquent_accrued_interest"</span>, <span class="st">"disaster_delinquency"</span>, <span class="st">"borrower_assistance"</span>, <span class="st">"current_month_mod_cost"</span>, <span class="st">"interest_bearing_upb"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="de6cc2cf" class="cell" data-execution_count="13">
+<div id="1299e941" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>keeping<span class="op">=</span> [<span class="st">"loan_id"</span>, <span class="st">"report_period"</span>, <span class="st">"current_upb"</span>, <span class="st">"delinquency_status"</span>, <span class="st">"loan_age"</span>, <span class="st">"remaining_months"</span>, <span class="st">"zero_balance_code"</span>, <span class="st">"current_rate"</span>, <span class="st">"modification_flag"</span>, <span class="st">"disaster_delinquency"</span>, <span class="st">"borrower_assistance"</span>]</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>perf_2018<span class="op">=</span> perf_2018[keeping]</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>perf_2018<span class="op">=</span> perf_2018.set_index(<span class="st">"loan_id"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -820,13 +820,13 @@ dtype: int64</code></pre>
 <section id="encoding-1" class="level3">
 <h3 class="anchored" data-anchor-id="encoding-1">Encoding</h3>
 <p>We’ll use the industry standard &gt;90 days delinquent.</p>
-<div id="7685f3ff" class="cell" data-execution_count="14">
+<div id="e4f9801f" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>perf_2018[<span class="st">"delinquency_status"</span>]<span class="op">=</span> pd.to_numeric(perf_2018[<span class="st">"delinquency_status"</span>], errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>target<span class="op">=</span> (perf_2018.groupby(<span class="st">"loan_id"</span>)[<span class="st">"delinquency_status"</span>].<span class="bu">max</span>().ge(<span class="dv">3</span>).astype(<span class="bu">int</span>).reset_index().rename(columns<span class="op">=</span>{<span class="st">"delinquency_status"</span>: <span class="st">"any_90_dpd"</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>zero_balance_code will be useful because it tells why a loan was closed/terminated. We’ll encode and join to the main dataframe.</p>
-<div id="6690ea09" class="cell" data-execution_count="15">
+<div id="cb69bc9d" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>zero_bal<span class="op">=</span> (perf_2018.groupby(<span class="st">"loan_id"</span>)[<span class="st">"zero_balance_code"</span>].<span class="bu">max</span>().reset_index().rename(columns<span class="op">=</span>{<span class="st">"zero_balance_code"</span>: <span class="st">"termin_code"</span>}))</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#--joining--</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>target<span class="op">=</span> target.merge(zero_bal, on<span class="op">=</span><span class="st">"loan_id"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span>
@@ -854,7 +854,7 @@ dtype: int64</code></pre>
 <section id="default-vs-non-default-distributions" class="level4">
 <h4 class="anchored" data-anchor-id="default-vs-non-default-distributions">Default vs Non Default Distributions</h4>
 <p>The boxplots below show if the distribution of each feature differs in default and non-defaulted loans:</p>
-<div id="eed18dbe" class="cell" data-execution_count="16">
+<div id="9b974f07" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>numerics<span class="op">=</span> [<span class="st">"credit_score"</span>, <span class="st">"dti"</span>, <span class="st">"ltv"</span>, <span class="st">"upb"</span>, <span class="st">"or_interest_rate"</span>, <span class="st">"or_loan_term"</span>, <span class="st">"prop_valuation"</span>, <span class="st">"state_def_rate"</span>]</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>fig, axes<span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">8</span>))</span>
@@ -878,7 +878,7 @@ dtype: int64</code></pre>
 <section id="correlation-heatmaps-and-colinearity" class="level4">
 <h4 class="anchored" data-anchor-id="correlation-heatmaps-and-colinearity">Correlation Heatmaps and Colinearity</h4>
 <p>The correlation heatmap below shows pearson correlations between the numeric variables in the data. Excluding the obvious diagonal, no variable relationship is over than the 0.7 threshold of multicollinearity (no higher than 0.5 in the heatmap).</p>
-<div id="1291938e" class="cell" data-execution_count="17">
+<div id="02567fac" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fig, ax<span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>corr<span class="op">=</span> final_2018[numerics].corr()</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corr, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">".2f"</span>, cmap<span class="op">=</span><span class="st">"Grays"</span>, center<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>ax)</span>
@@ -901,7 +901,7 @@ dtype: int64</code></pre>
 <section id="categorical-variables" class="level3">
 <h3 class="anchored" data-anchor-id="categorical-variables">Categorical Variables:</h3>
 <p>The Bar chart below shows which categorical variables are associated with increased default rates:</p>
-<div id="175f036b" class="cell" data-execution_count="18">
+<div id="6834e288" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>binary_cols<span class="op">=</span> [<span class="st">"metro_area"</span>, <span class="st">"super_conforming"</span>, <span class="st">"interest_only"</span>, <span class="st">"ppm"</span>, <span class="st">"mi_cancel"</span>,</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>               <span class="st">"first_time_buyer_Y"</span>, <span class="st">"loan_purpose_N"</span>, <span class="st">"loan_purpose_P"</span>]</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -928,7 +928,7 @@ dtype: int64</code></pre>
 </section>
 <section id="defaulting-correlations" class="level3">
 <h3 class="anchored" data-anchor-id="defaulting-correlations">Defaulting Correlations</h3>
-<div id="c557d77f" class="cell" data-execution_count="19">
+<div id="b28a35b2" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>corr_target<span class="op">=</span> final_2018.corr()[<span class="st">"any_90_dpd"</span>].drop(<span class="st">"any_90_dpd"</span>).sort_values()</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>fig, ax<span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">12</span>))</span>
@@ -948,7 +948,7 @@ dtype: int64</code></pre>
 </div>
 </div>
 <p><code>prop_valuation</code>, <code>or_loan_term</code>, <code>interest_only</code>, <code>ppm</code>, and <code>upd</code> have been shown to be weak features so they will not be included in our model</p>
-<div id="f507eea8" class="cell" data-execution_count="20">
+<div id="69b48a83" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>weak<span class="op">=</span> [<span class="st">"prop_valuation"</span>, <span class="st">"or_loan_term"</span>, <span class="st">"interest_only"</span>, <span class="st">"ppm"</span>, <span class="st">"upb"</span>, <span class="st">"loan_purpose_N"</span>, <span class="st">"loan_purpose_P"</span>, <span class="st">"mi_percent"</span>]</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>final_2018<span class="op">=</span> final_2018.drop(columns<span class="op">=</span>weak)</span>
@@ -959,7 +959,7 @@ dtype: int64</code></pre>
 </section>
 <section id="origination-data-cleaning-function" class="level1">
 <h1>Origination Data Cleaning Function:</h1>
-<div id="370c8a3e" class="cell" data-execution_count="21">
+<div id="892a3a39" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_origination(filepath):</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    or_df<span class="op">=</span> pd.read_csv(filepath, sep<span class="op">=</span><span class="st">"|"</span>, header<span class="op">=</span><span class="va">None</span>, na_values<span class="op">=</span>[<span class="st">""</span>, <span class="st">"9999"</span>, <span class="st">"999"</span>, <span class="st">"9"</span>, <span class="st">"   "</span>, <span class="st">"X"</span>])</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -990,7 +990,7 @@ dtype: int64</code></pre>
 </div>
 <section id="performance-data-cleaning-function" class="level2">
 <h2 class="anchored" data-anchor-id="performance-data-cleaning-function">Performance Data Cleaning Function:</h2>
-<div id="1f21690b" class="cell" data-execution_count="22">
+<div id="c1c019dd" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_performance(filepath):</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    perf_df<span class="op">=</span> pd.read_csv(filepath, sep<span class="op">=</span><span class="st">"|"</span>, header<span class="op">=</span><span class="va">None</span>, na_values<span class="op">=</span>[<span class="st">""</span>, <span class="st">"9999"</span>, <span class="st">"999"</span>, <span class="st">"9"</span>, <span class="st">"   "</span>, <span class="st">"X"</span>])</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
