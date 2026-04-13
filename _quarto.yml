@@ -17,6 +17,8 @@ website:
       - href: models.qmd
         text: The Models
       - href: results.qmd
+        text: MVP Presentation
+      - href: mvp-presentation.qmd
         text: Our Results
       - href: app.qmd
         text: The App

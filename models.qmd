@@ -80,7 +80,22 @@ print(comparing_coefficients)
 
 **(create visualization of odds for slides\*\*\*)**
 
-Higher credit scores reducr defaulting odds by 48%, higher debt to income ratio
+```{python}
+
+coef_viz= comparing_coefficients.sort_values("interpret", ascending= False)
+
+plt.figure(figsize=(10, 8))
+plt.barh(coef_viz["variable"], coef_viz["interpret"])
+plt.title("by Feature (%)")
+plt.suptitle("(← decrease)  Defaulting Odds  (increase →)")
+plt.xlabel("(e^coefficient-1)")
+plt.ylabel("")
+plt.style.use('seaborn-v0_8')
+plt.show()
+plt.close()
+```
+
+Higher credit scores reduce defaulting odds by 48%, higher debt to income ratio
 increases defaulting odds by 43%
 
 ### Model Performance: Plotting ROC Curve
@@ -96,9 +111,13 @@ ax.set_xlabel("False Positive Rate")
 ax.set_ylabel("True Positive Rate")
 ax.set_title("ROC Curve — Default Prediction Model")
 ax.legend(loc="lower right")
-plt.tight_layout()
+plt.style.use('seaborn-v0_8')
 plt.show()
 plt.close()
 ```
 
 # Model 2- Random Forest
+
+(conduct random forest)
+
+(compare the models and select model to be used with MVP)

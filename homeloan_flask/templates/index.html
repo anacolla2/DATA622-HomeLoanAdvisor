@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home Loan Advisor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #1C2B4A;
+      --navy-deep: #0F1C33;
+      --slate:     #2E4066;
+      --accent:    #C8A96E;
+      --accent-lt: #E8D5B0;
+      --green:     #2D6A4F;
+      --yellow:    #B7791F;
+      --red:       #9B2226;
+      --bg:        #F7F5F0;
+      --card:      #FFFFFF;
+      --border:    #E2DDD6;
+      --text:      #1A1A2E;
+      --muted:     #6B7280;
+      --mono:      'JetBrains Mono', monospace;
+      --serif:     'DM Serif Display', serif;
+      --sans:      'DM Sans', sans-serif;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 60%, var(--slate) 100%);
+      color: white;
+      padding: 48px 40px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      border: 1px solid rgba(200,169,110,0.15);
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; right: 60px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      border: 1px solid rgba(200,169,110,0.1);
+    }
+    .header-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+    header h1 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 400;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+    header h1 span { color: var(--accent); }
+    header p {
+      font-size: 15px;
+      opacity: 0.7;
+      font-weight: 300;
+      max-width: 480px;
+      line-height: 1.6;
+    }
+
+    /* ── Layout ── */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px;
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .card-title {
+      font-family: var(--serif);
+      font-size: 18px;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .card-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 22px;
+      line-height: 1.5;
+    }
+
+    /* ── Form ── */
+    .field { margin-bottom: 16px; }
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-family: var(--sans);
+      font-size: 14px;
+      color: var(--text);
+      background: var(--bg);
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+    input[type="number"]:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: white;
+    }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .field-hint {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ── Toggle ── */
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding: 10px 14px;
+      background: #F0EDE8;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .toggle-row input[type="checkbox"] { accent-color: var(--navy); width: 16px; height: 16px; }
+    .toggle-row span { font-size: 13px; color: var(--navy); font-weight: 500; }
+
+    /* ── Submit ── */
+    button[type="submit"] {
+      width: 100%;
+      padding: 14px;
+      background: var(--navy);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-family: var(--serif);
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      margin-top: 8px;
+      letter-spacing: 0.3px;
+    }
+    button[type="submit"]:hover { background: var(--slate); }
+    button[type="submit"]:active { transform: scale(0.99); }
+    button[type="submit"]:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    /* ── Result panel ── */
+    #result-panel { display: none; }
+
+    .risk-gauge {
+      text-align: center;
+      padding: 32px 24px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+      background: var(--card);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .risk-label-sm {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .risk-prob {
+      font-family: var(--mono);
+      font-size: 64px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .risk-badge {
+      display: inline-block;
+      padding: 6px 20px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 14px;
+      border: 2px solid;
+      margin-bottom: 16px;
+    }
+    .risk-explanation {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+
+    /* ── Risk colors ── */
+    .low    { color: var(--green); }
+    .moderate { color: var(--yellow); }
+    .high   { color: var(--red); }
+    .badge-low      { color: var(--green);  border-color: var(--green);  background: #F0FFF4; }
+    .badge-moderate { color: var(--yellow); border-color: var(--yellow); background: #FFFBEB; }
+    .badge-high     { color: var(--red);    border-color: var(--red);    background: #FFF5F5; }
+
+    /* ── Factors ── */
+    .factors-card { margin-bottom: 20px; }
+    .factor-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .factor-row:last-child { border-bottom: none; }
+    .factor-name { font-weight: 500; }
+    .factor-dir {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 12px;
+    }
+    .factor-dir.increases { background: #FFF5F5; color: var(--red); }
+    .factor-dir.decreases { background: #F0FFF4; color: var(--green); }
+
+    /* ── State rate ── */
+    .state-card {
+      background: #F5F0E8;
+      border: 1px solid var(--accent-lt);
+      border-radius: 12px;
+      padding: 16px 20px;
+      font-size: 13px;
+      color: var(--navy);
+      line-height: 1.6;
+    }
+    .state-card strong { font-family: var(--mono); }
+
+    /* ── Loading ── */
+    .loading { display: none; text-align: center; padding: 40px; color: var(--muted); font-size: 14px; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 32px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 800px) {
+      main { grid-template-columns: 1fr; }
+      header { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <h1>Home Loan <span>Advisor</span></h1>
+    <p>Enter your mortgage profile below and receive an instant risk assessment — powered by real Freddie Mac loan performance data.</p>
+  </div>
+</header>
+
+<main>
+  <!-- ── Left: Input Form ── -->
+  <div>
+    <div class="card">
+      <p class="card-title">Your Profile</p>
+      <p class="card-sub">All fields are used to estimate your likelihood of falling 90+ days behind on payments.</p>
+
+      <form id="loan-form">
+
+        <div class="field-row">
+          <div class="field">
+            <label>Credit Score</label>
+            <input type="number" name="credit_score" value="740" min="300" max="850" required />
+            <p class="field-hint">300 – 850</p>
+          </div>
+          <div class="field">
+            <label>DTI (%)</label>
+            <input type="number" name="dti" value="33" min="0" max="65" required />
+            <p class="field-hint">Debt-to-income ratio</p>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>LTV (%)</label>
+            <input type="number" name="ltv" value="75" min="10" max="100" required />
+            <p class="field-hint">Loan-to-value ratio</p>
+          </div>
+          <div class="field">
+            <label>Interest Rate (%)</label>
+            <input type="number" name="or_interest_rate" value="4.5" min="1" max="15" step="0.125" required />
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Num. Borrowers</label>
+            <input type="number" name="num_borrowers" value="2" min="1" max="4" required />
+          </div>
+          <div class="field">
+            <label>Num. Units</label>
+            <select name="num_units">
+              <option value="1">1 Unit</option>
+              <option value="2">2 Units</option>
+              <option value="3">3 Units</option>
+              <option value="4">4 Units</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Property State</label>
+          <select name="prop_state" required>
+            <option value="">Select state...</option>
+            {% for state in states %}
+            <option value="{{ state }}">{{ state }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Occupancy</label>
+            <select name="occupancy">
+              <option value="P">Primary Residence</option>
+              <option value="S">Second Home</option>
+              <option value="O">Investment</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Property Type</label>
+            <select name="prop_type">
+              <option value="SF">Single Family</option>
+              <option value="PU">Planned Unit</option>
+              <option value="CO">Condo</option>
+              <option value="MH">Manufactured</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Channel</label>
+            <select name="channel">
+              <option value="R">Retail</option>
+              <option value="C">Correspondent</option>
+              <option value="B">Broker</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Loan Purpose</label>
+            <select name="loan_purpose">
+              <option value="P">Purchase</option>
+              <option value="N">No Cash Refinance</option>
+              <option value="C">Cash-Out Refinance</option>
+            </select>
+          </div>
+        </div>
+
+        <label class="toggle-row">
+          <input type="checkbox" name="first_time_buyer" value="1" />
+          <span>First-time homebuyer</span>
+        </label>
+
+        <label class="toggle-row">
+          <input type="checkbox" name="metro_area" value="1" checked />
+          <span>Property is in a metro area</span>
+        </label>
+
+        <button type="submit" id="submit-btn">Assess My Risk →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── Right: Results ── -->
+  <div>
+    <div class="loading" id="loading">
+      <p>Calculating your risk profile...</p>
+    </div>
+
+    <div id="result-panel">
+
+      <!-- Risk Gauge -->
+      <div class="risk-gauge" id="gauge">
+        <p class="risk-label-sm">Estimated Default Probability</p>
+        <div class="risk-prob" id="prob-display">—</div>
+        <div class="risk-badge" id="badge">—</div>
+        <p class="risk-explanation" id="explanation">—</p>
+      </div>
+
+      <!-- Top Factors -->
+      <div class="card factors-card">
+        <p class="card-title">What's Driving Your Score</p>
+        <p class="card-sub">The three factors with the most influence on your result.</p>
+        <div id="factors-list"></div>
+      </div>
+
+      <!-- State Context -->
+      <div class="state-card" id="state-context"></div>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  DATA 622 · Spring 2026 · Razzaq, Collado, Baralli, Jiang ·
+  Trained on Freddie Mac Single Family Loan-Level Dataset
+</footer>
+
+<script>
+  const form = document.getElementById("loan-form");
+  const panel = document.getElementById("result-panel");
+  const loading = document.getElementById("loading");
+  const btn = document.getElementById("submit-btn");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    panel.style.display = "none";
+    loading.style.display = "block";
+    btn.disabled = true;
+    btn.textContent = "Calculating...";
+
+    const fd = new FormData(form);
+    const data = {};
+    for (let [k, v] of fd.entries()) {
+      data[k] = isNaN(v) ? v : parseFloat(v);
+    }
+    // handle checkboxes
+    data.first_time_buyer = form.querySelector('[name="first_time_buyer"]').checked ? 1 : 0;
+    data.metro_area       = form.querySelector('[name="metro_area"]').checked ? 1 : 0;
+
+    try {
+      const res = await fetch("/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+      const result = await res.json();
+
+      if (result.error) {
+        alert("Error: " + result.error);
+        return;
+      }
+
+      // probability
+      const probEl = document.getElementById("prob-display");
+      probEl.textContent = result.probability_pct;
+      probEl.className = "risk-prob " + result.risk_tier;
+
+      // badge
+      const badge = document.getElementById("badge");
+      badge.textContent = result.risk_label;
+      badge.className = "risk-badge badge-" + result.risk_tier;
+
+      // explanation
+      document.getElementById("explanation").textContent = result.explanation;
+
+      // factors
+      const fl = document.getElementById("factors-list");
+      fl.innerHTML = result.top_factors.map(f => `
+        <div class="factor-row">
+          <span class="factor-name">${f.feature}</span>
+          <span class="factor-dir ${f.direction}">${f.direction} risk</span>
+        </div>
+      `).join("");
+
+      // state context
+      const state = data.prop_state || "your state";
+      const rate = (result.state_rate * 100).toFixed(2);
+      document.getElementById("state-context").innerHTML =
+        `<strong>📍 ${state} context:</strong> The historical 90+ day delinquency rate for loans in <strong>${state}</strong> is <strong>${rate}%</strong>, based on 2018 Q1 Freddie Mac data.`;
+
+      loading.style.display = "none";
+      panel.style.display = "block";
+
+    } catch (err) {
+      alert("Something went wrong. Is the server running?");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Assess My Risk →";
+      loading.style.display = "none";
+    }
+  });
+</script>
+
+</body>
+</html>

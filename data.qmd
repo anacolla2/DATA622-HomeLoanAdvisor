@@ -247,13 +247,16 @@ final_2018= final_2018.set_index("loan_id")
 state_def_rate= final_2018.groupby("prop_state")["any_90_dpd"].mean()
 final_2018["state_def_rate"]= final_2018["prop_state"].map(state_def_rate)
 final_2018= final_2018.drop(columns=["prop_state", "termin_code"])
+
+#--for later use in app--
+state_def_rate.to_csv("homeloan_flask/model_assets/state_def_rate.csv", header=True)
 ```
 
 ## Keeping Key Variables Using Data Visualizations
 
 ### Numerical Variables:
 
-#### Default vs Non Default Distrbutions
+#### Default vs Non Default Distributions
 
 The boxplots below show if the distribution of each feature differs in default
 and non-defaulted loans:
@@ -266,14 +269,19 @@ fig, axes= plt.subplots(2, 4, figsize=(16, 8))
 for ax, col in zip(axes.flatten(), numerics):
     final_2018.boxplot(column=col, by="any_90_dpd", ax=ax)
     ax.set_title(col)
-    ax.set_xlabel("90+ DPD")
+    ax.set_xlabel(">=90 days past due")
 plt.suptitle("Feature Distribution by Default Status")
-plt.tight_layout()
+plt.style.use('seaborn-v0_8')
 plt.show()
 plt.close()
 ```
 
 #### Correlation Heatmaps and Colinearity
+
+The correlation heatmap below shows pearson correlations between the numeric
+variables in the data. Excluding the obvious diagonal, no variable relationship
+is over than the 0.7 threshold of multicollinearity (no higher than 0.5 in the
+heatmap).
 
 ```{python}
 fig, ax= plt.subplots(figsize=(10, 8))
@@ -282,7 +290,7 @@ sns.heatmap(corr, annot=True, fmt=".2f", cmap="Grays", center=0, ax=ax)
 ax.set_xticklabels(ax.get_xticklabels(), rotation=35, ha="right", fontsize=9)
 ax.set_yticklabels(ax.get_yticklabels(), rotation=0, fontsize=9)
 plt.title("Numeric Feature Correlations")
-plt.tight_layout()
+plt.style.use('seaborn-v0_8')
 plt.show()
 plt.close()
 ```
@@ -305,7 +313,7 @@ plt.title("Default Rate by Binary Feature")
 plt.xlabel("Default Rate")
 plt.axvline(final_2018["any_90_dpd"].mean(), color="red", linestyle="--", label="Overall avg")
 plt.legend()
-plt.tight_layout()
+plt.style.use('seaborn-v0_8')
 plt.show()
 plt.close()
 ```
@@ -320,7 +328,7 @@ corr_target.plot(kind="barh", ax=ax, color=["#828182" if v < 0 else "#1C1F23" fo
 ax.axvline(0, color="black", linewidth=0.8)
 ax.set_title("Feature Correlation with Default (any_90_dpd)")
 ax.set_xlabel("using Pearson r")
-plt.tight_layout()
+plt.style.use('seaborn-v0_8')
 plt.show()
 plt.close()
 ```
@@ -335,7 +343,7 @@ final_2018= final_2018.drop(columns=weak)
 final_2018.to_csv("data/final_2018.csv", index=True)
 ```
 
-## Origination Data Cleaning Function:
+# Origination Data Cleaning Function:
 
 ```{python}
 def clean_origination(filepath):
@@ -382,4 +390,11 @@ def clean_performance(filepath):
     perf_df["delinquency_status"]= pd.to_numeric(perf_df["delinquency_status"], errors="coerce")
 
     return perf_df
+```
+
+**(create autoated pipeline for merging origination and performance datasets.
+final clean output to be fed to model for use by flask app)**
+
+```{python}
+
 ```
