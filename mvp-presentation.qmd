@@ -7,9 +7,11 @@ jupyter: python3
 
 ![](images/mvp-banner.png){fig-align="center"}
 
+Please allow a moment to load:
+
 ```{python}
 #| echo: false
-#| eval: false
+#| eval: true
 
 from IPython.display import HTML
 HTML('''
