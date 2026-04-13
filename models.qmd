@@ -100,17 +100,20 @@ increases defaulting odds by 43%
 
 ### Model Performance: Plotting ROC Curve
 
+The RUC curve below shows that our preliminary model (logistic regression model)
+has a decent predictive performance with an AUC value of 0.74. The model can
+correctly differentiate between default and not defaulted 74% of the time.
+
 ```{python}
 
 fpr, tpr, thresholds= roc_curve(testy, y_prob)
-
 fig, ax= plt.subplots(figsize=(8, 6))
 ax.plot(fpr, tpr, color="#1C1F23", lw=2, label=f"Logistic Regression (AUC= 0.7449)")
 ax.plot([0, 1], [0, 1], color="#828182", linestyle="--", label="Random Classifier")
-ax.set_xlabel("False Positive Rate")
-ax.set_ylabel("True Positive Rate")
-ax.set_title("ROC Curve — Default Prediction Model")
-ax.legend(loc="lower right")
+ax.set_xlabel("FPR")
+ax.set_ylabel("TPR")
+ax.set_title("ROC Curve- Logistic Regression")
+ax.legend(loc="upper left")
 plt.style.use('seaborn-v0_8')
 plt.show()
 plt.close()
@@ -120,4 +123,4 @@ plt.close()
 
 (conduct random forest)
 
-(compare the models and select model to be used with MVP)
+(compare the models and select model to be used in app)
