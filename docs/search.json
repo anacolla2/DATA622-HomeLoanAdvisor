@@ -84,9 +84,9 @@
     "href": "mvp-presentation.html",
     "title": "Home Loan Advisor",
     "section": "",
-    "text": "from IPython.display import HTML\nHTML('''\n&lt;iframe \n  style=\"border: 1px solid rgba(0, 0, 0, 0.1);\" \n  width=\"100%\" \n  height=\"500\" \n  src=\"https://www.figma.com/deck/YnfG51nUTfHEdkxT5WyNpI/DATA620-The-Home-Loan-Advisor-Presentation-Slides?node-id=1-310&t=0CgWDlTMb6yr5Ssc-1\" \n  allowfullscreen&gt;\n&lt;/iframe&gt;\n''')",
+    "text": "from IPython.display import HTML\nHTML('''\n&lt;iframe \n  style=\"border: 1px solid rgba(0, 0, 0, 0.1);\" \n  width=\"100%\" \n  height=\"500\" \n  src=\"https://embed.figma.com/slides/YnfG51nUTfHEdkxT5WyNpI/DATA620-The-Home-Loan-Advisor-Presentation-Slides?node-id=1-310&embed-host=share\" \n  allowfullscreen&gt;\n&lt;/iframe&gt;\n''')",
     "crumbs": [
-      "Our Results"
+      "MVP Slideshow"
     ]
   },
   {
