@@ -7,7 +7,7 @@ jupyter: python3
 
 ![](images/mvp-banner.png){fig-align="center"}
 
-Please allow a moment to load:
+Please allow a moment to load slides from Figma:
 
 ```{python}
 #| echo: false
@@ -17,4 +17,20 @@ from IPython.display import HTML
 HTML('''
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="1000" height="750" src="https://embed.figma.com/slides/YnfG51nUTfHEdkxT5WyNpI/DATA620-The-Home-Loan-Advisor-Presentation-Slides?node-id=1-310&embed-host=share" allowfullscreen></iframe>
 ''')
+
+
+```
+
+\
+(Demo mockup gif will load below)
+
+```{python}
+#| echo: false
+import base64
+from IPython.display import HTML
+
+with open("images/app-mvp.gif", "rb") as f:
+  data= base64.b64encode(f.read()).decode("utf-8")
+
+HTML(f'<img src="data:image/gif;base64,{data}" width="600">')
 ```
