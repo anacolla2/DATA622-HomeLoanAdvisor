@@ -9,8 +9,8 @@ jupyter: python3
 
 --------------------------------------------------------------------------------
 
-. . .blank
+<br>
 
-```{python}
-#code
-```
+<iframe src="https://aribamandavia12.shinyapps.io/Downloads/" width="100%" height="800px" style="border:none;">
+
+</iframe>

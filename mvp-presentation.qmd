@@ -7,6 +7,8 @@ jupyter: python3
 
 ![](images/mvp-banner.png){fig-align="center"}
 
+Current version:
+
 Please allow a moment to load slides from Figma:
 
 ```{python}

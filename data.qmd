@@ -19,6 +19,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.model_selection import train_test_split
 ```
 
 --------------------------------------------------------------------------------
@@ -221,7 +222,8 @@ perf_2018= perf_2018.set_index("loan_id")
 
 ### Encoding
 
-We'll use the industry standard \>90 days delinquent.
+We'll use the industry standard \>90 days delinquent. The goal is to estimate
+the probability that a loan becomes \>= 90 days delinquent at any point.
 
 ```{python}
 perf_2018["delinquency_status"]= pd.to_numeric(perf_2018["delinquency_status"], errors="coerce")
@@ -229,7 +231,7 @@ perf_2018["delinquency_status"]= pd.to_numeric(perf_2018["delinquency_status"], 
 target= (perf_2018.groupby("loan_id")["delinquency_status"].max().ge(3).astype(int).reset_index().rename(columns={"delinquency_status": "any_90_dpd"}))
 ```
 
-zero_balance_code will be useful because it tells why a loan was
+`zero_balance_code` will be useful because it tells why a loan was
 closed/terminated. We'll encode and join to the main dataframe.
 
 ```{python}
@@ -243,158 +245,43 @@ target["termin_code"]= target["termin_code"].fillna(0)
 final_2018= or_2018.merge(target, on="loan_id", how="inner")
 final_2018= final_2018.set_index("loan_id")
 
-#-- mapping state and def rate--
-state_def_rate= final_2018.groupby("prop_state")["any_90_dpd"].mean()
-final_2018["state_def_rate"]= final_2018["prop_state"].map(state_def_rate)
-final_2018= final_2018.drop(columns=["prop_state", "termin_code"])
+final_2018.to_csv("data/fdf1.csv", header=True)
+```
 
-#--for later use in app--
+A user's target state could prove effective in esitamiting mortgage risk.
+However, because the feature would be derived from our target, it may risk data
+leakage. To fix this, the state default rates were calculated using the training
+porting of the data split.
+
+```{python}
+#--creating train and test split for calculation--
+train_, test_= train_test_split(final_2018, test_size= 0.3, random_state=212, stratify= final_2018["any_90_dpd"])
+
+#--state default rate on train only--
+state_def_rate= train_.groupby("prop_state")["any_90_dpd"].mean()
+
+#--mapping train only proportions to the states--
+train_["state_def_rate"]= train_["prop_state"].map(state_def_rate)
+test_["state_def_rate"]= test_["prop_state"].map(state_def_rate)
+
+train_= train_.drop(columns=["prop_state", "termin_code"])
+test_= test_.drop(columns=["prop_state", "termin_code"])
+```
+
+# Automated Pipeline
+
+```{python}
+
+```
+
+```{python}
+#| echo: false
+#| eval: true
+
+
+#--csv checkpoint--
+train_.to_csv("data/train2018.csv", header=True)
+test_.to_csv("data/test2018.csv", header=True)
+
 state_def_rate.to_csv("homeloan_flask/model_assets/state_def_rate.csv", header=True)
-```
-
-## Keeping Key Variables Using Data Visualizations
-
-### Numerical Variables:
-
-#### Default vs Non Default Distributions
-
-The boxplots below show if the distribution of each feature differs in default
-and non-defaulted loans:
-
-```{python}
-
-numerics= ["credit_score", "dti", "ltv", "upb", "or_interest_rate", "or_loan_term", "prop_valuation", "state_def_rate"]
-
-fig, axes= plt.subplots(2, 4, figsize=(16, 8))
-for ax, col in zip(axes.flatten(), numerics):
-    final_2018.boxplot(column=col, by="any_90_dpd", ax=ax)
-    ax.set_title(col)
-    ax.set_xlabel(">=90 days past due")
-plt.suptitle("Feature Distribution by Default Status")
-plt.style.use('seaborn-v0_8')
-plt.show()
-plt.close()
-```
-
-#### Correlation Heatmaps and Colinearity
-
-The correlation heatmap below shows pearson correlations between the numeric
-variables in the data. Excluding the obvious diagonal, no variable relationship
-is over than the 0.7 threshold of multicollinearity (no higher than 0.5 in the
-heatmap).
-
-```{python}
-fig, ax= plt.subplots(figsize=(10, 8))
-corr= final_2018[numerics].corr()
-sns.heatmap(corr, annot=True, fmt=".2f", cmap="Grays", center=0, ax=ax)
-ax.set_xticklabels(ax.get_xticklabels(), rotation=35, ha="right", fontsize=9)
-ax.set_yticklabels(ax.get_yticklabels(), rotation=0, fontsize=9)
-plt.title("Numeric Feature Correlations")
-plt.style.use('seaborn-v0_8')
-plt.show()
-plt.close()
-```
-
-### Categorical Variables:
-
-The Bar chart below shows which categorical variables are associated with
-increased default rates:
-
-```{python}
-binary_cols= ["metro_area", "super_conforming", "interest_only", "ppm", "mi_cancel",
-               "first_time_buyer_Y", "loan_purpose_N", "loan_purpose_P"]
-
-default_rates= final_2018[binary_cols].apply(
-    lambda col: final_2018.groupby(col)["any_90_dpd"].mean()).T
-
-default_rates.columns= ["No (0)", "Yes (1)"]
-default_rates.plot(kind="barh", figsize=(10, 6), color=["#828182", "#1C1F23"])
-plt.title("Default Rate by Binary Feature")
-plt.xlabel("Default Rate")
-plt.axvline(final_2018["any_90_dpd"].mean(), color="red", linestyle="--", label="Overall avg")
-plt.legend()
-plt.style.use('seaborn-v0_8')
-plt.show()
-plt.close()
-```
-
-### Defaulting Correlations
-
-```{python}
-corr_target= final_2018.corr()["any_90_dpd"].drop("any_90_dpd").sort_values()
-
-fig, ax= plt.subplots(figsize=(8, 12))
-corr_target.plot(kind="barh", ax=ax, color=["#828182" if v < 0 else "#1C1F23" for v in corr_target])
-ax.axvline(0, color="black", linewidth=0.8)
-ax.set_title("Feature Correlation with Default (any_90_dpd)")
-ax.set_xlabel("using Pearson r")
-plt.style.use('seaborn-v0_8')
-plt.show()
-plt.close()
-```
-
-`prop_valuation`, `or_loan_term`, `interest_only`, `ppm`, and `upd` have been
-shown to be weak features so they will not be included in our model
-
-```{python}
-weak= ["prop_valuation", "or_loan_term", "interest_only", "ppm", "upb", "loan_purpose_N", "loan_purpose_P", "mi_percent"]
-
-final_2018= final_2018.drop(columns=weak)
-final_2018.to_csv("data/final_2018.csv", index=True)
-```
-
-# Origination Data Cleaning Function:
-
-```{python}
-def clean_origination(filepath):
-    or_df= pd.read_csv(filepath, sep="|", header=None, na_values=["", "9999", "999", "9", "   ", "X"])
-    
-    or_df.columns= ["credit_score", "first_payment_date", "first_time_buyer", "maturity_date", "msa", "mi_percent", "num_units", "occupancy", "cltv", "dti", "upb", "ltv", "or_interest_rate", "channel", "ppm", "amortization", "prop_state", "prop_type", "zipcode", "loan_id", "loan_purpose", "or_loan_term", "num_borrowers", "seller", "servicer", "super_conforming", "pre_harp_loan_id", "program_indicator", "harp_indicator", "prop_valuation", "interest_only", "mi_cancel"]
-
-    or_df= or_df[or_df["harp_indicator"].isna()].copy()
-
-    drop= ["pre_harp_loan_id", "amortization", "harp_indicator", "program_indicator", "seller", "servicer", "first_payment_date", "maturity_date", "zipcode", "cltv"]
-    or_df= or_df.drop(columns=drop)
-    or_df= or_df.set_index("loan_id")
-
-    or_df["metro_area"]= or_df["msa"].notna().astype(int)
-    or_df= or_df.drop(columns="msa")
-
-    or_df["super_conforming"]= or_df["super_conforming"].fillna(0)
-    or_df["super_conforming"]= (or_df["super_conforming"] == "Y").astype(int)
-
-    categorical_cols= ["first_time_buyer", "loan_purpose", "prop_type", "occupancy", "channel", "num_units"]
-    or_df= pd.get_dummies(or_df, columns=categorical_cols, drop_first=True, dtype=int)
-
-    for col in ["credit_score", "dti", "ltv", "mi_percent", "prop_valuation", "upb"]:
-        or_df[col]= or_df[col].fillna(or_df[col].median())
-
-    for col in ["interest_only", "mi_cancel", "ppm"]:
-        or_df[col]= (or_df[col] == "Y").astype(int)
-
-    return or_df
-```
-
-## Performance Data Cleaning Function:
-
-```{python}
-
-def clean_performance(filepath):
-    perf_df= pd.read_csv(filepath, sep="|", header=None, na_values=["", "9999", "999", "9", "   ", "X"])
-
-    perf_df.columns= ["loan_id", "report_period", "current_upb", "delinquency_status", "loan_age", "remaining_months", "defect_settlement_date", "modification_flag", "zero_balance_code", "zero_balance_effective_date", "current_rate", "current_deferred_upb", "ddlpi", "mi_recoveries", "net_sales_proceeds", "non_mi_recoveries", "expenses", "legal_costs", "maintenance_costs", "taxes_insurance", "misc_expenses", "actual_loss", "modification_cost", "step_modification_flag", "deferred_payment_plan", "eltv", "zero_balance_removal_upb", "delinquent_accrued_interest", "disaster_delinquency", "borrower_assistance", "current_month_mod_cost", "interest_bearing_upb"]
-
-    keeping= ["loan_id", "report_period", "current_upb", "delinquency_status", "loan_age", "remaining_months", "zero_balance_code", "current_rate", "modification_flag", "disaster_delinquency", "borrower_assistance"]
-    perf_df= perf_df[keeping].set_index("loan_id")
-
-    perf_df["delinquency_status"]= pd.to_numeric(perf_df["delinquency_status"], errors="coerce")
-
-    return perf_df
-```
-
-**(create autoated pipeline for merging origination and performance datasets.
-final clean output to be fed to model for use by flask app)**
-
-```{python}
-
 ```

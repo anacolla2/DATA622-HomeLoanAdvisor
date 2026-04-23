@@ -233,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 <section id="package-load" class="level3">
 <h3 class="anchored" data-anchor-id="package-load">Package Load</h3>
-<div id="b534f80c" class="cell" data-execution_count="1">
+<div id="d06ba6a1" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -244,7 +244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report, roc_auc_score, roc_curve, RocCurveDisplay</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Logistic regression is the better choice for our binary target variable. After scaling the ROC outputs show how efficient the model is.</p>
-<div id="16bf40dc" class="cell" data-execution_count="2">
+<div id="45c62900" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- loading clean data--</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>final_2018<span class="op">=</span> pd.read_csv(<span class="st">"data/final_2018.csv"</span>, index_col<span class="op">=</span><span class="st">"loan_id"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -258,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>trainx, testx, trainy, testy<span class="op">=</span> train_test_split(x, y, test_size<span class="op">=</span><span class="fl">0.2</span>,</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>random_state<span class="op">=</span><span class="dv">42</span>, stratify<span class="op">=</span>y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="311cf5ec" class="cell" data-execution_count="3">
+<div id="a703acdb" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#--scaling--</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>scaler<span class="op">=</span> StandardScaler()</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>trainx_scaled<span class="op">=</span> scaler.fit_transform(trainx)</span>
@@ -290,11 +290,11 @@ ROC-AUC: 0.7449</code></pre>
 </section>
 <section id="comparing-coefficients" class="level3">
 <h3 class="anchored" data-anchor-id="comparing-coefficients">Comparing Coefficients</h3>
-<div id="8459e78e" class="cell" data-execution_count="4">
+<div id="0a7e2a9f" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>comparing_coefficients<span class="op">=</span> pd.DataFrame({<span class="st">"variable"</span>: x.columns, <span class="st">"coefficient"</span>:lr.coef_[<span class="dv">0</span>]}).sort_values(<span class="st">"coefficient"</span>, key<span class="op">=</span><span class="bu">abs</span>, ascending<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To make this interpretable we’ll raise eulers number to each coefficient of each variable.</p>
-<div id="6defcc75" class="cell" data-execution_count="5">
+<div id="7bdb1164" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>e<span class="op">=</span><span class="fl">2.71828</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>comparing_coefficients[<span class="st">"interpret"</span>]<span class="op">=</span> (e <span class="op">**</span> comparing_coefficients[<span class="st">"coefficient"</span>]).<span class="bu">round</span>(<span class="dv">2</span>)<span class="op">-</span><span class="dv">1</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(comparing_coefficients)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -324,7 +324,7 @@ ROC-AUC: 0.7449</code></pre>
 </div>
 </div>
 <p><strong>(create visualization of odds for slides***)</strong></p>
-<div id="ab49acfa" class="cell" data-execution_count="6">
+<div id="2da6a52d" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>coef_viz<span class="op">=</span> comparing_coefficients.sort_values(<span class="st">"interpret"</span>, ascending<span class="op">=</span> <span class="va">False</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
@@ -349,7 +349,7 @@ ROC-AUC: 0.7449</code></pre>
 <section id="model-performance-plotting-roc-curve" class="level3">
 <h3 class="anchored" data-anchor-id="model-performance-plotting-roc-curve">Model Performance: Plotting ROC Curve</h3>
 <p>The RUC curve below shows that our preliminary model (logistic regression model) has a decent predictive performance with an AUC value of 0.74. The model can correctly differentiate between default and not defaulted 74% of the time.</p>
-<div id="6c6800e8" class="cell" data-execution_count="7">
+<div id="e40b4d12" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fpr, tpr, thresholds<span class="op">=</span> roc_curve(testy, y_prob)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>fig, ax<span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>ax.plot(fpr, tpr, color<span class="op">=</span><span class="st">"#1C1F23"</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f"Logistic Regression (AUC= 0.7449)"</span>)</span>
