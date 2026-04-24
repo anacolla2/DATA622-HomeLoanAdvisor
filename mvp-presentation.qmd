@@ -7,6 +7,8 @@ jupyter: python3
 
 ![](images/mvp-banner.png){fig-align="center"}
 
+--------------------------------------------------------------------------------
+
 ## Version 2: (current)
 
 ```{python}
