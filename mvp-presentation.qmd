@@ -5,11 +5,17 @@ editor: visual
 jupyter: python3
 ---
 
-![](images/mvp-banner.png){fig-align="center"}
+![](images/mvp-banner.png){.h1 fig-align="center"}
 
 --------------------------------------------------------------------------------
 
+\linebreak
+
+<div>
+
 ## Version 2: (current)
+
+</div>
 
 ```{python}
 #| echo: false
@@ -21,7 +27,11 @@ HTML('''
 ''')
 ```
 
+<div>
+
 ## Version 1:
+
+</div>
 
 Please allow a moment to load slides from Figma:
 

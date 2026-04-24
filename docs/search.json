@@ -62,9 +62,9 @@
   {
     "objectID": "mvp-presentation.html#version-2-current",
     "href": "mvp-presentation.html#version-2-current",
-    "title": "Version 1:",
+    "title": "Home Loan Advisor",
     "section": "Version 2: (current)",
-    "text": "Version 2: (current)\n\n\n\n\n\n\nPlease allow a moment to load slides from Figma:\n\n\n\n\n\n\n\n\n(Demo mockup gif will load below)",
+    "text": "Version 2: (current)",
     "crumbs": [
       "MVP Slideshow"
     ]
@@ -217,6 +217,46 @@
     "text": "Bibliography:\nChen, T., & Guestrin, C. (2016). XGBoost: A scalable tree boosting system. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining.\nChang, W., Cheng, J., Allaire, J., Xie, Y., & McPherson, J. (2023). shiny: Web application framework for R. https://shiny.posit.co\nChawla, N. V., Bowyer, K. W., Hall, L. O., & Kegelmeyer, W. P. (2002). SMOTE: Synthetic minority over-sampling technique. Journal of Artificial Intelligence Research, 16, 321–357.\nFreddie Mac. (n.d.). Single family loan-level dataset. https://www.freddiemac.com/research/datasets/sf-loanlevel-dataset\nKuhn, M., & Wickham, H. (2020). Tidymodels: A collection of packages for modeling and machine learning using tidyverse principles. https://www.tidymodels.org\nMcKee, Amberle. Mastering Shiny for Python: A Beginner’s Guide to Building Interactive Web Applications, DataCamp, 15 Dec. 2023, https://www.datacamp.com/tutorial/mastering-shiny-for-python-a-beginners-guide-to-building-interactive-web-applications.",
     "crumbs": [
       "App Proposal"
+    ]
+  },
+  {
+    "objectID": "mvp-presentation.html",
+    "href": "mvp-presentation.html",
+    "title": "Home Loan Advisor",
+    "section": "",
+    "text": "Please allow a moment to load slides from Figma:",
+    "crumbs": [
+      "MVP Slideshow"
+    ]
+  },
+  {
+    "objectID": "mvp-presentation.html#version-1",
+    "href": "mvp-presentation.html#version-1",
+    "title": "Home Loan Advisor",
+    "section": "Version 1:",
+    "text": "Version 1:",
+    "crumbs": [
+      "MVP Slideshow"
+    ]
+  },
+  {
+    "objectID": "app.html",
+    "href": "app.html",
+    "title": "Home Loan Advisor",
+    "section": "",
+    "text": "Please allow one moment while the Shiny App loads below",
+    "crumbs": [
+      "The App"
+    ]
+  },
+  {
+    "objectID": "app.html#section",
+    "href": "app.html#section",
+    "title": "Home Loan Advisor",
+    "section": "",
+    "text": "Please allow one moment while the Shiny App loads below",
+    "crumbs": [
+      "The App"
     ]
   }
 ]
