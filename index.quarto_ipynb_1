@@ -1,0 +1,46 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"\"\n",
+        "format: html\n",
+        "editor: visual\n",
+        "jupyter: python3\n",
+        "---\n",
+        "\n",
+        "--------------------------------------------------------------------------------\n",
+        "\n",
+        "![](images/top-border.png){fig-align=\"center\"}\n",
+        "\n",
+        "## ![](images/DATA622-HomeLoanAdvisor-Cover-01.png)\n",
+        "\n",
+        "Many borrowers walk into a mortgage hoping for the best. The Home Loan Adviser\n",
+        "is a machine learning tool, trained on real Freddie Mac mortgages, that informs\n",
+        "the borrower where they stand before ever engaging with a lender.\n",
+        "\n",
+        "::: {.text-center .blockquote .text-danger}\n",
+        "*Its better to know your risk before your lenders do.*\n",
+        ":::\n",
+        "\n",
+        "The interactive simulator produces a risk score in plain English, so users can\n",
+        "examine their \"what ifs?\" before one of the largest decisions of their lives.\n",
+        "\n",
+        "![](images/bottom-border.png){fig-align=\"center\"}"
+      ],
+      "id": "e77f4a65"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "/opt/conda/envs/rstudiopy/share/jupyter/kernels/python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

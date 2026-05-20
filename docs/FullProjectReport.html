@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>models – Home Loan Advisor</title>
+<title>fullprojectreport – Home Loan Advisor</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -121,7 +121,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./models.html">The Models</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      Home Loan Advisor
+      </li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -166,7 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models.html" class="sidebar-item-text sidebar-link active">
+  <a href="./models.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">The Models</span></a>
   </div>
 </li>
@@ -204,17 +206,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"><img src="images/TheModels-banner.png" class="img-fluid"></a>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"><img src="fullprojectreport header.png" class="img-fluid" width="940"></a>
   <ul>
   <li><a href="#package-load" id="toc-package-load" class="nav-link" data-scroll-target="#package-load">Package Load</a></li>
   </ul></li>
+  <li><a href="#objective" id="toc-objective" class="nav-link" data-scroll-target="#objective">Objective</a></li>
+  <li><a href="#data-source-and-processing-summary" id="toc-data-source-and-processing-summary" class="nav-link" data-scroll-target="#data-source-and-processing-summary">Data Source and Processing Summary</a></li>
+  <li><a href="#load-final-modeling-data" id="toc-load-final-modeling-data" class="nav-link" data-scroll-target="#load-final-modeling-data">Load Final Modeling Data</a></li>
   <li><a href="#target-variable-and-class-balance" id="toc-target-variable-and-class-balance" class="nav-link" data-scroll-target="#target-variable-and-class-balance">Target Variable and Class Balance</a></li>
   <li><a href="#traintest-feature-setup" id="toc-traintest-feature-setup" class="nav-link" data-scroll-target="#traintest-feature-setup">Train/Test Feature Setup</a></li>
   <li><a href="#modeling-strategy" id="toc-modeling-strategy" class="nav-link" data-scroll-target="#modeling-strategy">Modeling Strategy</a></li>
-  <li><a href="#model-1-logistic-regression" id="toc-model-1-logistic-regression" class="nav-link" data-scroll-target="#model-1-logistic-regression">Model 1: Logistic Regression</a></li>
+  <li><a href="#model-1-logistic-regression" id="toc-model-1-logistic-regression" class="nav-link" data-scroll-target="#model-1-logistic-regression">Model 1: Logistic Regression</a>
+  <ul>
   <li><a href="#logistic-regression-coefficients" id="toc-logistic-regression-coefficients" class="nav-link" data-scroll-target="#logistic-regression-coefficients">Logistic Regression Coefficients</a></li>
+  </ul></li>
   <li><a href="#model-2-random-forest-classifier" id="toc-model-2-random-forest-classifier" class="nav-link" data-scroll-target="#model-2-random-forest-classifier">Model 2: Random Forest Classifier</a></li>
-  <li><a href="#model-3-histogram-gradient-boosting" id="toc-model-3-histogram-gradient-boosting" class="nav-link" data-scroll-target="#model-3-histogram-gradient-boosting">Model 3: Histogram Gradient Boosting</a></li>
+  <li><a href="#model-3-histogram-gradient-boosting" id="toc-model-3-histogram-gradient-boosting" class="nav-link" data-scroll-target="#model-3-histogram-gradient-boosting">Model 3: Histogram Gradient Boosting</a>
+  <ul>
   <li><a href="#partial-dependence-plot" id="toc-partial-dependence-plot" class="nav-link" data-scroll-target="#partial-dependence-plot">Partial Dependence Plot</a></li>
   <li><a href="#model-comparison" id="toc-model-comparison" class="nav-link" data-scroll-target="#model-comparison">Model Comparison</a></li>
   <li><a href="#roc-curve-comparison" id="toc-roc-curve-comparison" class="nav-link" data-scroll-target="#roc-curve-comparison">ROC Curve Comparison</a></li>
@@ -224,6 +232,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#final-model-choice" id="toc-final-model-choice" class="nav-link" data-scroll-target="#final-model-choice">Final Model Choice</a></li>
   <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -232,7 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Load Final Modeling Data</h1>
+<h1 class="title">Introduction</h1>
 </div>
 
 
@@ -250,37 +259,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"><img src="images/TheModels-banner.png" class="img-fluid"></h2>
+<h2 class="anchored" data-anchor-id="section"><img src="fullprojectreport header.png" class="img-fluid" width="940"></h2>
 <hr>
 <section id="package-load" class="level3">
 <h3 class="anchored" data-anchor-id="package-load">Package Load</h3>
-<div id="6ff9fa26" class="cell" data-execution_count="1">
+<div id="754b4d4a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#--package load--</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> pipeline</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> pipeline</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.inspection <span class="im">import</span> PartialDependenceDisplay</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.inspection <span class="im">import</span> PartialDependenceDisplay, permutation_importance</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier, HistGradientBoostingClassifier</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report, roc_auc_score, roc_curve, confusion_matrix, precision_score, recall_score, f1_score, accuracy_score</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier, HistGradientBoostingClassifier</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report, roc_auc_score, roc_curve, confusion_matrix, precision_score, recall_score, f1_score, accuracy_score</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="7b8abce8" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#--loading final data sets--</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>train_final<span class="op">=</span> pd.read_csv(<span class="st">"~/projects/data/homeloanadvisor/final_model_data/train_final.csv"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>test_final<span class="op">=</span> pd.read_csv(<span class="st">"~/projects/data/homeloanadvisor/final_model_data/test_final.csv"</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Train shape:"</span>, train_final.shape)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Test shape:"</span>, test_final.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Buying a home is one of the largest financial decisions most people make, yet most borrowers do not have access to the same analytical tools that lenders use to assess repayment risk. This project explores whether historical mortgage performance data can be used to build a consumer-oriented risk assessment tool. For the MVP, the goal is not to deliver the full final application, but to demonstrate that the core workflow is feasible: prepare the loan-level data, engineer a binary delinquency target, train a baseline model, evaluate its predictive performance, and generate app-ready risk outputs.</p>
+<p>This MVP focuses on the modeling backbone of the project: data preparation, target engineering, baseline prediction, and evaluation. This project expands the original MVP idea by moving beyond a small cleaned sample and building a larger custom dataset from Freddie Mac Origination and Performance files from 2018 through 2022.</p>
+</section>
+</section>
+<section id="objective" class="level2">
+<h2 class="anchored" data-anchor-id="objective">Objective</h2>
+<blockquote class="blockquote">
+<p>Can we use historical mortgage data to estimate the probability that a loan will ever become seriously delinquent, and then turn that result into a consumer-friendly risk signal?</p>
+</blockquote>
+<p>For this version of the project, we use:</p>
+<ul>
+<li>Freddie Mac Origination and Performance data from 2018 through 2022</li>
+<li>a binary target called <code>any_90_dpd</code></li>
+<li>an automated quarterly data-processing pipeline using a python script</li>
+<li>a stratified train/test split by annual quarter and delinquency status to handle imbalances</li>
+<li>Logistic Regression, Random Forest, and Histogram Gradient Boosting models</li>
+<li>ROC-AUC, classification reports, and threshold-based evaluation</li>
+<li>Low/Moderate/ High risk tiers for app demonstration</li>
+</ul>
+</section>
+<section id="data-source-and-processing-summary" class="level2">
+<h2 class="anchored" data-anchor-id="data-source-and-processing-summary">Data Source and Processing Summary</h2>
+<p>The dataset used for the models was created from Freddie Mac Origination and Performance data covering 2018 through 2022. The 2018 Q1 file was first cleaned manually to define the necessary steps to standardize the cleaning. This process was then wirtted into a Python script that cleaned each quarter separately.</p>
+<p>The origination files contain borrower, loan, and property characteristics at the time of loan origination. The performance files contain monthly loan performance records, including delinquency behavior over time. Each quarter was processed separately and then merged by <code>loan_id</code> (which was dropped)</p>
+<p>The pipeline performed the following major steps:</p>
+<ul>
+<li>read raw quarterly origination and performance files</li>
+<li>treated Freddie Mac placeholder values such as <code>9999</code>, <code>999</code>, <code>9</code>, blanks, spaces, and <code>X</code> as missing values</li>
+<li>engineered date features from first payment date and maturity date</li>
+<li>removed HARP loans</li>
+<li>converted MSA into a binary <code>metro_area</code> feature</li>
+<li>one-hot encoded selected categorical variables</li>
+<li>imputed selected numeric fields using median values</li>
+<li>created the binary target variable <code>any_90_dpd</code></li>
+<li>merged origination and performance records by loan ID</li>
+<li>saved each cleaned quarter as an intermediate file</li>
+<li>merged the processed quarters into final train and test files</li>
+</ul>
+<p>The final train/test split was stratified by both quarter and delinquency status. Stratifying by quarter helps address class imbalances through economic periods, while stratifying by the 90+ days past due flag helps address the class imbalance of the target variable.</p>
+<p>The state “default rate” feature, <code>state_def_rate</code>, was calculated from the training set only and then this was mapped onto both train and test records. This prevents the model from using test-period outcome information when constructing the feature.</p>
+</section>
+<section id="load-final-modeling-data" class="level2">
+<h2 class="anchored" data-anchor-id="load-final-modeling-data">Load Final Modeling Data</h2>
+<div id="7ec53d26" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>train_final<span class="op">=</span> pd.read_csv(<span class="st">"~/projects/data/homeloanadvisor/final_model_data/train_final.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>test_final<span class="op">=</span> pd.read_csv(<span class="st">"~/projects/data/homeloanadvisor/final_model_data/test_final.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Train shape:"</span>, train_final.shape)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Test shape:"</span>, test_final.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Train shape: (8746063, 32)
 Test shape: (3748322, 32)</code></pre>
 </div>
 </div>
-</section>
 </section>
 <section id="target-variable-and-class-balance" class="level2">
 <h2 class="anchored" data-anchor-id="target-variable-and-class-balance">Target Variable and Class Balance</h2>
@@ -289,7 +338,7 @@ Test shape: (3748322, 32)</code></pre>
 <li><code>1</code> represents a loan that became 90 or more days past due at least once during the observed performance period.</li>
 <li><code>0</code> represents a loan that didn’t become 90 or more days past due.</li>
 </ul>
-<div id="0a3ed065" class="cell" data-execution_count="3">
+<div id="e5cdf075" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>train_counts<span class="op">=</span> train_final[<span class="st">"any_90_dpd"</span>].value_counts().sort_index()</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>test_counts<span class="op">=</span> test_final[<span class="st">"any_90_dpd"</span>].value_counts().sort_index()</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -324,7 +373,7 @@ Test target rate:
 Name: any_90_dpd, dtype: float64</code></pre>
 </div>
 </div>
-<div id="dee5ff3e" class="cell" data-execution_count="4">
+<div id="75028d92" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>train_counts.plot(kind<span class="op">=</span><span class="st">"bar"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Training Target Class Counts"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"any_90_dpd"</span>)</span>
@@ -334,17 +383,17 @@ Name: any_90_dpd, dtype: float64</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="models_files/figure-html/cell-5-output-1.png" width="661" height="469" class="figure-img"></p>
+<p><img src="FullProjectReport_files/figure-html/cell-5-output-1.png" width="661" height="469" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Our target is very imbalanced because few loans become 90 or more days past due. Because of this imbalance, accuracy alone is not a useful evaluation metric. ROC-AUC, precision, recall, F1-score, and threshold behavior might prove more informative about model performance.</p>
+<p>The target is heavily imbalanced because few loans become 90 or more days past due. Because of this imbalance, accuracy alone is not a useful evaluation metric. ROC-AUC, precision, recall, F1-score, and threshold behavior might prove more informative about model performance.</p>
 </section>
 <section id="traintest-feature-setup" class="level2">
 <h2 class="anchored" data-anchor-id="traintest-feature-setup">Train/Test Feature Setup</h2>
 <p><code>quarter_tag</code> is kept in the final files for split checking, but it is removed from the matrix before modeling begins (the variable is also not numerical so it must be removed.)</p>
-<div id="e67d1094" class="cell" data-execution_count="5">
+<div id="9cd20d95" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#--without target--</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x_train<span class="op">=</span> train_final.drop(columns<span class="op">=</span>[<span class="st">"any_90_dpd"</span>, <span class="st">"quarter_tag"</span>])</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>x_test<span class="op">=</span> test_final.drop(columns<span class="op">=</span>[<span class="st">"any_90_dpd"</span>, <span class="st">"quarter_tag"</span>])</span>
@@ -364,7 +413,7 @@ x_test shape: (3748322, 30)</code></pre>
 </section>
 <section id="modeling-strategy" class="level2">
 <h2 class="anchored" data-anchor-id="modeling-strategy">Modeling Strategy</h2>
-<p>This is a binary classification problem. The modeling strategy compares an interpretable baseline model (logistic regression) with more flexible classifier models.</p>
+<p>This is a binary classification problem. The modeling strategy compares an interpretable baseline model with more flexible machine learning models.</p>
 <p>The models used are:</p>
 <ol type="1">
 <li>Logistic Regression</li>
@@ -372,14 +421,14 @@ x_test shape: (3748322, 30)</code></pre>
 <li>Histogram Gradient Boosting Classifier</li>
 </ol>
 <p>Logistic regression is used as the baseline because it is interpretable and produces probabilities naturally. Random Forest and Histogram Gradient Boosting are included because they can capture nonlinear relationships and interactions among borrower, loan, and property characteristics. <code>mi_cancel</code> was dropped post script due to an error.</p>
-<div id="501fa956" class="cell" data-execution_count="6">
+<div id="64e8e602" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>x_train<span class="op">=</span> x_train.drop(columns<span class="op">=</span>[<span class="st">"mi_cancel"</span>])</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>x_test<span class="op">=</span> x_test.drop(columns<span class="op">=</span>[<span class="st">"mi_cancel"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="model-1-logistic-regression" class="level2">
-<h2 class="anchored" data-anchor-id="model-1-logistic-regression">Model 1: Logistic Regression</h2>
-<div id="cf6c7d03" class="cell" data-execution_count="7">
+<section id="model-1-logistic-regression" class="level1">
+<h1>Model 1: Logistic Regression</h1>
+<div id="69b1d64a" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- logistic regression pipeline--</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>logistic<span class="op">=</span> pipeline.Pipeline([</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a> (<span class="st">"scaler"</span>, StandardScaler()),</span>
@@ -411,10 +460,9 @@ weighted avg       0.96      0.71      0.80   3748322
 Logistic Regression ROC-AUC: 0.7937</code></pre>
 </div>
 </div>
-</section>
 <section id="logistic-regression-coefficients" class="level2">
 <h2 class="anchored" data-anchor-id="logistic-regression-coefficients">Logistic Regression Coefficients</h2>
-<div id="4544ab67" class="cell" data-execution_count="8">
+<div id="969277e0" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>logistic_coef<span class="op">=</span> logistic.named_steps[<span class="st">"logistic"</span>].coef_[<span class="dv">0</span>]</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>comparing_coefficients<span class="op">=</span> pd.DataFrame({</span>
@@ -587,7 +635,8 @@ Logistic Regression ROC-AUC: 0.7937</code></pre>
 </div>
 </div>
 </div>
-<div id="4d83db64" class="cell" data-execution_count="9">
+<p>[write interpretation (one SD fpr each predictor)]</p>
+<div id="a6f9cd3f" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>coef_viz<span class="op">=</span> comparing_coefficients.head(<span class="dv">20</span>).sort_values(<span class="st">"percent_change_odds"</span>, ascending<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
@@ -600,15 +649,16 @@ Logistic Regression ROC-AUC: 0.7937</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="models_files/figure-html/cell-10-output-1.png" width="950" height="756" class="figure-img"></p>
+<p><img src="FullProjectReport_files/figure-html/cell-10-output-1.png" width="950" height="756" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="model-2-random-forest-classifier" class="level2">
-<h2 class="anchored" data-anchor-id="model-2-random-forest-classifier">Model 2: Random Forest Classifier</h2>
-<div id="e6af6976" class="cell" data-execution_count="10">
+</section>
+<section id="model-2-random-forest-classifier" class="level1">
+<h1>Model 2: Random Forest Classifier</h1>
+<div id="2caba643" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- random forest classifier--</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>forest<span class="op">=</span> RandomForestClassifier(</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a> n_estimators<span class="op">=</span><span class="dv">100</span>,</span>
@@ -645,7 +695,7 @@ weighted avg       0.96      0.71      0.80   3748322
 Random Forest ROC-AUC: 0.7995</code></pre>
 </div>
 </div>
-<div id="e34bc400" class="cell" data-execution_count="11">
+<div id="c1ebb9b6" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>forest_importance<span class="op">=</span> pd.DataFrame({</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a> <span class="st">"variable"</span>: x_train.columns,</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a> <span class="st">"importance"</span>: forest.feature_importances_</span>
@@ -771,7 +821,7 @@ Random Forest ROC-AUC: 0.7995</code></pre>
 </div>
 </div>
 </div>
-<div id="5af17b8b" class="cell" data-execution_count="12">
+<div id="c084a60f" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>top_forest<span class="op">=</span> forest_importance.head(<span class="dv">20</span>).sort_values(<span class="st">"importance"</span>, ascending<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
@@ -784,273 +834,80 @@ Random Forest ROC-AUC: 0.7995</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="models_files/figure-html/cell-13-output-1.png" width="950" height="756" class="figure-img"></p>
+<p><img src="FullProjectReport_files/figure-html/cell-13-output-1.png" width="950" height="756" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="model-3-histogram-gradient-boosting" class="level2">
-<h2 class="anchored" data-anchor-id="model-3-histogram-gradient-boosting">Model 3: Histogram Gradient Boosting</h2>
-<div id="5cb9bc8e" class="cell" data-execution_count="13">
+<section id="model-3-histogram-gradient-boosting" class="level1">
+<h1>Model 3: Histogram Gradient Boosting</h1>
+<div id="d12f6b47" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- histogram gradient boosting classifier--</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>hgb<span class="op">=</span> HistGradientBoostingClassifier(max_iter<span class="op">=</span><span class="dv">100</span>, learning_rate<span class="op">=</span><span class="fl">0.07</span>, max_leaf_nodes<span class="op">=</span><span class="dv">40</span>, l2_regularization<span class="op">=</span><span class="fl">0.1</span>, random_state<span class="op">=</span><span class="dv">212</span>, class_weight<span class="op">=</span><span class="st">"balanced"</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#-- fitting--</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>hgb.fit(x_train, y_train)</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#-- predictions--</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>hgb_pred<span class="op">=</span> hgb.predict(x_test)</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>hgb_prob<span class="op">=</span> hgb.predict_proba(x_test)[:, <span class="dv">1</span>]</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>hgb<span class="op">=</span> HistGradientBoostingClassifier(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a> max_iter<span class="op">=</span><span class="dv">100</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a> learning_rate<span class="op">=</span><span class="fl">0.08</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a> max_leaf_nodes<span class="op">=</span><span class="dv">50</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  l2_regularization<span class="op">=</span><span class="fl">0.1</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  random_state<span class="op">=</span><span class="dv">212</span>,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  class_weight<span class="op">=</span><span class="st">"balanced"</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#-- evaluation--</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>hgb_auc<span class="op">=</span> roc_auc_score(y_test, hgb_prob)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#-- fitting--</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>hgb.fit(x_train, y_train)</span>
 <span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, hgb_pred))</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Hist Gradient Boosting ROC-AUC: </span><span class="sc">{</span>hgb_auc<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="co">#-- sample test data for hgb permutation importance--- a sample --</span></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>hgb_sample<span class="op">=</span> x_test.sample(n<span class="op">=</span><span class="dv">50000</span>, random_state<span class="op">=</span><span class="dv">212</span>)</span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>y_sample<span class="op">=</span> y_test.loc[hgb_sample.index]</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">#-- predictions--</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>hgb_pred<span class="op">=</span> hgb.predict(x_test)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>hgb_prob<span class="op">=</span> hgb.predict_proba(x_test)[:, <span class="dv">1</span>]</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="co">#-- evaluation--</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>hgb_auc<span class="op">=</span> roc_auc_score(y_test, hgb_prob)</span>
 <span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="co">#-- permutation importance for histogram gradient boosting--</span></span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>hgb_perm<span class="op">=</span> permutation_importance(hgb, hgb_sample, y_sample, scoring<span class="op">=</span><span class="st">"roc_auc"</span>, n_repeats<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">212</span>, n_jobs<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="co">#-- feature importance table--</span></span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>hgb_importance<span class="op">=</span> pd.DataFrame({</span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">"variable"</span>: hgb_sample.columns,</span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>  <span class="st">"importance"</span>: hgb_perm.importances_mean,</span>
-<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>  <span class="st">"importance_std"</span>: hgb_perm.importances_std</span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>}).sort_values(<span class="st">"importance"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>hgb_importance.head(<span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, hgb_pred))</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Hist Gradient Boosting ROC-AUC: </span><span class="sc">{</span>hgb_auc<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              precision    recall  f1-score   support
 
            0       0.99      0.70      0.82   3643508
-           1       0.07      0.76      0.13    104814
+           1       0.07      0.77      0.13    104814
 
     accuracy                           0.70   3748322
    macro avg       0.53      0.73      0.47   3748322
 weighted avg       0.96      0.70      0.80   3748322
 
-Hist Gradient Boosting ROC-AUC: 0.8039</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="13">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">variable</th>
-<th data-quarto-table-cell-role="th">importance</th>
-<th data-quarto-table-cell-role="th">importance_std</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">0</th>
-<td>credit_score</td>
-<td>0.117292</td>
-<td>0.001071</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">7</th>
-<td>num_borrowers</td>
-<td>0.020821</td>
-<td>0.000120</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">4</th>
-<td>ltv</td>
-<td>0.020700</td>
-<td>0.001443</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">2</th>
-<td>dti</td>
-<td>0.019740</td>
-<td>0.001552</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">5</th>
-<td>or_interest_rate</td>
-<td>0.014161</td>
-<td>0.000845</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">9</th>
-<td>first_payment_year</td>
-<td>0.010201</td>
-<td>0.001048</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">28</th>
-<td>state_def_rate</td>
-<td>0.006335</td>
-<td>0.000570</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">8</th>
-<td>prop_valuation</td>
-<td>0.004094</td>
-<td>0.000767</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">16</th>
-<td>loan_purpose_P</td>
-<td>0.003492</td>
-<td>0.000475</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">6</th>
-<td>or_loan_term</td>
-<td>0.002917</td>
-<td>0.000481</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">10</th>
-<td>first_payment_month</td>
-<td>0.001502</td>
-<td>0.000129</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">24</th>
-<td>channel_R</td>
-<td>0.000793</td>
-<td>0.000148</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">11</th>
-<td>maturity_year</td>
-<td>0.000502</td>
-<td>0.000074</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">20</th>
-<td>prop_type_SF</td>
-<td>0.000500</td>
-<td>0.000063</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">3</th>
-<td>upb</td>
-<td>0.000454</td>
-<td>0.000259</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">21</th>
-<td>occupancy_P</td>
-<td>0.000386</td>
-<td>0.000169</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">1</th>
-<td>mi_percent</td>
-<td>0.000347</td>
-<td>0.000115</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">15</th>
-<td>loan_purpose_N</td>
-<td>0.000258</td>
-<td>0.000215</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">12</th>
-<td>maturity_month</td>
-<td>0.000232</td>
-<td>0.000061</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">25</th>
-<td>num_units_2</td>
-<td>0.000108</td>
-<td>0.000052</td>
-</tr>
-</tbody>
-</table>
-
+Hist Gradient Boosting ROC-AUC: 0.8048</code></pre>
 </div>
 </div>
-</div>
-<div id="98c8833c" class="cell" data-execution_count="14">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- for separate results page --</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>std_table<span class="op">=</span> pd.DataFrame({</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"model"</span>: [<span class="st">"Logistic Regression"</span>, <span class="st">"Random Forest"</span>, <span class="st">"Hist Gradient Boosting"</span>],</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"roc_auc"</span>: [logistic_auc, forest_auc, hgb_auc],</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"accuracy"</span>: [</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    accuracy_score(y_test, logistic_pred),</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    accuracy_score(y_test, forest_pred),</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    accuracy_score(y_test, hgb_pred)],</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"precision"</span>: [</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    precision_score(y_test, logistic_pred, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    precision_score(y_test, forest_pred, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    precision_score(y_test, hgb_pred, zero_division<span class="op">=</span><span class="dv">0</span>)],</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"recall"</span>: [</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    recall_score(y_test, logistic_pred, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    recall_score(y_test, forest_pred, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    recall_score(y_test, hgb_pred, zero_division<span class="op">=</span><span class="dv">0</span>)],</span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"f1"</span>: [</span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    f1_score(y_test, logistic_pred, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    f1_score(y_test, forest_pred, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    f1_score(y_test, hgb_pred, zero_division<span class="op">=</span><span class="dv">0</span>)]}).sort_values(<span class="st">"roc_auc"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>os.makedirs(<span class="st">"results_outputs"</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>comparing_coefficients.to_csv(<span class="st">"results_outputs/comparing_coefficients.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>forest_importance.to_csv(<span class="st">"results_outputs/forest_importance.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>hgb_importance.to_csv(<span class="st">"results_outputs/hgb_importance.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>std_table.to_csv(<span class="st">"results_outputs/std_table.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, hgb_pred))</span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Hist Gradient Boosting ROC-AUC: </span><span class="sc">{</span>hgb_auc<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>              precision    recall  f1-score   support
-
-           0       0.99      0.70      0.82   3643508
-           1       0.07      0.76      0.13    104814
-
-    accuracy                           0.70   3748322
-   macro avg       0.53      0.73      0.47   3748322
-weighted avg       0.96      0.70      0.80   3748322
-
-Hist Gradient Boosting ROC-AUC: 0.8039</code></pre>
-</div>
-</div>
-</section>
 <section id="partial-dependence-plot" class="level2">
 <h2 class="anchored" data-anchor-id="partial-dependence-plot">Partial Dependence Plot</h2>
-<div id="97bbaa54" class="cell" data-execution_count="15">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a> <span class="co">#--PDP--</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">7</span>))</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>PartialDependenceDisplay.from_estimator(hgb, x_test, features<span class="op">=</span>[ <span class="st">"credit_score"</span>, <span class="st">"dti"</span>, <span class="st">"ltv"</span>, <span class="st">"or_interest_rate"</span>, <span class="st">"state_def_rate"</span>], kind<span class="op">=</span><span class="st">"average"</span>, grid_resolution<span class="op">=</span><span class="dv">50</span>, ax<span class="op">=</span>ax)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="st">"PDP of Main Variables on Predicted Delinquency Risk"</span>, y<span class="op">=</span><span class="fl">1.05</span>,fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="1efe99c5" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#--PDP--</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">7</span>))</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>PartialDependenceDisplay.from_estimator(hgb, x_test, features<span class="op">=</span>[ <span class="st">"credit_score"</span>, <span class="st">"dti"</span>, <span class="st">"ltv"</span>, <span class="st">"or_interest_rate"</span>, <span class="st">"state_def_rate"</span>], kind<span class="op">=</span><span class="st">"average"</span>, grid_resolution<span class="op">=</span><span class="dv">50</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="st">"PDP of Main Variables on Predicted Delinquency Risk"</span>, y<span class="op">=</span><span class="fl">1.05</span>,fontsize<span class="op">=</span><span class="dv">14</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="models_files/figure-html/cell-16-output-1.png" width="1045" height="708" class="figure-img"></p>
+<p><img src="FullProjectReport_files/figure-html/cell-15-output-1.png" width="1045" height="708" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>The partial dependence plots help interepret the HGB model which doesn’t outpur coefficients like our other two. The plots show delinquency risk</p>
 </section>
 <section id="model-comparison" class="level2">
 <h2 class="anchored" data-anchor-id="model-comparison">Model Comparison</h2>
-<div id="6f76ca96" class="cell" data-execution_count="16">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>model_compare<span class="op">=</span> pd.DataFrame({</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"model"</span>: [<span class="st">"Logistic Regression"</span>, <span class="st">"Random Forest"</span>, <span class="st">"Hist Gradient Boosting"</span>],</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"roc_auc"</span>: [logistic_auc, forest_auc, hgb_auc]</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>}).sort_values(<span class="st">"roc_auc"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>model_compare</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div id="3a9f1c8c" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>model_compare<span class="op">=</span> pd.DataFrame({</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"model"</span>: [<span class="st">"Logistic Regression"</span>, <span class="st">"Random Forest"</span>, <span class="st">"Hist Gradient Boosting"</span>],</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"roc_auc"</span>: [logistic_auc, forest_auc, hgb_auc]</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>}).sort_values(<span class="st">"roc_auc"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>model_compare</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
 <div>
 
 
@@ -1066,7 +923,7 @@ Hist Gradient Boosting ROC-AUC: 0.8039</code></pre>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
 <td>Hist Gradient Boosting</td>
-<td>0.803878</td>
+<td>0.804834</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
@@ -1087,36 +944,36 @@ Hist Gradient Boosting ROC-AUC: 0.8039</code></pre>
 </section>
 <section id="roc-curve-comparison" class="level2">
 <h2 class="anchored" data-anchor-id="roc-curve-comparison">ROC Curve Comparison</h2>
-<div id="8d23cab0" class="cell" data-execution_count="17">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>model_probs<span class="op">=</span> {</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Logistic Regression"</span>: logistic_prob,</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Random Forest"</span>: forest_prob,</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Hist Gradient Boosting"</span>: hgb_prob</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>model_aucs<span class="op">=</span> {</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Logistic Regression"</span>: logistic_auc,</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Random Forest"</span>: forest_auc,</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Hist Gradient Boosting"</span>: hgb_auc</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>fig, ax<span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> model_name, model_prob <span class="kw">in</span> model_probs.items():</span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>  fpr, tpr, thresholds<span class="op">=</span> roc_curve(y_test, model_prob)</span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>  ax.plot(fpr, tpr, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>model_name<span class="sc">}</span><span class="ss"> (AUC= </span><span class="sc">{</span>model_aucs[model_name]<span class="sc">:.4f}</span><span class="ss">)"</span>)</span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="st">"Random Classifier"</span>)</span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"ROC Curve Comparison"</span>)</span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"False Positive Rate"</span>)</span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"True Positive Rate"</span>)</span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">"lower right"</span>)</span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="35ff584f" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>model_probs<span class="op">=</span> {</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Logistic Regression"</span>: logistic_prob,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Random Forest"</span>: forest_prob,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Hist Gradient Boosting"</span>: hgb_prob</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>model_aucs<span class="op">=</span> {</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Logistic Regression"</span>: logistic_auc,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Random Forest"</span>: forest_auc,</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Hist Gradient Boosting"</span>: hgb_auc</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>fig, ax<span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> model_name, model_prob <span class="kw">in</span> model_probs.items():</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  fpr, tpr, thresholds<span class="op">=</span> roc_curve(y_test, model_prob)</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>  ax.plot(fpr, tpr, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>model_name<span class="sc">}</span><span class="ss"> (AUC= </span><span class="sc">{</span>model_aucs[model_name]<span class="sc">:.4f}</span><span class="ss">)"</span>)</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="st">"Random Classifier"</span>)</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"ROC Curve Comparison"</span>)</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"False Positive Rate"</span>)</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"True Positive Rate"</span>)</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">"lower right"</span>)</span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="models_files/figure-html/cell-18-output-1.png" width="757" height="564" class="figure-img"></p>
+<p><img src="FullProjectReport_files/figure-html/cell-17-output-1.png" width="757" height="564" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1125,23 +982,23 @@ Hist Gradient Boosting ROC-AUC: 0.8039</code></pre>
 </section>
 <section id="threshold-based-evaluation" class="level2">
 <h2 class="anchored" data-anchor-id="threshold-based-evaluation">Threshold-Based Evaluation</h2>
-<p>For a risk-advisory application, the default classification threshold of <code>0.50</code> may not be ideal. A lower threshold can increase recall for risky loans, but it may also increase false positives.</p>
-<div id="7f7f2514" class="cell" data-execution_count="18">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>threshold_results<span class="op">=</span> []</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> threshold <span class="kw">in</span> [<span class="fl">0.05</span>, <span class="fl">0.10</span>, <span class="fl">0.20</span>, <span class="fl">0.30</span>, <span class="fl">0.50</span>]:</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  preds<span class="op">=</span> (hgb_prob <span class="op">&gt;=</span> threshold).astype(<span class="bu">int</span>)</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  threshold_results.append({</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"threshold"</span>: threshold,</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"precision"</span>: precision_score(y_test, preds, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"recall"</span>: recall_score(y_test, preds, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"f1"</span>: f1_score(y_test, preds, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"accuracy"</span>: accuracy_score(y_test, preds)</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>threshold_results<span class="op">=</span> pd.DataFrame(threshold_results)</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>threshold_results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<p>For the app, the default classification threshold of <code>0.50</code> may not be the best choice. A lower threshold can increase recall for risky loans, but it may also increase false positives.</p>
+<div id="6e66e75b" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>threshold_results<span class="op">=</span> []</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> threshold <span class="kw">in</span> [<span class="fl">0.05</span>, <span class="fl">0.10</span>, <span class="fl">0.20</span>, <span class="fl">0.30</span>, <span class="fl">0.50</span>]:</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  preds<span class="op">=</span> (hgb_prob <span class="op">&gt;=</span> threshold).astype(<span class="bu">int</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  threshold_results.append({</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"threshold"</span>: threshold,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"precision"</span>: precision_score(y_test, preds, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"recall"</span>: recall_score(y_test, preds, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"f1"</span>: f1_score(y_test, preds, zero_division<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"accuracy"</span>: accuracy_score(y_test, preds)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>threshold_results<span class="op">=</span> pd.DataFrame(threshold_results)</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>threshold_results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
 <div>
 
 
@@ -1160,42 +1017,42 @@ Hist Gradient Boosting ROC-AUC: 0.8039</code></pre>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">0</th>
 <td>0.05</td>
-<td>0.028678</td>
-<td>0.999265</td>
-<td>0.055756</td>
-<td>0.053571</td>
+<td>0.028959</td>
+<td>0.998865</td>
+<td>0.056285</td>
+<td>0.063376</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">1</th>
 <td>0.10</td>
-<td>0.032173</td>
-<td>0.991471</td>
-<td>0.062324</td>
-<td>0.165760</td>
+<td>0.032502</td>
+<td>0.990889</td>
+<td>0.062940</td>
+<td>0.174960</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">2</th>
 <td>0.20</td>
-<td>0.039964</td>
-<td>0.959233</td>
-<td>0.076731</td>
-<td>0.354503</td>
+<td>0.040201</td>
+<td>0.958670</td>
+<td>0.077166</td>
+<td>0.358825</td>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th">3</th>
 <td>0.30</td>
-<td>0.047910</td>
-<td>0.911682</td>
-<td>0.091036</td>
-<td>0.490914</td>
+<td>0.048228</td>
+<td>0.911052</td>
+<td>0.091607</td>
+<td>0.494758</td>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">4</th>
 <td>0.50</td>
-<td>0.068105</td>
-<td>0.764888</td>
-<td>0.125074</td>
-<td>0.700764</td>
+<td>0.068390</td>
+<td>0.765632</td>
+<td>0.125564</td>
+<td>0.701807</td>
 </tr>
 </tbody>
 </table>
@@ -1203,90 +1060,90 @@ Hist Gradient Boosting ROC-AUC: 0.8039</code></pre>
 </div>
 </div>
 </div>
-<div id="81b5efea" class="cell" data-execution_count="19">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>threshold<span class="op">=</span> <span class="fl">0.10</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>hgb_pred_threshold<span class="op">=</span> (hgb_prob <span class="op">&gt;=</span> threshold).astype(<span class="bu">int</span>)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>cm<span class="op">=</span> confusion_matrix(y_test, hgb_pred_threshold)</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Threshold:"</span>, threshold)</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Confusion matrix:</span><span class="ch">\n</span><span class="st">"</span>, cm)</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Accuracy: </span><span class="sc">{</span>accuracy_score(y_test, hgb_pred_threshold)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Precision: </span><span class="sc">{</span>precision_score(y_test, hgb_pred_threshold, zero_division<span class="op">=</span><span class="dv">0</span>)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Recall:  </span><span class="sc">{</span>recall_score(y_test, hgb_pred_threshold, zero_division<span class="op">=</span><span class="dv">0</span>)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"F1-score: </span><span class="sc">{</span>f1_score(y_test, hgb_pred_threshold, zero_division<span class="op">=</span><span class="dv">0</span>)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="63b1da0a" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>threshold<span class="op">=</span> <span class="fl">0.10</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>hgb_pred_threshold<span class="op">=</span> (hgb_prob <span class="op">&gt;=</span> threshold).astype(<span class="bu">int</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>cm<span class="op">=</span> confusion_matrix(y_test, hgb_pred_threshold)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Threshold:"</span>, threshold)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Confusion matrix:</span><span class="ch">\n</span><span class="st">"</span>, cm)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Accuracy: </span><span class="sc">{</span>accuracy_score(y_test, hgb_pred_threshold)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Precision: </span><span class="sc">{</span>precision_score(y_test, hgb_pred_threshold, zero_division<span class="op">=</span><span class="dv">0</span>)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Recall:  </span><span class="sc">{</span>recall_score(y_test, hgb_pred_threshold, zero_division<span class="op">=</span><span class="dv">0</span>)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"F1-score: </span><span class="sc">{</span>f1_score(y_test, hgb_pred_threshold, zero_division<span class="op">=</span><span class="dv">0</span>)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Threshold: 0.1
 
 Confusion matrix:
- [[ 517401 3126107]
- [    894  103920]]
-Accuracy: 0.166
-Precision: 0.032
+ [[ 551947 3091561]
+ [    955  103859]]
+Accuracy: 0.175
+Precision: 0.033
 Recall:  0.991
-F1-score: 0.062</code></pre>
+F1-score: 0.063</code></pre>
 </div>
 </div>
 </section>
 <section id="risk-tier-function" class="level2">
 <h2 class="anchored" data-anchor-id="risk-tier-function">Risk Tier Function</h2>
-<p>For the prototype app, the predicted probability is converted into a simple risk label. These thresholds are prototype rules and should be refined later using calibration, business context, and user-centered design.</p>
-<div id="bc1d346f" class="cell" data-execution_count="20">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> assign_risk_tier(probability):</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> probability <span class="op">&lt;</span> <span class="fl">0.05</span>:</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Low"</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">elif</span> probability <span class="op">&lt;</span> <span class="fl">0.10</span>:</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Moderate"</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"High"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The predicted probability is converted into a simple risk label for the app.</p>
+<div id="48f8e0e0" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> assign_risk_tier(probability):</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> probability <span class="op">&lt;</span> <span class="fl">0.05</span>:</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Low"</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">elif</span> probability <span class="op">&lt;</span> <span class="fl">0.10</span>:</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Moderate"</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"High"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="demo-borrower-profiles" class="level2">
 <h2 class="anchored" data-anchor-id="demo-borrower-profiles">Demo Borrower Profiles</h2>
-<p>The demo profiles are built from a typical borrower row using median feature values from the training set. Then selected values such as credit score, DTI, LTV, loan amount, and interest rate are changed to create lower-risk, moderate-risk, and higher-risk examples.</p>
-<div id="e2c9171f" class="cell" data-execution_count="21">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>demo_base<span class="op">=</span> x_train.median(numeric_only<span class="op">=</span><span class="va">True</span>).to_dict()</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>low_risk<span class="op">=</span> demo_base.copy()</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>low_risk.update({</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"credit_score"</span>: <span class="dv">780</span>,</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dti"</span>: <span class="dv">28</span>,</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ltv"</span>: <span class="dv">70</span>,</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"upb"</span>: <span class="dv">250000</span>,</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"or_interest_rate"</span>: <span class="fl">3.2</span></span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>moderate_risk<span class="op">=</span> demo_base.copy()</span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>moderate_risk.update({</span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"credit_score"</span>: <span class="dv">700</span>,</span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dti"</span>: <span class="dv">38</span>,</span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ltv"</span>: <span class="dv">82</span>,</span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"upb"</span>: <span class="dv">360000</span>,</span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"or_interest_rate"</span>: <span class="fl">4.0</span></span>
-<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>high_risk<span class="op">=</span> demo_base.copy()</span>
-<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>high_risk.update({</span>
-<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">"credit_score"</span>: <span class="dv">620</span>,</span>
-<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dti"</span>: <span class="dv">50</span>,</span>
-<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ltv"</span>: <span class="dv">95</span>,</span>
-<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">"upb"</span>: <span class="dv">500000</span>,</span>
-<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>  <span class="st">"or_interest_rate"</span>: <span class="fl">5.5</span></span>
-<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>demo_profiles<span class="op">=</span> pd.DataFrame([low_risk, moderate_risk, high_risk])</span>
-<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>demo_profiles<span class="op">=</span> demo_profiles[x_train.columns]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The demo profiles are built from a typical borrower row using median feature values from the training set. Then selected values such as credit score, debt-to-income, loan-to-value, loan amount, and interest rate are changed to create lower-risk, moderate-risk, and higher-risk examples.</p>
+<div id="cc824f85" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>demo_base<span class="op">=</span> x_train.median(numeric_only<span class="op">=</span><span class="va">True</span>).to_dict()</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>low_risk<span class="op">=</span> demo_base.copy()</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>low_risk.update({</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"credit_score"</span>: <span class="dv">780</span>,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dti"</span>: <span class="dv">28</span>,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ltv"</span>: <span class="dv">70</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"upb"</span>: <span class="dv">250000</span>,</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"or_interest_rate"</span>: <span class="fl">3.2</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>moderate_risk<span class="op">=</span> demo_base.copy()</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>moderate_risk.update({</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"credit_score"</span>: <span class="dv">700</span>,</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dti"</span>: <span class="dv">38</span>,</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ltv"</span>: <span class="dv">82</span>,</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"upb"</span>: <span class="dv">360000</span>,</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"or_interest_rate"</span>: <span class="fl">4.0</span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>high_risk<span class="op">=</span> demo_base.copy()</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>high_risk.update({</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">"credit_score"</span>: <span class="dv">620</span>,</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dti"</span>: <span class="dv">50</span>,</span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ltv"</span>: <span class="dv">95</span>,</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">"upb"</span>: <span class="dv">500000</span>,</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>  <span class="st">"or_interest_rate"</span>: <span class="fl">5.5</span></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>demo_profiles<span class="op">=</span> pd.DataFrame([low_risk, moderate_risk, high_risk])</span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>demo_profiles<span class="op">=</span> demo_profiles[x_train.columns]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="52590c4d" class="cell" data-execution_count="22">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>final_model<span class="op">=</span> hgb</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>demo_profiles[<span class="st">"predicted_probability"</span>]<span class="op">=</span> final_model.predict_proba(demo_profiles[x_train.columns])[:, <span class="dv">1</span>]</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>demo_profiles[<span class="st">"risk_tier"</span>]<span class="op">=</span> demo_profiles[<span class="st">"predicted_probability"</span>].<span class="bu">apply</span>(assign_risk_tier)</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>demo_display<span class="op">=</span> demo_profiles[[<span class="st">"credit_score"</span>, <span class="st">"ltv"</span>, <span class="st">"dti"</span>, <span class="st">"or_interest_rate"</span>, <span class="st">"predicted_probability"</span>, <span class="st">"risk_tier"</span>]].copy()</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>demo_display[<span class="st">"predicted_probability"</span>]<span class="op">=</span> demo_display[<span class="st">"predicted_probability"</span>].<span class="bu">round</span>(<span class="dv">3</span>)</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>demo_display</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="22">
+<div id="75bc7cbd" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>final_model<span class="op">=</span> hgb</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>demo_profiles[<span class="st">"predicted_probability"</span>]<span class="op">=</span> final_model.predict_proba(demo_profiles[x_train.columns])[:, <span class="dv">1</span>]</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>demo_profiles[<span class="st">"risk_tier"</span>]<span class="op">=</span> demo_profiles[<span class="st">"predicted_probability"</span>].<span class="bu">apply</span>(assign_risk_tier)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>demo_display<span class="op">=</span> demo_profiles[[<span class="st">"credit_score"</span>, <span class="st">"ltv"</span>, <span class="st">"dti"</span>, <span class="st">"or_interest_rate"</span>, <span class="st">"predicted_probability"</span>, <span class="st">"risk_tier"</span>]].copy()</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>demo_display[<span class="st">"predicted_probability"</span>]<span class="op">=</span> demo_display[<span class="st">"predicted_probability"</span>].<span class="bu">round</span>(<span class="dv">3</span>)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>demo_display</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
 <div>
 
 
@@ -1309,7 +1166,7 @@ F1-score: 0.062</code></pre>
 <td>70</td>
 <td>28</td>
 <td>3.2</td>
-<td>0.248</td>
+<td>0.258</td>
 <td>High</td>
 </tr>
 <tr class="even">
@@ -1318,7 +1175,7 @@ F1-score: 0.062</code></pre>
 <td>82</td>
 <td>38</td>
 <td>4.0</td>
-<td>0.743</td>
+<td>0.760</td>
 <td>High</td>
 </tr>
 <tr class="odd">
@@ -1327,7 +1184,7 @@ F1-score: 0.062</code></pre>
 <td>95</td>
 <td>50</td>
 <td>5.5</td>
-<td>0.876</td>
+<td>0.873</td>
 <td>High</td>
 </tr>
 </tbody>
@@ -1336,21 +1193,22 @@ F1-score: 0.062</code></pre>
 </div>
 </div>
 </div>
-<p>These examples show how the model could support the future Home Loan Advisor app by translating model probabilities into a simplified risk label.</p>
+<p>These examples show how the model could support the future HomeLoanAdvisor app in translating model probabilities into a consumer friendly risk label, easy for a consumer to understand.</p>
 </section>
 <section id="final-model-choice" class="level2">
 <h2 class="anchored" data-anchor-id="final-model-choice">Final Model Choice</h2>
-<p>Our final model should be selected using a combination of predictive performance and practical use. Histogram Gradient Boosting may provide stronger predictive performance, while Logistic Regression is easier to interpret. Because this project is intended to support a consumer-facing advisory tool, model outputs should be communicated carefully and should not imply certainty. A reasonable final approach is to use the best-performing model for probability estimation while keeping Logistic Regression as the interpretable baseline for explaining which loan characteristics are associated with higher or lower delinquency risk.</p>
+<p>The final models are comparable and used for their strengths. Histogram Gradient Boosting may provide great predictive performance, while Logistic Regression is easier to interpret. Because this project is intended to support a consumer-facing advisory tool, model outputs should be communicated carefully probably with disclaimers. A reasonable final approach is to use the best-performing model for probability estimation while keeping Logistic Regression as the interpretable baseline for explaining which loan characteristics are associated with higher or lower delinquency risk.</p>
 </section>
 <section id="limitations" class="level2">
 <h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
-<p>The dataset is based on Freddie Mac historical mortgage data and may not represent all loan types or borrower populations. The target variable identifies whether a loan ever became 90+ days past due during the observed performance period, but future delinquency risk may shift under different economic conditions. The risk tiers are prototype thresholds and have not been optimized for a real business or consumer decision. The model should be interpreted as an educational risk signal rather than financial advice or a lending decision tool.</p>
+<p>The dataset is based on Freddie Mac historical mortgage data and may not represent all loan types or borrower populations. The data includes years effected by a global pandemic; COVID19. The target variable identifies whether a loan ever became 90+ days past due during the observed performance period, but future delinquency risk may shift further under other different economic conditions. The models should be interpreted as “educational” risk signal rather than financial advice or a lending decision tool.</p>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>Our project demonstrates that Freddie Mac origination and performance data can be transformed into a model-ready dataset for predicting serious mortgage delinquency. The custom pipeline creates a larger and more defensible dataset than the initial MVP sample, while the modeling workflow shows how predicted probabilities can be turned into consumer-friendly risk tiers. The final Home Loan Advisor workflow combines data engineering, classification modeling, evaluation, and app-ready risk interpretation.</p>
+<p>This project demonstrates that Freddie Mac origination and performance data can be transformed into a model-ready dataset for predicting mortgage delinquency. Our custom pipeline creates a larger and more defensible dataset than the initial MVP sample. The modeling workflow shows how predicted probabilities can be turned into consumer-friendly risk tiers.The final Home Loan Advisor workflow combines data engineering, classification modeling, evaluation, and app-ready risk interpretation.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

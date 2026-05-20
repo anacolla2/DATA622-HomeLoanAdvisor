@@ -11,3 +11,9 @@ Encoding: UTF-8
 
 RnwWeave: knitr
 LaTeX: XeLaTeX
+
+PythonType: conda
+PythonVersion: 3.11.15
+PythonPath: ~/conda-envs/rstudiopy/bin/python3.11
+
+SpellingDictionary: en_US

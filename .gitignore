@@ -6,3 +6,6 @@ data/
 
 /.quarto/
 *.quarto_ipynb
+.positai
+
+**/*.quarto_ipynb

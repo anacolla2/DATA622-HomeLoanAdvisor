@@ -1,16 +1,166 @@
 ---
 title: ""
 format: html
+toc: true
+toc-depth: 6
 editor: visual
 jupyter: python3
 ---
 
 ## ![](images/TheResults-banner.png)
 
---------------------------------------------------------------------------------
+```{python}
+#| echo: false
+#| eval: true
 
-. . . blank
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+#-- load saved model results --
+comparing_coefficients= pd.read_csv("results_outputs/comparing_coefficients.csv")
+forest_importance= pd.read_csv("results_outputs/forest_importance.csv")
+hgb_importance= pd.read_csv("results_outputs/hgb_importance.csv")
+model_summary= pd.read_csv("results_outputs/std_table.csv")
+```
+
+# Model Performance Summary
 
 ```{python}
-#code
+model_summary
+```
+
+The model comparison table summarizes each classifier using ROC-AUC, accuracy, precision, recall, and F1-score. Since serious delinquency is an imbalanced outcome, accuracy alone is not enough to evaluate model performance. Recall, precision, F1-score, and ROC-AUC provide a more useful picture of how well the models identify loans that become 90 or more days past due.
+
+# Logistic Regression Results Summary
+
+```{python}
+#-- readable coefficient interpretation --
+logistic_top= comparing_coefficients.head(15).copy()
+
+logistic_top["direction"]= np.where(
+  logistic_top["percent_change_odds"] > 0,
+  "raises",
+  "decreases"
+)
+
+logistic_top["abs_percent_change"]= logistic_top["percent_change_odds"].abs()
+
+logistic_top["interpretation"]= (
+  logistic_top["variable"] + " " +
+  logistic_top["direction"] +
+  " delinquency odds by " +
+  logistic_top["abs_percent_change"].round(1).astype(str) +
+  "%."
+)
+
+for sentence in logistic_top["interpretation"]:
+  print(sentence)
+```
+
+```{python}
+#-- coefficient display table --
+logistic_display= logistic_top[
+  ["variable", "coefficient", "odds_ratio", "percent_change_odds"]
+].copy()
+
+logistic_display
+```
+
+```{python}
+#-- logistic coefficient plot --
+coef_viz= comparing_coefficients.head(15).sort_values("percent_change_odds", ascending=True)
+
+plt.figure(figsize=(10, 7))
+plt.barh(coef_viz["variable"], coef_viz["percent_change_odds"])
+plt.title("Top Logistic Regression Coefficients")
+plt.xlabel("Percent Change in Odds")
+plt.ylabel("")
+plt.tight_layout()
+plt.show()
+```
+
+Logistic regression was used as the interpretable baseline model. The coefficients show the direction and strength of association between each feature and the odds of serious delinquency. Positive values increase the predicted odds of 90+ day delinquency, while negative values decrease the predicted odds.
+
+Because the logistic regression model used standardized numeric variables, the coefficient interpretations are based on changes in the standardized feature scale. This makes the coefficients useful for comparing relative influence across variables, but they should not be read as raw one-unit changes in the original data.
+
+# Random Forest Results Summary
+
+```{python}
+#-- top random forest features --
+top_forest_importance= forest_importance.head(10).copy()
+
+top_forest_importance["interpretation"]= top_forest_importance.apply(
+  lambda row: (
+    f"{row['variable']} was one of the most important variables in the random forest model, "
+    f"with an importance score of {row['importance']:.4f}."
+  ),
+  axis=1
+)
+
+for sentence in top_forest_importance["interpretation"].head(5):
+  print(sentence)
+```
+
+```{python}
+top_forest_importance
+```
+
+```{python}
+#-- random forest importance plot --
+forest_viz= forest_importance.head(15).sort_values("importance", ascending=True)
+
+plt.figure(figsize=(10, 7))
+plt.barh(forest_viz["variable"], forest_viz["importance"])
+plt.title("Random Forest Feature Importance")
+plt.xlabel("Importance")
+plt.ylabel("")
+plt.tight_layout()
+plt.show()
+```
+
+The random forest model ranks variables by how much they contribute to splitting and prediction across the trees. Unlike logistic regression, these values do not show whether a variable raises or lowers delinquency risk. They only show which variables were most useful to the model.
+
+# Histogram Gradient Boosting Results Summary
+
+```{python}
+#-- top histogram gradient boosting features --
+top_hgb_importance= hgb_importance.head(10).copy()
+
+top_hgb_importance["interpretation"]= top_hgb_importance.apply(
+  lambda row: (
+    f"{row['variable']} was one of the most important variables in the histogram gradient boosting model, "
+    f"with a permutation importance score of {row['importance']:.4f}."
+  ),
+  axis=1
+)
+
+for sentence in top_hgb_importance["interpretation"].head(5):
+  print(sentence)
+```
+
+```{python}
+top_hgb_importance
+```
+
+```{python}
+#-- hgb permutation importance plot --
+hgb_viz= hgb_importance.head(15).sort_values("importance", ascending=True)
+
+plt.figure(figsize=(10, 7))
+plt.barh(hgb_viz["variable"], hgb_viz["importance"])
+plt.title("Histogram Gradient Boosting Permutation Importance")
+plt.xlabel("Permutation Importance")
+plt.ylabel("")
+plt.tight_layout()
+plt.show()
+```
+
+Histogram Gradient Boosting was included because it can capture nonlinear patterns and interactions between borrower, loan, and property characteristics. Its importance values come from permutation importance, which measures how much model performance drops when a variable is shuffled. A larger drop means the model relied more heavily on that variable.
+
+# Model Comparison Interpretation
+
+```{python}
+#-- sorted model comparison --
+model_summary.sort_values("roc_auc", ascending=False)
 ```

@@ -7,32 +7,73 @@ editor: visual
 jupyter: python3
 ---
 
-## ![](images/TheModels-banner.png)
+## ![](fullprojectreport%20header.png){width="940"}
 
 ------------------------------------------------------------------------
 
 ### Package Load
 
 ```{python}
-
 #--package load--
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import os
 
 from sklearn import pipeline
+from sklearn.inspection import PartialDependenceDisplay
 from sklearn.preprocessing import StandardScaler
-from sklearn.inspection import PartialDependenceDisplay, permutation_importance
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier, HistGradientBoostingClassifier
 from sklearn.metrics import classification_report, roc_auc_score, roc_curve, confusion_matrix, precision_score, recall_score, f1_score, accuracy_score
 ```
 
+## Introduction
+
+Buying a home is one of the largest financial decisions most people make, yet most borrowers do not have access to the same analytical tools that lenders use to assess repayment risk. This project explores whether historical mortgage performance data can be used to build a consumer-oriented risk assessment tool. For the MVP, the goal is not to deliver the full final application, but to demonstrate that the core workflow is feasible: prepare the loan-level data, engineer a binary delinquency target, train a baseline model, evaluate its predictive performance, and generate app-ready risk outputs.
+
+This MVP focuses on the modeling backbone of the project: data preparation, target engineering, baseline prediction, and evaluation. This project expands the original MVP idea by moving beyond a small cleaned sample and building a larger custom dataset from Freddie Mac Origination and Performance files from 2018 through 2022.
+
+## Objective
+
+> Can we use historical mortgage data to estimate the probability that a loan will ever become seriously delinquent, and then turn that result into a consumer-friendly risk signal?
+
+For this version of the project, we use:
+
+- Freddie Mac Origination and Performance data from 2018 through 2022
+- a binary target called `any_90_dpd`
+- an automated quarterly data-processing pipeline using a python script
+- a stratified train/test split by annual quarter and delinquency status to handle imbalances
+- Logistic Regression, Random Forest, and Histogram Gradient Boosting models
+- ROC-AUC, classification reports, and threshold-based evaluation
+- Low/Moderate/ High risk tiers for app demonstration
+
+## Data Source and Processing Summary
+
+The dataset used for the models was created from Freddie Mac Origination and Performance data covering 2018 through 2022. The 2018 Q1 file was first cleaned manually to define the necessary steps to standardize the cleaning. This process was then wirtted into a Python script that cleaned each quarter separately.
+
+The origination files contain borrower, loan, and property characteristics at the time of loan origination. The performance files contain monthly loan performance records, including delinquency behavior over time. Each quarter was processed separately and then merged by `loan_id` (which was dropped)
+
+The pipeline performed the following major steps:
+
+- read raw quarterly origination and performance files
+- treated Freddie Mac placeholder values such as `9999`, `999`, `9`, blanks, spaces, and `X` as missing values
+- engineered date features from first payment date and maturity date
+- removed HARP loans
+- converted MSA into a binary `metro_area` feature
+- one-hot encoded selected categorical variables
+- imputed selected numeric fields using median values
+- created the binary target variable `any_90_dpd`
+- merged origination and performance records by loan ID
+- saved each cleaned quarter as an intermediate file
+- merged the processed quarters into final train and test files
+
+The final train/test split was stratified by both quarter and delinquency status. Stratifying by quarter helps address class imbalances through economic periods, while stratifying by the 90+ days past due flag helps address the class imbalance of the target variable.
+
+The state "default rate" feature, `state_def_rate`, was calculated from the training set only and then this was mapped onto both train and test records. This prevents the model from using test-period outcome information when constructing the feature.
+
 ## Load Final Modeling Data
 
 ```{python}
-#--loading final data sets--
 train_final= pd.read_csv("~/projects/data/homeloanadvisor/final_model_data/train_final.csv")
 test_final= pd.read_csv("~/projects/data/homeloanadvisor/final_model_data/test_final.csv")
 
@@ -71,7 +112,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-Our target is very imbalanced because few loans become 90 or more days past due. Because of this imbalance, accuracy alone is not a useful evaluation metric. ROC-AUC, precision, recall, F1-score, and threshold behavior might prove more informative about model performance.
+The target is heavily imbalanced because few loans become 90 or more days past due. Because of this imbalance, accuracy alone is not a useful evaluation metric. ROC-AUC, precision, recall, F1-score, and threshold behavior might prove more informative about model performance.
 
 ## Train/Test Feature Setup
 
@@ -94,7 +135,7 @@ The final modeling data is numeric and model-ready. Categorical variables were o
 
 ## Modeling Strategy
 
-This is a binary classification problem. The modeling strategy compares an interpretable baseline model (logistic regression) with more flexible classifier models.
+This is a binary classification problem. The modeling strategy compares an interpretable baseline model with more flexible machine learning models.
 
 The models used are:
 
@@ -109,7 +150,7 @@ x_train= x_train.drop(columns=["mi_cancel"])
 x_test= x_test.drop(columns=["mi_cancel"])
 ```
 
-## Model 1: Logistic Regression
+# Model 1: Logistic Regression
 
 ```{python}
 #-- logistic regression pipeline--
@@ -148,6 +189,8 @@ comparing_coefficients["percent_change_odds"]= (comparing_coefficients["odds_rat
 comparing_coefficients.head(20)
 ```
 
+\[write interpretation (one SD fpr each predictor)\]
+
 ```{python}
 coef_viz= comparing_coefficients.head(20).sort_values("percent_change_odds", ascending=True)
 
@@ -160,7 +203,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-## Model 2: Random Forest Classifier
+# Model 2: Random Forest Classifier
 
 ```{python}
 #-- random forest classifier--
@@ -209,11 +252,18 @@ plt.tight_layout()
 plt.show()
 ```
 
-## Model 3: Histogram Gradient Boosting
+# Model 3: Histogram Gradient Boosting
 
 ```{python}
 #-- histogram gradient boosting classifier--
-hgb= HistGradientBoostingClassifier(max_iter=100, learning_rate=0.07, max_leaf_nodes=40, l2_regularization=0.1, random_state=212, class_weight="balanced")
+hgb= HistGradientBoostingClassifier(
+ max_iter=100,
+ learning_rate=0.08,
+ max_leaf_nodes=50,
+  l2_regularization=0.1,
+  random_state=212,
+  class_weight="balanced"
+)
 
 #-- fitting--
 hgb.fit(x_train, y_train)
@@ -227,70 +277,20 @@ hgb_auc= roc_auc_score(y_test, hgb_prob)
 
 print(classification_report(y_test, hgb_pred))
 print(f"Hist Gradient Boosting ROC-AUC: {hgb_auc:.4f}")
-
-#-- sample test data for hgb permutation importance--- a sample --
-hgb_sample= x_test.sample(n=50000, random_state=212)
-y_sample= y_test.loc[hgb_sample.index]
-
-#-- permutation importance for histogram gradient boosting--
-hgb_perm= permutation_importance(hgb, hgb_sample, y_sample, scoring="roc_auc", n_repeats=3, random_state=212, n_jobs=1)
-
-#-- feature importance table--
-hgb_importance= pd.DataFrame({
-  "variable": hgb_sample.columns,
-  "importance": hgb_perm.importances_mean,
-  "importance_std": hgb_perm.importances_std
-}).sort_values("importance", ascending=False)
-
-hgb_importance.head(20)
-```
-
-```{python}
-#-- for separate results page --
-
-std_table= pd.DataFrame({
-  "model": ["Logistic Regression", "Random Forest", "Hist Gradient Boosting"],
-  "roc_auc": [logistic_auc, forest_auc, hgb_auc],
-  "accuracy": [
-    accuracy_score(y_test, logistic_pred),
-    accuracy_score(y_test, forest_pred),
-    accuracy_score(y_test, hgb_pred)],
-  "precision": [
-    precision_score(y_test, logistic_pred, zero_division=0),
-    precision_score(y_test, forest_pred, zero_division=0),
-    precision_score(y_test, hgb_pred, zero_division=0)],
-  "recall": [
-    recall_score(y_test, logistic_pred, zero_division=0),
-    recall_score(y_test, forest_pred, zero_division=0),
-    recall_score(y_test, hgb_pred, zero_division=0)],
-  "f1": [
-    f1_score(y_test, logistic_pred, zero_division=0),
-    f1_score(y_test, forest_pred, zero_division=0),
-    f1_score(y_test, hgb_pred, zero_division=0)]}).sort_values("roc_auc", ascending=False)
-
-os.makedirs("results_outputs", exist_ok=True)
-
-comparing_coefficients.to_csv("results_outputs/comparing_coefficients.csv", index=False)
-forest_importance.to_csv("results_outputs/forest_importance.csv", index=False)
-hgb_importance.to_csv("results_outputs/hgb_importance.csv", index=False)
-std_table.to_csv("results_outputs/std_table.csv", index=False)
-
-print(classification_report(y_test, hgb_pred))
-print(f"Hist Gradient Boosting ROC-AUC: {hgb_auc:.4f}")
 ```
 
 ## Partial Dependence Plot
 
 ```{python}
- #--PDP--
+#--PDP--
 fig, ax = plt.subplots(figsize=(11, 7))
 PartialDependenceDisplay.from_estimator(hgb, x_test, features=[ "credit_score", "dti", "ltv", "or_interest_rate", "state_def_rate"], kind="average", grid_resolution=50, ax=ax)
-plt.suptitle("PDP of Main Variables on Predicted Delinquency Risk", y=1.05,fontsize=14)
+plt.suptitle("PDP of Main Variables on Predicted Delinquency Risk", y=1.05,fontsize=14
+)
+
 plt.tight_layout()
 plt.show()
 ```
-
-The partial dependence plots help interepret the HGB model which doesn't outpur coefficients like our other two. The plots show delinquency risk
 
 ## Model Comparison
 
@@ -337,7 +337,7 @@ The ROC curve comparison shows how well each model separates loans that become 9
 
 ## Threshold-Based Evaluation
 
-For a risk-advisory application, the default classification threshold of `0.50` may not be ideal. A lower threshold can increase recall for risky loans, but it may also increase false positives.
+For the app, the default classification threshold of `0.50` may not be the best choice. A lower threshold can increase recall for risky loans, but it may also increase false positives.
 
 ```{python}
 threshold_results= []
@@ -371,7 +371,7 @@ print(f"F1-score: {f1_score(y_test, hgb_pred_threshold, zero_division=0):.3f}")
 
 ## Risk Tier Function
 
-For the prototype app, the predicted probability is converted into a simple risk label. These thresholds are prototype rules and should be refined later using calibration, business context, and user-centered design.
+The predicted probability is converted into a simple risk label for the app.
 
 ```{python}
 def assign_risk_tier(probability):
@@ -385,7 +385,7 @@ def assign_risk_tier(probability):
 
 ## Demo Borrower Profiles
 
-The demo profiles are built from a typical borrower row using median feature values from the training set. Then selected values such as credit score, DTI, LTV, loan amount, and interest rate are changed to create lower-risk, moderate-risk, and higher-risk examples.
+The demo profiles are built from a typical borrower row using median feature values from the training set. Then selected values such as credit score, debt-to-income, loan-to-value, loan amount, and interest rate are changed to create lower-risk, moderate-risk, and higher-risk examples.
 
 ```{python}
 demo_base= x_train.median(numeric_only=True).to_dict()
@@ -433,16 +433,16 @@ demo_display["predicted_probability"]= demo_display["predicted_probability"].rou
 demo_display
 ```
 
-These examples show how the model could support the future Home Loan Advisor app by translating model probabilities into a simplified risk label.
+These examples show how the model could support the future HomeLoanAdvisor app in translating model probabilities into a consumer friendly risk label, easy for a consumer to understand.
 
 ## Final Model Choice
 
-Our final model should be selected using a combination of predictive performance and practical use. Histogram Gradient Boosting may provide stronger predictive performance, while Logistic Regression is easier to interpret. Because this project is intended to support a consumer-facing advisory tool, model outputs should be communicated carefully and should not imply certainty. A reasonable final approach is to use the best-performing model for probability estimation while keeping Logistic Regression as the interpretable baseline for explaining which loan characteristics are associated with higher or lower delinquency risk.
+The final models are comparable and used for their strengths. Histogram Gradient Boosting may provide great predictive performance, while Logistic Regression is easier to interpret. Because this project is intended to support a consumer-facing advisory tool, model outputs should be communicated carefully probably with disclaimers. A reasonable final approach is to use the best-performing model for probability estimation while keeping Logistic Regression as the interpretable baseline for explaining which loan characteristics are associated with higher or lower delinquency risk.
 
 ## Limitations
 
-The dataset is based on Freddie Mac historical mortgage data and may not represent all loan types or borrower populations. The target variable identifies whether a loan ever became 90+ days past due during the observed performance period, but future delinquency risk may shift under different economic conditions. The risk tiers are prototype thresholds and have not been optimized for a real business or consumer decision. The model should be interpreted as an educational risk signal rather than financial advice or a lending decision tool.
+The dataset is based on Freddie Mac historical mortgage data and may not represent all loan types or borrower populations. The data includes years effected by a global pandemic; COVID19. The target variable identifies whether a loan ever became 90+ days past due during the observed performance period, but future delinquency risk may shift further under other different economic conditions. The models should be interpreted as "educational" risk signal rather than financial advice or a lending decision tool.
 
 ## Conclusion
 
-Our project demonstrates that Freddie Mac origination and performance data can be transformed into a model-ready dataset for predicting serious mortgage delinquency. The custom pipeline creates a larger and more defensible dataset than the initial MVP sample, while the modeling workflow shows how predicted probabilities can be turned into consumer-friendly risk tiers. The final Home Loan Advisor workflow combines data engineering, classification modeling, evaluation, and app-ready risk interpretation.
+This project demonstrates that Freddie Mac origination and performance data can be transformed into a model-ready dataset for predicting mortgage delinquency. Our custom pipeline creates a larger and more defensible dataset than the initial MVP sample. The modeling workflow shows how predicted probabilities can be turned into consumer-friendly risk tiers.The final Home Loan Advisor workflow combines data engineering, classification modeling, evaluation, and app-ready risk interpretation.

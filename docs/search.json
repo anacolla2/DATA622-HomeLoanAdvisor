@@ -1,10 +1,20 @@
 [
   {
+    "objectID": "index.html#section",
+    "href": "index.html#section",
+    "title": "Home Loan Advisor",
+    "section": "",
+    "text": "Many borrowers walk into a mortgage hoping for the best. The Home Loan Adviser is a machine learning tool, trained on real Freddie Mac mortgages, that informs the borrower where they stand before ever engaging with a lender.\n\nIts better to know your risk before your lenders do.\n\nThe interactive simulator produces a risk score in plain English, so users can examine their “what ifs?” before one of the largest decisions of their lives.",
+    "crumbs": [
+      "An Overview"
+    ]
+  },
+  {
     "objectID": "data.html#about-freddie-mac",
     "href": "data.html#about-freddie-mac",
-    "title": "The Entire Data Process",
+    "title": "The Data Process",
     "section": "About Freddie Mac",
-    "text": "About Freddie Mac\nThe data originates from Freddy Mac a group created by congress in an effort to make mortgages more accessible to Americans. This accessibility is derived from Freddie Mac’s mortgage purchases. Lenders sell the mortgage loans to Freddie Mac who in turn uses the assets as securities sold to investors. Securities give one the right to something else– a financial contract. In this case mortgages, as securities, give investors a monthly stream of income for decades.\nAs a main purchaser of mortgages, Freddie Mac has a large amount of mortgage data across the entire US. These datapoints are ideal for the Home Loan Adviser model.",
+    "text": "About Freddie Mac\nThe data originates from Freddie Mac, a group created by Congress in an effort to make mortgages more accessible to Americans. This accessibility is derived from Freddie Mac’s mortgage purchases. Lenders sell mortgage loans to Freddie Mac, who in turn uses the assets as securities sold to investors. Securities give one the right to something else– a financial contract. In this case, mortgages as securities give investors a monthly stream of income for decades. As a main purchaser of mortgages, Freddie Mac has a large amount of mortgage data across the entire US. These data points are ideal for the Home Loan Adviser model.",
     "crumbs": [
       "The Data"
     ]
@@ -12,9 +22,9 @@
   {
     "objectID": "data.html#about-the-raw-data",
     "href": "data.html#about-the-raw-data",
-    "title": "The Entire Data Process",
+    "title": "The Data Process",
     "section": "About the Raw Data",
-    "text": "About the Raw Data\nThe data is provided by Freddie Mac in zip files by year. The download is available here. A guide is also provided here.\nEach year of the SFLL data is composed of quarters, which are provided in zip files as well. Each quarter then contains two files, one contains loan origination data and the other contains the performances of each loan. Their “key” is a column named loan_sequence_number to be used for joining if needed.\n#| eval: false\n#--to extract automatically (on mac)-- \ncd ~/Downloads\nunzip \"historical_data_*.zip\"\n\n#-- remove the main zip from folder and re-run to extract quarters--\nunzip \"historical_data_*.zip\"\nOnce the nested zip files were extracted, there were a total of 40 files. The raw data is in .txt format separated by | vertical bars, or “pipes” instead of commas or tabs. There are no headers so all columns were named upon importing.",
+    "text": "About the Raw Data\nThe data is provided by Freddie Mac in zip files by year. The download is available here. A guide is also provided here. Each year of the SFLL data is composed of quarters, which are provided in zip files as well. Each quarter contains two files: one file contains loan origination data and the other contains the performance history of each loan. Their “key” is a column named loan_sequence_number to be used for joining. This key is renamed loan_id.\n#| eval: false\n#--to extract automatically (on mac)-- \ncd ~/Downloads\nunzip \"historical_data_*.zip\"\n\n#-- remove the main zip from folder and re-run to extract quarters--\nunzip \"historical_data_*.zip\"\nOnce the nested zip files were extracted, there were a total of 40 files. The raw data is in .txt format separated by | vertical bars, or “pipes”, instead of commas or tabs. There are no headers, so all columns were named upon importing.",
     "crumbs": [
       "The Data"
     ]
@@ -22,7 +32,7 @@
   {
     "objectID": "data.html#data-dictionary",
     "href": "data.html#data-dictionary",
-    "title": "The Entire Data Process",
+    "title": "The Data Process",
     "section": "Data Dictionary",
     "text": "Data Dictionary\n\nOrigination DataPerformance Data\n\n\n\n\n\n\n\n\n\n\n\ncolumn_name\ntype\nmax_length\n\n\n\n\n0\nCredit Score\nNumeric\n4\n\n\n1\nFirst Payment Date\nDate\n6\n\n\n2\nFirst Time Homebuyer Flag\nAlpha\n1\n\n\n3\nMaturity Date\nDate\n6\n\n\n4\nMetropolitan Statistical Area (MSA) Or Metropo...\nNumeric\n5\n\n\n5\nMortgage Insurance Percentage (MI %)\nNumeric\n3\n\n\n6\nNumber of Units\nNumeric\n2\n\n\n7\nOccupancy Status\nAlpha\n1\n\n\n8\nOriginal Combined Loan-to-Value (CLTV)\nNumeric\n3\n\n\n9\nOriginal Debt-to-Income (DTI) Ratio\nNumeric\n3\n\n\n10\nOriginal UPB\nNumeric\n12\n\n\n11\nOriginal Loan-to-Value (LTV)\nNumeric\n3\n\n\n12\nOriginal Interest Rate\nNumeric - 6,3\n6\n\n\n13\nChannel\nAlpha\n1\n\n\n14\nPrepayment Penalty Mortgage (PPM) Flag\nAlpha\n1\n\n\n15\nAmortization Type (Formerly Product Type)\nAlpha\n5\n\n\n16\nProperty State\nAlpha\n2\n\n\n17\nProperty Type\nAlpha\n2\n\n\n18\nPostal Code\nNumeric\n5\n\n\n19\nLoan Sequence Number\nAlpha Numeric - PYYQnXXXXXXX\n12\n\n\n20\nLoan Purpose\nAlpha\n1\n\n\n21\nOriginal Loan Term\nNumeric\n3\n\n\n22\nNumber of Borrowers\nNumeric\n2\n\n\n23\nSeller Name\nAlpha Numeric\n60\n\n\n24\nServicer Name\nAlpha Numeric\n60\n\n\n25\nSuper Conforming Flag\nAlpha\n1\n\n\n26\nPre-HARP Loan Sequence Number\nAlpha Numeric - PYYQnXXXXXXX\n12\n\n\n27\nProgram Indicator\nAlpha Numeric\n1\n\n\n28\nHARP Indicator\nAlpha\n1\n\n\n29\nProperty Valuation Method\nNumeric\n1\n\n\n30\nInterest Only (I/O) Indicator\nAlpha\n1\n\n\n31\nMortgage Insurance Cancellation Indicator\nAlpha\n1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ncolumn_name\ntype\nmax_length\n\n\n\n\n0\nLoan Sequence Number\nAlpha Numeric - PYYQnXXXXXXX\n12\n\n\n1\nMonthly Reporting Period\nDate\n6\n\n\n2\nCurrent Actual UPB\nNumeric - 12,2\n12\n\n\n3\nCurrent Loan Delinquency Status\nAlpha Numeric\n3\n\n\n4\nLoan Age\nNumeric\n3\n\n\n5\nRemaining Months to Legal Maturity\nNumeric\n3\n\n\n6\nDefect Settlement Date\nDate\n6\n\n\n7\nModification Flag\nAlpha\n1\n\n\n8\nZero Balance Code\nNumeric\n2\n\n\n9\nZero Balance Effective Date\nDate\n6\n\n\n10\nCurrent Interest Rate\nNumeric - 8,3\n8\n\n\n11\nCurrent Deferred UPB\nNumeric\n12\n\n\n12\nDue Date of Last Paid Installment (DDLPI)\nDate\n6\n\n\n13\nMI Recoveries\nNumeric - 12,2\n12\n\n\n14\nNet Sales Proceeds\nAlpha-Numeric\n14\n\n\n15\nNon MI Recoveries\nNumeric - 12,2\n12\n\n\n16\nExpenses\nNumeric - 12,2\n12\n\n\n17\nLegal Costs\nNumeric - 12,2\n12\n\n\n18\nMaintenance and Preservation Costs\nNumeric - 12,2\n12\n\n\n19\nTaxes and Insurance\nNumeric - 12,2\n12\n\n\n20\nMiscellaneous Expenses\nNumeric - 12,2\n12\n\n\n21\nActual Loss Calculation\nNumeric - 12,2\n12\n\n\n22\nModification Cost\nNumeric - 12,2\n12\n\n\n23\nStep Modification Flag\nAlpha\n1\n\n\n24\nDeferred Payment Plan\nAlpha\n1\n\n\n25\nEstimated Loan-to-Value (ELTV)\nNumeric\n4\n\n\n26\nZero Balance Removal UPB\nNumeric - 12,2\n12\n\n\n27\nDelinquent Accrued Interest\nNumeric - 12,2\n12\n\n\n28\nDelinquency Due to Disaster\nAlpha\n1\n\n\n29\nBorrower Assistance Status Code\nAlpha\n1\n\n\n30\nCurrent Month Modification Cost\nNumeric - 12,2\n12\n\n\n31\nInterest Bearing UPB\nNumeric - 12,2\n12",
     "crumbs": [
@@ -32,9 +42,9 @@
   {
     "objectID": "data.html#data-load-clean--origination",
     "href": "data.html#data-load-clean--origination",
-    "title": "The Entire Data Process",
+    "title": "The Data Process",
     "section": "Data Load & Clean- Origination",
-    "text": "Data Load & Clean- Origination\n\n#-- data load-- (including NA values mentioned in dictionary)--\nor_2018= pd.read_csv(\"data/historical_data_2018Q1.txt\", sep=\"|\", header= None, na_values= [\"\", \"9999\", \"999\", \"9\", \"   \", \"X\"])\n\n#-- column names--\nor_2018.columns= [\"credit_score\", \"first_payment_date\", \"first_time_buyer\", \"maturity_date\", \"msa\", \"mi_percent\", \"num_units\", \"occupancy\", \"cltv\", \"dti\", \"upb\", \"ltv\", \"or_interest_rate\", \"channel\", \"ppm\", \"amortization\", \"prop_state\", \"prop_type\", \"zipcode\", \"loan_id\", \"loan_purpose\", \"or_loan_term\", \"num_borrowers\", \"seller\", \"servicer\", \"super_conforming\", \"pre_harp_loan_id\", \"program_indicator\", \"harp_indicator\", \"prop_valuation\", \"interest_only\", \"mi_cancel\"]\n\n#-- date format-- \nor_2018[\"first_payment_date\"]= pd.to_datetime(or_2018[\"first_payment_date\"], format=\"%Y%m\", errors=\"coerce\").dt.strftime(\"%Y-%m\")\n\nor_2018[\"maturity_date\"]= pd.to_datetime(or_2018[\"maturity_date\"], format=\"%Y%m\", errors=\"coerce\").dt.strftime(\"%Y-%m\")\n\nFor our application we will drop several variables.The HARP program helped borrowers refinance their home when their home’s value was less than their mortgage. 1 The data points that identify with HARP will also be dropped because the data points represent a borrower that would not typically meet Freddie Mac’s qualifications. Zipcode will be dropped because its high cardinality is not worth keeping, we can use msa later for a metro or rural flag. CLTV will be dropped because only 1% differs from LTV. We’ll keep Load ID as a join key.\n\n#-- removing HARP--\nor_2018= or_2018[or_2018[\"harp_indicator\"].isna()].copy()\n#-- dropping irrelevant variables--\ndrop=[\"pre_harp_loan_id\",\"amortization\", \"harp_indicator\", \"program_indicator\", \"seller\", \"servicer\", \"first_payment_date\", \"maturity_date\", \"zipcode\", \"cltv\"]\nor_2018= or_2018.drop(columns=drop)\n\n\n#-- using loan_id as index--\nor_2018= or_2018.set_index(\"loan_id\")\n\n\nEncoding\nThe data dictionary provided by Freddie Mac specifies what the missing values are. The msa variable for example, has missing values that may mean a property is not in a metropolitan area, or may actually mean “unknown”. Zip code data appears in every entry so imputation is possible using overlap. But a more simple and reliable approach is to code a new variable using msa column as binary; metro area or not.\n\n#-- msa to metro area binary--\nor_2018[\"metro_area\"]= or_2018[\"msa\"].notna().astype(int)\nor_2018= or_2018.drop(columns=\"msa\")\n\n#--super conforming to binary--\nor_2018[\"super_conforming\"]= or_2018[\"super_conforming\"].fillna(0)\nor_2018[\"super_conforming\"]= (or_2018[\"super_conforming\"] == \"Y\").astype(int)\n\nThere are columns with low carnality that can’t be coded as binary but are better served in one hot encoding.\n\ncategorical_cols=[\"first_time_buyer\",\"loan_purpose\",\"prop_type\",\"occupancy\",\"channel\", \"num_units\"]\nor_2018= pd.get_dummies(or_2018, columns=categorical_cols, drop_first=True, dtype=int)\n\n\n#--numeric imputation--\nnumeric_impute= [\"credit_score\", \"dti\", \"ltv\", \"mi_percent\", \"prop_valuation\", \"upb\"]\nfor col in numeric_impute:\n    or_2018[col]= or_2018[col].fillna(or_2018[col].median())\n\n#--imputation--\nfor col in [\"interest_only\", \"ppm\", \"mi_cancel\"]:\n    or_2018[col]= (or_2018[col] == \"Y\").astype(int)\n\n\n\nData Clean Final Check\n\nor_2018.isnull().sum()\n\ncredit_score          0\nmi_percent            0\ndti                   0\nupb                   0\nltv                   0\nor_interest_rate      0\nppm                   0\nprop_state            0\nor_loan_term          0\nnum_borrowers         0\nsuper_conforming      0\nprop_valuation        0\ninterest_only         0\nmi_cancel             0\nmetro_area            0\nfirst_time_buyer_Y    0\nloan_purpose_N        0\nloan_purpose_P        0\nprop_type_CP          0\nprop_type_MH          0\nprop_type_PU          0\nprop_type_SF          0\noccupancy_P           0\noccupancy_S           0\nchannel_C             0\nchannel_R             0\nnum_units_2           0\nnum_units_3           0\nnum_units_4           0\ndtype: int64\n\n\nThe data is clean and ready for analysis. We’ll create a function to apply the cleaning to all the origination datasets coming from Freddie Macs standard files.",
+    "text": "Data Load & Clean- Origination\n\n#-- data load-- including NA values mentioned in dictionary\nor_2018= pd.read_csv(\"~/projects/data/homeloanadvisor/historical_data_2018Q1.txt\", sep=\"|\", header=None, na_values=[\"\", \"9999\", \"999\", \"9\", \"   \", \"X\"], low_memory=False)\n\n#-- column names--\nor_2018.columns= [\"credit_score\", \"first_payment_date\", \"first_time_buyer\", \"maturity_date\", \"msa\", \"mi_percent\", \"num_units\", \"occupancy\", \"cltv\", \"dti\", \"upb\", \"ltv\", \"or_interest_rate\", \"channel\", \"ppm\", \"amortization\", \"prop_state\", \"prop_type\", \"zipcode\", \"loan_id\", \"loan_purpose\", \"or_loan_term\", \"num_borrowers\", \"seller\", \"servicer\", \"super_conforming\", \"pre_harp_loan_id\", \"program_indicator\", \"harp_indicator\", \"prop_valuation\", \"interest_only\", \"mi_cancel\"]\n\n#-- date features--\nfirst_payment= pd.to_datetime(or_2018[\"first_payment_date\"], format=\"%Y%m\", errors=\"coerce\")\nmaturity= pd.to_datetime(or_2018[\"maturity_date\"], format=\"%Y%m\", errors=\"coerce\")\n\nor_2018[\"first_payment_year\"]= first_payment.dt.year\nor_2018[\"first_payment_month\"]= first_payment.dt.month\nor_2018[\"maturity_year\"]= maturity.dt.year\nor_2018[\"maturity_month\"]= maturity.dt.month\n\nFor our application we will drop several variables. The HARP program helped borrowers refinance their home when their home’s value was less than their mortgage.1 The data points that identify with HARP will also be dropped because the data points represent a borrower that would not typically meet Freddie Mac’s regular qualifications. Zip code will be dropped because its high cardinality is not worth keeping. We can use msa later for a metro or non-metro flag. cltv will be dropped because it is highly similar to ltv. We’ll keep loan_id as a join key.\n\n#-- removing HARP--\nor_2018= or_2018[or_2018[\"harp_indicator\"].isna()].copy()\n\n#-- dropping irrelevant variables--\ndrop= [\"pre_harp_loan_id\", \"amortization\", \"harp_indicator\", \"program_indicator\", \"seller\", \"servicer\", \"first_payment_date\", \"maturity_date\", \"zipcode\", \"cltv\"]\n\nor_2018= or_2018.drop(columns=drop)\n\n\nEncoding\nThe data dictionary provided by Freddie Mac specifies what the missing values are. The msa variable, for example, has missing values that may mean a property is not in a metropolitan area, or may actually mean “unknown”. Zip code data appears in every entry, so imputation is possible using overlap. But a simpler and more reliable approach is to code a new variable using the msa column as binary: metro area or not.\n\n#-- msa to metro area binary--\nor_2018[\"metro_area\"]= or_2018[\"msa\"].notna().astype(int)\nor_2018= or_2018.drop(columns=\"msa\")\n\nThere are columns with low cardinality that cannot be coded as binary but are better served by one-hot encoding.\n\n#-- categorical encoding--\ncategorical_cols= [\"first_time_buyer\", \"loan_purpose\", \"prop_type\", \"occupancy\", \"channel\", \"num_units\"]\n\nor_2018[categorical_cols]= or_2018[categorical_cols].fillna(\"Unknown\")\nor_2018= pd.get_dummies(or_2018, columns=categorical_cols, drop_first=True, dtype=int)\n\nNumerical variables such as ltv and credit_score are skewed and will be imputed using the median. The median imputation will be completed during the data build so every quarter of the Freddie Mac datasets is complete. The modeling report will not need to repeat this imputation for the same standardized files.\n\n#-- numeric imputation--\nnumeric_impute= [\"credit_score\", \"dti\", \"ltv\", \"mi_percent\", \"prop_valuation\", \"upb\", \"or_interest_rate\"]\n\nor_2018[numeric_impute].skew()\n\nfor col in numeric_impute:\n    or_2018[col]= or_2018[col].fillna(or_2018[col].median())\n\nVariables that are not useful for the app or standardized modeling file will be dropped. These variables are removed consistently so every quarterly dataset follows the same final set up.\n\n#-- dropping low-value variables--\nor_2018[[\"ppm\", \"super_conforming\", \"interest_only\"]].nunique()\nor_2018= or_2018.drop(columns=[\"ppm\", \"super_conforming\", \"interest_only\"])\n\n\n\nData Clean Final Check\n#-- missing check--\nmissing_check= or_2018.isna().sum().sort_values(ascending=False)\nmissing_check[missing_check &gt; 0]\n\n#-- shape check--\nor_2018.shape\n\n\n\n(291562, 33)\n\n\n\nThe data is clean and ready to be joined to the target created from the monthly performance data. The same cleaning process will be placed into a function so it can be applied to all origination datasets coming from Freddie Mac’s standardized files.",
     "crumbs": [
       "The Data"
     ]
@@ -42,9 +52,39 @@
   {
     "objectID": "data.html#data-load-clean--performance",
     "href": "data.html#data-load-clean--performance",
-    "title": "The Entire Data Process",
+    "title": "The Data Process",
     "section": "Data Load & Clean- Performance",
-    "text": "Data Load & Clean- Performance\n\nperf_2018= pd.read_csv(\"data/historical_data_time_2018Q1.txt\", sep=\"|\", header= None, na_values= [\"\", \"9999\", \"999\", \"9\", \"   \", \"X\"])\n\n\nperf_2018.columns= [\"loan_id\", \"report_period\", \"current_upb\", \"delinquency_status\", \"loan_age\", \"remaining_months\", \"defect_settlement_date\", \"modification_flag\", \"zero_balance_code\", \"zero_balance_effective_date\", \"current_rate\", \"current_deferred_upb\", \"ddlpi\", \"mi_recoveries\", \"net_sales_proceeds\", \"non_mi_recoveries\", \"expenses\", \"legal_costs\", \"maintenance_costs\", \"taxes_insurance\", \"misc_expenses\", \"actual_loss\", \"modification_cost\", \"step_modification_flag\", \"deferred_payment_plan\", \"eltv\", \"zero_balance_removal_upb\", \"delinquent_accrued_interest\", \"disaster_delinquency\", \"borrower_assistance\", \"current_month_mod_cost\", \"interest_bearing_upb\"]\n\n\nkeeping= [\"loan_id\", \"report_period\", \"current_upb\", \"delinquency_status\", \"loan_age\", \"remaining_months\", \"zero_balance_code\", \"current_rate\", \"modification_flag\", \"disaster_delinquency\", \"borrower_assistance\"]\nperf_2018= perf_2018[keeping]\nperf_2018= perf_2018.set_index(\"loan_id\")\n\n\nEncoding\nWe’ll use the industry standard &gt;90 days delinquent. The goal is to estimate the probability that a loan becomes &gt;= 90 days delinquent at any point.\n\nperf_2018[\"delinquency_status\"]= pd.to_numeric(perf_2018[\"delinquency_status\"], errors=\"coerce\")\n\ntarget= (perf_2018.groupby(\"loan_id\")[\"delinquency_status\"].max().ge(3).astype(int).reset_index().rename(columns={\"delinquency_status\": \"any_90_dpd\"}))\n\nzero_balance_code will be useful because it tells why a loan was closed/terminated. We’ll encode and join to the main dataframe.\n\nzero_bal= (perf_2018.groupby(\"loan_id\")[\"zero_balance_code\"].max().reset_index().rename(columns={\"zero_balance_code\": \"termin_code\"}))\n#--joining--\ntarget= target.merge(zero_bal, on=\"loan_id\", how=\"left\")\n#-- filling never delinquent with 0-- \ntarget[\"termin_code\"]= target[\"termin_code\"].fillna(0)\n\n#--final join--\nfinal_2018= or_2018.merge(target, on=\"loan_id\", how=\"inner\")\nfinal_2018= final_2018.set_index(\"loan_id\")\n\nfinal_2018.to_csv(\"data/fdf1.csv\", header=True)\n\nA user’s target state could prove effective in esitamiting mortgage risk. However, because the feature would be derived from our target, it may risk data leakage. To fix this, the state default rates were calculated using the training porting of the data split.\n\n#--creating train and test split for calculation--\ntrain_, test_= train_test_split(final_2018, test_size= 0.3, random_state=212, stratify= final_2018[\"any_90_dpd\"])\n\n#--state default rate on train only--\nstate_def_rate= train_.groupby(\"prop_state\")[\"any_90_dpd\"].mean()\n\n#--mapping train only proportions to the states--\ntrain_[\"state_def_rate\"]= train_[\"prop_state\"].map(state_def_rate)\ntest_[\"state_def_rate\"]= test_[\"prop_state\"].map(state_def_rate)\n\ntrain_= train_.drop(columns=[\"prop_state\", \"termin_code\"])\ntest_= test_.drop(columns=[\"prop_state\", \"termin_code\"])",
+    "text": "Data Load & Clean- Performance\n\n#-- performance load--\nperf_2018= pd.read_csv(\"~/projects/data/homeloanadvisor/historical_data_time_2018Q1.txt\", sep=\"|\", header=None, na_values=[\"\", \"9999\", \"999\", \"   \", \"X\"], low_memory=False)\n\nFor the performance file, \"9\" was not included in the missing value list because zero_balance_code = 9 is a real category. It represents REO disposition.\n\n#-- performance column names--\nperf_2018.columns= [\"loan_id\", \"report_period\", \"current_upb\", \"delinquency_status\", \"loan_age\", \"remaining_months\", \"defect_settlement_date\", \"modification_flag\", \"zero_balance_code\", \"zero_balance_effective_date\", \"current_rate\", \"current_deferred_upb\", \"ddlpi\", \"mi_recoveries\", \"net_sales_proceeds\", \"non_mi_recoveries\", \"expenses\", \"legal_costs\", \"maintenance_costs\", \"taxes_insurance\", \"misc_expenses\", \"actual_loss\", \"modification_cost\", \"step_modification_flag\", \"deferred_payment_plan\", \"eltv\", \"zero_balance_removal_upb\", \"delinquent_accrued_interest\", \"disaster_delinquency\", \"borrower_assistance\", \"current_month_mod_cost\", \"interest_bearing_upb\"]\n\nOnly the fields needed to construct the target variable and summarize the loan termination outcome were kept. The performance file contains repeated monthly rows for each loan, so it cannot be merged directly to the origination file without creating duplicate loan rows.\n\n#-- keeping needed performance variables--\nkeeping= [\"loan_id\", \"report_period\", \"delinquency_status\", \"zero_balance_code\"]\n\nperf_2018= perf_2018[keeping].copy()\n\n\nEncoding\nThe categorical variables will be mapped for interpretation. zero_balance_code is mapped to a readable label, while delinquency_status is converted into the target variable.\n\n#-- delinquency map--\ndelinquency_map= {\n    \"0\": \"Current or &lt;30 Days Delinquent\",\n    \"1\": \"30-59 Days Delinquent\",\n    \"2\": \"60-89 Days Delinquent\",\n    \"3\": \"90-119 Days Delinquent\",\n    \"4\": \"120-149 Days Delinquent\",\n    \"5\": \"150-179 Days Delinquent\",\n    \"6\": \"180-209 Days Delinquent\",\n    \"RA\": \"REO Acquisition\"\n}\n\n#-- zero balance map--\nzero_balance_map= {\n    1.0: \"Prepaid or Matured\",\n    2.0: \"Third Party Sale\",\n    3.0: \"Short Sale or Charge Off\",\n    9.0: \"REO Disposition\",\n    15.0: \"Whole Loan Sale\",\n    16.0: \"Reperforming Loan Securitization\",\n    96.0: \"Defect Prior to Termination\"\n}\n\nperf_2018[\"zero_balance_label\"]= perf_2018[\"zero_balance_code\"].map(zero_balance_map).fillna(\"Not Applicable\")\n\nWe’ll use the industry standard “90+ days delinquent”. The goal is to estimate the probability that a loan becomes 90 or more days delinquent at any point during the observed performance history.\n\n#-- target: any 90+ days delinquent--\ndq_num= pd.to_numeric(perf_2018[\"delinquency_status\"].replace({\"RA\": 99}), errors=\"coerce\")\n\ntarget= (\n    dq_num\n    .groupby(perf_2018[\"loan_id\"])\n    .max()\n    .ge(3)\n    .astype(int)\n    .reset_index(name=\"any_90_dpd\")\n)\n\nThe category RA is defined in the dictionary as REO acquisition. These loans will be treated as 90+ days delinquent because REO acquisition reflects a severe default or foreclosure outcome. zero_balance_code will be useful because it tells why a loan was closed or terminated, but it will not be used as a predictor variable in the final model. It is retained for app interpretation and audit use.\n\n#-- last observed termination code per loan--\nzero_bal= (\n    perf_2018[perf_2018[\"zero_balance_code\"].notna()]\n    .sort_values([\"loan_id\", \"report_period\"])\n    .groupby(\"loan_id\")[\"zero_balance_code\"]\n    .last()\n    .reset_index()\n    .rename(columns={\"zero_balance_code\": \"termin_code\"}))\n\n#-- joining--\ntarget= target.merge(zero_bal, on=\"loan_id\", how=\"left\")\n\n#-- fill loans with no observed termination event--\ntarget[\"termin_code\"]= target[\"termin_code\"].fillna(0)\n\n#-- final join--\nfinal_2018= or_2018.merge(target, on=\"loan_id\", how=\"inner\")\n\n#-- csv checkpoint--\nfinal_2018.to_csv(\"~/projects/data/homeloanadvisor/model_input_2018Q1.csv\", index=False)\n\n\n\nFinal Check\n\n#-- final check--\nfinal_2018[\"loan_id\"].duplicated().sum()\nfinal_2018.shape\nfinal_2018[\"any_90_dpd\"].value_counts(normalize=True)\n\n0    0.946204\n1    0.053796\nName: any_90_dpd, dtype: float64",
+    "crumbs": [
+      "The Data"
+    ]
+  },
+  {
+    "objectID": "data.html#state-default-rate",
+    "href": "data.html#state-default-rate",
+    "title": "The Data Process",
+    "section": "State Default Rate",
+    "text": "State Default Rate\nA borrower’s property state could help output an estimate of mortgage risk because delinquency rates can vary by location. However, if state-level default rates are calculated using the entire dataset, the feature would be considered data leakage. To avoid this, state default rates were calculated using the train split, then mapped onto the train and test data.\n\n#-- train test split--\ntrain_, test_= train_test_split(\n    final_2018,\n    test_size=0.3,\n    random_state=212,\n    stratify=final_2018[\"any_90_dpd\"])\n\ntrain_= train_.copy()\ntest_= test_.copy()\n\n#-- state default rate on train only--\nstate_def_rate= (\n    train_\n    .groupby(\"prop_state\")[\"any_90_dpd\"]\n    .mean()\n    .reset_index(name=\"state_def_rate\"))\n\n#-- fallback rate for unseen states--\nglobal_def_rate= train_[\"any_90_dpd\"].mean()\n\n#-- mapping train-only proportions to states--\nstate_lookup= dict(zip(state_def_rate[\"prop_state\"], state_def_rate[\"state_def_rate\"]))\n\ntrain_[\"state_def_rate\"]= train_[\"prop_state\"].map(state_lookup)\ntest_[\"state_def_rate\"]= test_[\"prop_state\"].map(state_lookup).fillna(global_def_rate)\n\nThe prop_state variable is removed after the state-level default rate is created. loan_id is removed because its an identifier, and termin_code is removed because it represents information observed after origination.\n\n#-- removing identifier and audit columns--\ntrain_= train_.drop(columns=[\"loan_id\", \"prop_state\", \"termin_code\"], errors=\"ignore\")\ntest_= test_.drop(columns=[\"loan_id\", \"prop_state\", \"termin_code\"], errors=\"ignore\")\n\n#-- csv checkpoint--\ntrain_.to_csv(\"~/projects/data/homeloanadvisor/train2018.csv\", index=False)\ntest_.to_csv(\"~/projects/data/homeloanadvisor/test2018.csv\", index=False)\n\nstate_def_rate.to_csv(\"~/projects/data/homeloanadvisor/state_def_rate_2018Q1.csv\", index=False)",
+    "crumbs": [
+      "The Data"
+    ]
+  },
+  {
+    "objectID": "data.html#automated-setup-script",
+    "href": "data.html#automated-setup-script",
+    "title": "The Data Process",
+    "section": "Automated Setup Script",
+    "text": "Automated Setup Script\nThe 2018 Q1 process was converted into a Python script so the same cleaning logic could be applied to every available quarter and year. The script processes the raw Freddie Mac files, creates quarter-level files, combines all available quarters, and saves final modeling files.\n#| eval: false\n\ncd ~/rstudio/DATA622-HomeLoanAdvisor\npython build_model_data.py\nThe automated script creates the final files used in the modeling section.\n\n#-- final model files--\n\"~/projects/data/homeloanadvisor/final_model_data/model_input_all_quarters.csv\"\n\"~/projects/data/homeloanadvisor/final_model_data/train_final.csv\"\n\"~/projects/data/homeloanadvisor/final_model_data/test_final.csv\"\n\"~/projects/data/homeloanadvisor/final_model_data/state_def_rate.csv\"\n\nThe script stratifies the final train/test split by quarter and any_90_dpd. This helps preserve both the time-period representation and the rare 90+ delinquency class in both datasets.\n\n#-- final train/test check--\ntrain_final= pd.read_csv(\"~/projects/data/homeloanadvisor/final_model_data/train_final.csv\")\ntest_final= pd.read_csv(\"~/projects/data/homeloanadvisor/final_model_data/test_final.csv\")\n\nprint(train_final[\"any_90_dpd\"].value_counts(normalize=True))\nprint(test_final[\"any_90_dpd\"].value_counts(normalize=True))",
+    "crumbs": [
+      "The Data"
+    ]
+  },
+  {
+    "objectID": "data.html#conclusion",
+    "href": "data.html#conclusion",
+    "title": "The Data Process",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe Freddie Mac origination and monthly performance files were cleaned and standardized into a loan-level dataset suitable for later modeling. The origination file provided borrower, loan, and property characteristics, while the performance file was used to create the outcome variable, any_90_dpd, which identifies whether a loan ever became 90 or more days delinquent during the observed performance history. This keeps the final dataset focused on origination-level risk rather than monthly servicing behavior. Several variables were removed to keep the final modeling file consistent and relevant. HARP-related fields were removed because those loans represent a special refinancing program, while high-cardinality or low-value fields such as zipcode, seller, servicer, and selected low-variation indicators were excluded from the standardized feature set. Date fields were converted into year and month features before the original raw date columns were dropped. Missing numeric values were imputed with the median, and categorical variables were one-hot encoded so they could be used in later models. The monthly performance data was reduced to one row per loan before joining it to the origination data. This was necessary because the performance file contains repeated monthly observations for each loan, while the final modeling dataset should contain one row per loan. The final join produced a clean dataset with origination features, the any_90_dpd target, and a termination code retained for audit and app interpretation purposes. The termination code was not kept as a predictor in the final train/test modeling files because it represents information observed after origination. To support the interactive app, state-level default rates were calculated from the training split only, then mapped back onto the train and test datasets. This avoids data leakage by ensuring that test-set outcomes are not used to create the state-risk feature. The automated Python script applies the same cleaning rules across the available Freddie Mac quarters and saves standardized train/test files plus the state_def_rate.csv lookup table for the modeling report and app.",
     "crumbs": [
       "The Data"
     ]
@@ -52,11 +92,167 @@
   {
     "objectID": "data.html#footnotes",
     "href": "data.html#footnotes",
-    "title": "The Entire Data Process",
+    "title": "The Data Process",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nhttps://www.fhfa.gov/news/fact-sheet/home-affordable-refinance-program-harp↩︎",
     "crumbs": [
       "The Data"
+    ]
+  },
+  {
+    "objectID": "FullProjectReport.html",
+    "href": "FullProjectReport.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "#--package load--\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\nfrom sklearn import pipeline\nfrom sklearn.inspection import PartialDependenceDisplay\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.ensemble import RandomForestClassifier, HistGradientBoostingClassifier\nfrom sklearn.metrics import classification_report, roc_auc_score, roc_curve, confusion_matrix, precision_score, recall_score, f1_score, accuracy_score\n\nBuying a home is one of the largest financial decisions most people make, yet most borrowers do not have access to the same analytical tools that lenders use to assess repayment risk. This project explores whether historical mortgage performance data can be used to build a consumer-oriented risk assessment tool. For the MVP, the goal is not to deliver the full final application, but to demonstrate that the core workflow is feasible: prepare the loan-level data, engineer a binary delinquency target, train a baseline model, evaluate its predictive performance, and generate app-ready risk outputs.\nThis MVP focuses on the modeling backbone of the project: data preparation, target engineering, baseline prediction, and evaluation. This project expands the original MVP idea by moving beyond a small cleaned sample and building a larger custom dataset from Freddie Mac Origination and Performance files from 2018 through 2022."
+  },
+  {
+    "objectID": "FullProjectReport.html#section",
+    "href": "FullProjectReport.html#section",
+    "title": "Introduction",
+    "section": "",
+    "text": "#--package load--\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\nfrom sklearn import pipeline\nfrom sklearn.inspection import PartialDependenceDisplay\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.ensemble import RandomForestClassifier, HistGradientBoostingClassifier\nfrom sklearn.metrics import classification_report, roc_auc_score, roc_curve, confusion_matrix, precision_score, recall_score, f1_score, accuracy_score\n\nBuying a home is one of the largest financial decisions most people make, yet most borrowers do not have access to the same analytical tools that lenders use to assess repayment risk. This project explores whether historical mortgage performance data can be used to build a consumer-oriented risk assessment tool. For the MVP, the goal is not to deliver the full final application, but to demonstrate that the core workflow is feasible: prepare the loan-level data, engineer a binary delinquency target, train a baseline model, evaluate its predictive performance, and generate app-ready risk outputs.\nThis MVP focuses on the modeling backbone of the project: data preparation, target engineering, baseline prediction, and evaluation. This project expands the original MVP idea by moving beyond a small cleaned sample and building a larger custom dataset from Freddie Mac Origination and Performance files from 2018 through 2022."
+  },
+  {
+    "objectID": "FullProjectReport.html#objective",
+    "href": "FullProjectReport.html#objective",
+    "title": "Introduction",
+    "section": "Objective",
+    "text": "Objective\n\nCan we use historical mortgage data to estimate the probability that a loan will ever become seriously delinquent, and then turn that result into a consumer-friendly risk signal?\n\nFor this version of the project, we use:\n\nFreddie Mac Origination and Performance data from 2018 through 2022\na binary target called any_90_dpd\nan automated quarterly data-processing pipeline using a python script\na stratified train/test split by annual quarter and delinquency status to handle imbalances\nLogistic Regression, Random Forest, and Histogram Gradient Boosting models\nROC-AUC, classification reports, and threshold-based evaluation\nLow/Moderate/ High risk tiers for app demonstration"
+  },
+  {
+    "objectID": "FullProjectReport.html#data-source-and-processing-summary",
+    "href": "FullProjectReport.html#data-source-and-processing-summary",
+    "title": "Introduction",
+    "section": "Data Source and Processing Summary",
+    "text": "Data Source and Processing Summary\nThe dataset used for the models was created from Freddie Mac Origination and Performance data covering 2018 through 2022. The 2018 Q1 file was first cleaned manually to define the necessary steps to standardize the cleaning. This process was then wirtted into a Python script that cleaned each quarter separately.\nThe origination files contain borrower, loan, and property characteristics at the time of loan origination. The performance files contain monthly loan performance records, including delinquency behavior over time. Each quarter was processed separately and then merged by loan_id (which was dropped)\nThe pipeline performed the following major steps:\n\nread raw quarterly origination and performance files\ntreated Freddie Mac placeholder values such as 9999, 999, 9, blanks, spaces, and X as missing values\nengineered date features from first payment date and maturity date\nremoved HARP loans\nconverted MSA into a binary metro_area feature\none-hot encoded selected categorical variables\nimputed selected numeric fields using median values\ncreated the binary target variable any_90_dpd\nmerged origination and performance records by loan ID\nsaved each cleaned quarter as an intermediate file\nmerged the processed quarters into final train and test files\n\nThe final train/test split was stratified by both quarter and delinquency status. Stratifying by quarter helps address class imbalances through economic periods, while stratifying by the 90+ days past due flag helps address the class imbalance of the target variable.\nThe state “default rate” feature, state_def_rate, was calculated from the training set only and then this was mapped onto both train and test records. This prevents the model from using test-period outcome information when constructing the feature."
+  },
+  {
+    "objectID": "FullProjectReport.html#load-final-modeling-data",
+    "href": "FullProjectReport.html#load-final-modeling-data",
+    "title": "Introduction",
+    "section": "Load Final Modeling Data",
+    "text": "Load Final Modeling Data\n\ntrain_final= pd.read_csv(\"~/projects/data/homeloanadvisor/final_model_data/train_final.csv\")\ntest_final= pd.read_csv(\"~/projects/data/homeloanadvisor/final_model_data/test_final.csv\")\n\nprint(\"Train shape:\", train_final.shape)\nprint(\"Test shape:\", test_final.shape)\n\nTrain shape: (8746063, 32)\nTest shape: (3748322, 32)"
+  },
+  {
+    "objectID": "FullProjectReport.html#target-variable-and-class-balance",
+    "href": "FullProjectReport.html#target-variable-and-class-balance",
+    "title": "Introduction",
+    "section": "Target Variable and Class Balance",
+    "text": "Target Variable and Class Balance\nThe target variable is any_90_dpd.\n\n1 represents a loan that became 90 or more days past due at least once during the observed performance period.\n0 represents a loan that didn’t become 90 or more days past due.\n\n\ntrain_counts= train_final[\"any_90_dpd\"].value_counts().sort_index()\ntest_counts= test_final[\"any_90_dpd\"].value_counts().sort_index()\n\nprint(\"Train target counts:\")\nprint(train_counts)\nprint(\"\\nTrain target rate:\")\nprint(train_final[\"any_90_dpd\"].value_counts(normalize=True).sort_index())\n\nprint(\"\\nTest target counts:\")\nprint(test_counts)\nprint(\"\\nTest target rate:\")\nprint(test_final[\"any_90_dpd\"].value_counts(normalize=True).sort_index())\n\nTrain target counts:\n0    8501498\n1     244565\nName: any_90_dpd, dtype: int64\n\nTrain target rate:\n0    0.972037\n1    0.027963\nName: any_90_dpd, dtype: float64\n\nTest target counts:\n0    3643508\n1     104814\nName: any_90_dpd, dtype: int64\n\nTest target rate:\n0    0.972037\n1    0.027963\nName: any_90_dpd, dtype: float64\n\n\n\ntrain_counts.plot(kind=\"bar\")\nplt.title(\"Training Target Class Counts\")\nplt.xlabel(\"any_90_dpd\")\nplt.ylabel(\"Count\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nThe target is heavily imbalanced because few loans become 90 or more days past due. Because of this imbalance, accuracy alone is not a useful evaluation metric. ROC-AUC, precision, recall, F1-score, and threshold behavior might prove more informative about model performance."
+  },
+  {
+    "objectID": "FullProjectReport.html#traintest-feature-setup",
+    "href": "FullProjectReport.html#traintest-feature-setup",
+    "title": "Introduction",
+    "section": "Train/Test Feature Setup",
+    "text": "Train/Test Feature Setup\nquarter_tag is kept in the final files for split checking, but it is removed from the matrix before modeling begins (the variable is also not numerical so it must be removed.)\n\n#--without target--\nx_train= train_final.drop(columns=[\"any_90_dpd\", \"quarter_tag\"])\nx_test= test_final.drop(columns=[\"any_90_dpd\", \"quarter_tag\"])\n\n#--target only--\ny_train= train_final[\"any_90_dpd\"]\ny_test= test_final[\"any_90_dpd\"]\n\nprint(\"x_train shape:\", x_train.shape)\nprint(\"x_test shape:\", x_test.shape)\n\nx_train shape: (8746063, 30)\nx_test shape: (3748322, 30)\n\n\nThe final modeling data is numeric and model-ready. Categorical variables were one-hot encoded during the preprocessing pipeline."
+  },
+  {
+    "objectID": "FullProjectReport.html#modeling-strategy",
+    "href": "FullProjectReport.html#modeling-strategy",
+    "title": "Introduction",
+    "section": "Modeling Strategy",
+    "text": "Modeling Strategy\nThis is a binary classification problem. The modeling strategy compares an interpretable baseline model with more flexible machine learning models.\nThe models used are:\n\nLogistic Regression\nRandom Forest Classifier\nHistogram Gradient Boosting Classifier\n\nLogistic regression is used as the baseline because it is interpretable and produces probabilities naturally. Random Forest and Histogram Gradient Boosting are included because they can capture nonlinear relationships and interactions among borrower, loan, and property characteristics. mi_cancel was dropped post script due to an error.\n\nx_train= x_train.drop(columns=[\"mi_cancel\"])\nx_test= x_test.drop(columns=[\"mi_cancel\"])"
+  },
+  {
+    "objectID": "FullProjectReport.html#logistic-regression-coefficients",
+    "href": "FullProjectReport.html#logistic-regression-coefficients",
+    "title": "Introduction",
+    "section": "Logistic Regression Coefficients",
+    "text": "Logistic Regression Coefficients\n\nlogistic_coef= logistic.named_steps[\"logistic\"].coef_[0]\n\ncomparing_coefficients= pd.DataFrame({\n \"variable\": x_train.columns,\n \"coefficient\": logistic_coef\n}).sort_values(\"coefficient\", key=abs, ascending=False)\n\ncomparing_coefficients[\"odds_ratio\"]= np.exp(comparing_coefficients[\"coefficient\"])\ncomparing_coefficients[\"percent_change_odds\"]= (comparing_coefficients[\"odds_ratio\"] - 1) * 100\n\ncomparing_coefficients.head(20)\n\n\n\n\n\n\n\n\nvariable\ncoefficient\nodds_ratio\npercent_change_odds\n\n\n\n\n0\ncredit_score\n-0.736024\n0.479015\n-52.098514\n\n\n7\nnum_borrowers\n-0.362578\n0.695880\n-30.412005\n\n\n2\ndti\n0.347490\n1.415511\n41.551073\n\n\n4\nltv\n0.256952\n1.292983\n29.298342\n\n\n9\nfirst_payment_year\n-0.188470\n0.828225\n-17.177450\n\n\n8\nprop_valuation\n0.188467\n1.207398\n20.739776\n\n\n16\nloan_purpose_P\n-0.187094\n0.829366\n-17.063443\n\n\n28\nstate_def_rate\n0.172039\n1.187724\n18.772404\n\n\n5\nor_interest_rate\n0.159973\n1.173479\n17.347894\n\n\n1\nmi_percent\n0.106310\n1.112167\n11.216670\n\n\n3\nupb\n0.089543\n1.093674\n9.367422\n\n\n15\nloan_purpose_N\n-0.089473\n0.914413\n-8.558719\n\n\n6\nor_loan_term\n0.083233\n1.086795\n8.679515\n\n\n24\nchannel_R\n-0.065398\n0.936695\n-6.330544\n\n\n10\nfirst_payment_month\n-0.050754\n0.950513\n-4.948708\n\n\n11\nmaturity_year\n0.042012\n1.042907\n4.290724\n\n\n20\nprop_type_SF\n0.038791\n1.039554\n3.955357\n\n\n22\noccupancy_S\n-0.030084\n0.970364\n-2.963625\n\n\n14\nfirst_time_buyer_Y\n0.029380\n1.029816\n2.981621\n\n\n18\nprop_type_MH\n0.028762\n1.029180\n2.917995\n\n\n\n\n\n\n\n[write interpretation (one SD fpr each predictor)]\n\ncoef_viz= comparing_coefficients.head(20).sort_values(\"percent_change_odds\", ascending=True)\n\nplt.figure(figsize=(10, 8))\nplt.barh(coef_viz[\"variable\"], coef_viz[\"percent_change_odds\"])\nplt.title(\"Top Logistic Regression Coefficients\")\nplt.xlabel(\"Percent change in odds\")\nplt.ylabel(\"\")\nplt.tight_layout()\nplt.show()"
+  },
+  {
+    "objectID": "FullProjectReport.html#partial-dependence-plot",
+    "href": "FullProjectReport.html#partial-dependence-plot",
+    "title": "Introduction",
+    "section": "Partial Dependence Plot",
+    "text": "Partial Dependence Plot\n\n#--PDP--\nfig, ax = plt.subplots(figsize=(11, 7))\nPartialDependenceDisplay.from_estimator(hgb, x_test, features=[ \"credit_score\", \"dti\", \"ltv\", \"or_interest_rate\", \"state_def_rate\"], kind=\"average\", grid_resolution=50, ax=ax)\nplt.suptitle(\"PDP of Main Variables on Predicted Delinquency Risk\", y=1.05,fontsize=14\n)\n\nplt.tight_layout()\nplt.show()"
+  },
+  {
+    "objectID": "FullProjectReport.html#model-comparison",
+    "href": "FullProjectReport.html#model-comparison",
+    "title": "Introduction",
+    "section": "Model Comparison",
+    "text": "Model Comparison\n\nmodel_compare= pd.DataFrame({\n  \"model\": [\"Logistic Regression\", \"Random Forest\", \"Hist Gradient Boosting\"],\n  \"roc_auc\": [logistic_auc, forest_auc, hgb_auc]\n}).sort_values(\"roc_auc\", ascending=False)\n\nmodel_compare\n\n\n\n\n\n\n\n\nmodel\nroc_auc\n\n\n\n\n2\nHist Gradient Boosting\n0.804834\n\n\n1\nRandom Forest\n0.799509\n\n\n0\nLogistic Regression\n0.793694"
+  },
+  {
+    "objectID": "FullProjectReport.html#roc-curve-comparison",
+    "href": "FullProjectReport.html#roc-curve-comparison",
+    "title": "Introduction",
+    "section": "ROC Curve Comparison",
+    "text": "ROC Curve Comparison\n\nmodel_probs= {\n  \"Logistic Regression\": logistic_prob,\n  \"Random Forest\": forest_prob,\n  \"Hist Gradient Boosting\": hgb_prob\n}\n\nmodel_aucs= {\n  \"Logistic Regression\": logistic_auc,\n  \"Random Forest\": forest_auc,\n  \"Hist Gradient Boosting\": hgb_auc\n}\n\nfig, ax= plt.subplots(figsize=(8, 6))\n\nfor model_name, model_prob in model_probs.items():\n  fpr, tpr, thresholds= roc_curve(y_test, model_prob)\n  ax.plot(fpr, tpr, lw=2, label=f\"{model_name} (AUC= {model_aucs[model_name]:.4f})\")\n\nax.plot([0, 1], [0, 1], linestyle=\"--\", label=\"Random Classifier\")\nax.set_title(\"ROC Curve Comparison\")\nax.set_xlabel(\"False Positive Rate\")\nax.set_ylabel(\"True Positive Rate\")\nax.legend(loc=\"lower right\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nThe ROC curve comparison shows how well each model separates loans that become 90+ days past due from those that do not. Because the target class is imbalanced, the final model should not be selected by ROC-AUC alone. Precision, recall, threshold behavior, interpretability, and the intended use of the app should also be considered."
+  },
+  {
+    "objectID": "FullProjectReport.html#threshold-based-evaluation",
+    "href": "FullProjectReport.html#threshold-based-evaluation",
+    "title": "Introduction",
+    "section": "Threshold-Based Evaluation",
+    "text": "Threshold-Based Evaluation\nFor the app, the default classification threshold of 0.50 may not be the best choice. A lower threshold can increase recall for risky loans, but it may also increase false positives.\n\nthreshold_results= []\n\nfor threshold in [0.05, 0.10, 0.20, 0.30, 0.50]:\n  preds= (hgb_prob &gt;= threshold).astype(int)\n  threshold_results.append({\n    \"threshold\": threshold,\n    \"precision\": precision_score(y_test, preds, zero_division=0),\n    \"recall\": recall_score(y_test, preds, zero_division=0),\n    \"f1\": f1_score(y_test, preds, zero_division=0),\n    \"accuracy\": accuracy_score(y_test, preds)\n  })\n\nthreshold_results= pd.DataFrame(threshold_results)\nthreshold_results\n\n\n\n\n\n\n\n\nthreshold\nprecision\nrecall\nf1\naccuracy\n\n\n\n\n0\n0.05\n0.028959\n0.998865\n0.056285\n0.063376\n\n\n1\n0.10\n0.032502\n0.990889\n0.062940\n0.174960\n\n\n2\n0.20\n0.040201\n0.958670\n0.077166\n0.358825\n\n\n3\n0.30\n0.048228\n0.911052\n0.091607\n0.494758\n\n\n4\n0.50\n0.068390\n0.765632\n0.125564\n0.701807\n\n\n\n\n\n\n\n\nthreshold= 0.10\nhgb_pred_threshold= (hgb_prob &gt;= threshold).astype(int)\n\ncm= confusion_matrix(y_test, hgb_pred_threshold)\nprint(\"Threshold:\", threshold)\nprint(\"\\nConfusion matrix:\\n\", cm)\nprint(f\"Accuracy: {accuracy_score(y_test, hgb_pred_threshold):.3f}\")\nprint(f\"Precision: {precision_score(y_test, hgb_pred_threshold, zero_division=0):.3f}\")\nprint(f\"Recall:  {recall_score(y_test, hgb_pred_threshold, zero_division=0):.3f}\")\nprint(f\"F1-score: {f1_score(y_test, hgb_pred_threshold, zero_division=0):.3f}\")\n\nThreshold: 0.1\n\nConfusion matrix:\n [[ 551947 3091561]\n [    955  103859]]\nAccuracy: 0.175\nPrecision: 0.033\nRecall:  0.991\nF1-score: 0.063"
+  },
+  {
+    "objectID": "FullProjectReport.html#risk-tier-function",
+    "href": "FullProjectReport.html#risk-tier-function",
+    "title": "Introduction",
+    "section": "Risk Tier Function",
+    "text": "Risk Tier Function\nThe predicted probability is converted into a simple risk label for the app.\n\ndef assign_risk_tier(probability):\n  if probability &lt; 0.05:\n    return \"Low\"\n  elif probability &lt; 0.10:\n    return \"Moderate\"\n  else:\n    return \"High\""
+  },
+  {
+    "objectID": "FullProjectReport.html#demo-borrower-profiles",
+    "href": "FullProjectReport.html#demo-borrower-profiles",
+    "title": "Introduction",
+    "section": "Demo Borrower Profiles",
+    "text": "Demo Borrower Profiles\nThe demo profiles are built from a typical borrower row using median feature values from the training set. Then selected values such as credit score, debt-to-income, loan-to-value, loan amount, and interest rate are changed to create lower-risk, moderate-risk, and higher-risk examples.\n\ndemo_base= x_train.median(numeric_only=True).to_dict()\n\nlow_risk= demo_base.copy()\nlow_risk.update({\n  \"credit_score\": 780,\n  \"dti\": 28,\n  \"ltv\": 70,\n  \"upb\": 250000,\n  \"or_interest_rate\": 3.2\n})\n\nmoderate_risk= demo_base.copy()\nmoderate_risk.update({\n  \"credit_score\": 700,\n  \"dti\": 38,\n  \"ltv\": 82,\n  \"upb\": 360000,\n  \"or_interest_rate\": 4.0\n})\n\nhigh_risk= demo_base.copy()\nhigh_risk.update({\n  \"credit_score\": 620,\n  \"dti\": 50,\n  \"ltv\": 95,\n  \"upb\": 500000,\n  \"or_interest_rate\": 5.5\n})\n\ndemo_profiles= pd.DataFrame([low_risk, moderate_risk, high_risk])\ndemo_profiles= demo_profiles[x_train.columns]\n\n\nfinal_model= hgb\n\ndemo_profiles[\"predicted_probability\"]= final_model.predict_proba(demo_profiles[x_train.columns])[:, 1]\ndemo_profiles[\"risk_tier\"]= demo_profiles[\"predicted_probability\"].apply(assign_risk_tier)\n\ndemo_display= demo_profiles[[\"credit_score\", \"ltv\", \"dti\", \"or_interest_rate\", \"predicted_probability\", \"risk_tier\"]].copy()\ndemo_display[\"predicted_probability\"]= demo_display[\"predicted_probability\"].round(3)\n\ndemo_display\n\n\n\n\n\n\n\n\ncredit_score\nltv\ndti\nor_interest_rate\npredicted_probability\nrisk_tier\n\n\n\n\n0\n780\n70\n28\n3.2\n0.258\nHigh\n\n\n1\n700\n82\n38\n4.0\n0.760\nHigh\n\n\n2\n620\n95\n50\n5.5\n0.873\nHigh\n\n\n\n\n\n\n\nThese examples show how the model could support the future HomeLoanAdvisor app in translating model probabilities into a consumer friendly risk label, easy for a consumer to understand."
+  },
+  {
+    "objectID": "FullProjectReport.html#final-model-choice",
+    "href": "FullProjectReport.html#final-model-choice",
+    "title": "Introduction",
+    "section": "Final Model Choice",
+    "text": "Final Model Choice\nThe final models are comparable and used for their strengths. Histogram Gradient Boosting may provide great predictive performance, while Logistic Regression is easier to interpret. Because this project is intended to support a consumer-facing advisory tool, model outputs should be communicated carefully probably with disclaimers. A reasonable final approach is to use the best-performing model for probability estimation while keeping Logistic Regression as the interpretable baseline for explaining which loan characteristics are associated with higher or lower delinquency risk."
+  },
+  {
+    "objectID": "FullProjectReport.html#limitations",
+    "href": "FullProjectReport.html#limitations",
+    "title": "Introduction",
+    "section": "Limitations",
+    "text": "Limitations\nThe dataset is based on Freddie Mac historical mortgage data and may not represent all loan types or borrower populations. The data includes years effected by a global pandemic; COVID19. The target variable identifies whether a loan ever became 90+ days past due during the observed performance period, but future delinquency risk may shift further under other different economic conditions. The models should be interpreted as “educational” risk signal rather than financial advice or a lending decision tool."
+  },
+  {
+    "objectID": "FullProjectReport.html#conclusion",
+    "href": "FullProjectReport.html#conclusion",
+    "title": "Introduction",
+    "section": "Conclusion",
+    "text": "Conclusion\nThis project demonstrates that Freddie Mac origination and performance data can be transformed into a model-ready dataset for predicting mortgage delinquency. Our custom pipeline creates a larger and more defensible dataset than the initial MVP sample. The modeling workflow shows how predicted probabilities can be turned into consumer-friendly risk tiers.The final Home Loan Advisor workflow combines data engineering, classification modeling, evaluation, and app-ready risk interpretation."
+  },
+  {
+    "objectID": "app.html",
+    "href": "app.html",
+    "title": "Home Loan Advisor",
+    "section": "",
+    "text": "Please allow one moment while the Shiny App loads below",
+    "crumbs": [
+      "The App"
+    ]
+  },
+  {
+    "objectID": "app.html#section",
+    "href": "app.html#section",
+    "title": "Home Loan Advisor",
+    "section": "",
+    "text": "Please allow one moment while the Shiny App loads below",
+    "crumbs": [
+      "The App"
+    ]
+  },
+  {
+    "objectID": "mvp-presentation.html",
+    "href": "mvp-presentation.html",
+    "title": "Home Loan Advisor",
+    "section": "",
+    "text": "Please allow a moment to load slides from Figma:",
+    "crumbs": [
+      "MVP Slideshow"
     ]
   },
   {
@@ -70,53 +266,13 @@
     ]
   },
   {
-    "objectID": "results.html",
-    "href": "results.html",
+    "objectID": "mvp-presentation.html#version-1",
+    "href": "mvp-presentation.html#version-1",
     "title": "Home Loan Advisor",
-    "section": "",
-    "text": ". . . blank\n\n#code",
+    "section": "Version 1:",
+    "text": "Version 1:",
     "crumbs": [
-      "Our Results"
-    ]
-  },
-  {
-    "objectID": "results.html#section",
-    "href": "results.html#section",
-    "title": "Home Loan Advisor",
-    "section": "",
-    "text": ". . . blank\n\n#code",
-    "crumbs": [
-      "Our Results"
-    ]
-  },
-  {
-    "objectID": "models.html",
-    "href": "models.html",
-    "title": "Model 1- Logistic Regression",
-    "section": "",
-    "text": "import pandas as pd\nimport matplotlib.pyplot as plt\n\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.metrics import classification_report, roc_auc_score, roc_curve, RocCurveDisplay\n\nLogistic regression is the better choice for our binary target variable. After scaling the ROC outputs show how efficient the model is.\n\n#-- loading clean data--\nfinal_2018= pd.read_csv(\"data/final_2018.csv\", index_col=\"loan_id\")\n\n#--without target--\nx= final_2018.drop(columns=\"any_90_dpd\")\n\n#--target only--\ny= final_2018[\"any_90_dpd\"]\n\n#--test--\ntrainx, testx, trainy, testy= train_test_split(x, y, test_size=0.2,\nrandom_state=42, stratify=y)\n\n\n#--scaling--\nscaler= StandardScaler()\ntrainx_scaled= scaler.fit_transform(trainx)\ntestx_scaled= scaler.transform(testx)\n\n#--fitting--\nlr= LogisticRegression(class_weight=\"balanced\", max_iter=1000, random_state=42)\nlr.fit(trainx_scaled, trainy)\n\n#--results--\ny_pred= lr.predict(testx_scaled)\ny_prob= lr.predict_proba(testx_scaled)[:, 1]\n\nprint(classification_report(testy, y_pred))\nprint(f\"ROC-AUC: {roc_auc_score(testy, y_prob):.4f}\")\n\n              precision    recall  f1-score   support\n\n           0       0.97      0.67      0.79     55176\n           1       0.11      0.69      0.18      3137\n\n    accuracy                           0.67     58313\n   macro avg       0.54      0.68      0.49     58313\nweighted avg       0.93      0.67      0.76     58313\n\nROC-AUC: 0.7449\n\n\n\n\n\n\ncomparing_coefficients= pd.DataFrame({\"variable\": x.columns, \"coefficient\":lr.coef_[0]}).sort_values(\"coefficient\", key=abs, ascending=False)\n\nTo make this interpretable we’ll raise eulers number to each coefficient of each variable.\n\ne=2.71828\ncomparing_coefficients[\"interpret\"]= (e ** comparing_coefficients[\"coefficient\"]).round(2)-1\nprint(comparing_coefficients)\n\n              variable  coefficient  interpret\n0         credit_score    -0.655156      -0.48\n1                  dti     0.354459       0.43\n4        num_borrowers    -0.299810      -0.26\n20      state_def_rate     0.266088       0.30\n2                  ltv     0.205881       0.23\n3     or_interest_rate     0.075333       0.08\n14         occupancy_S    -0.072380      -0.07\n13         occupancy_P    -0.064928      -0.06\n12        prop_type_SF     0.057067       0.06\n6            mi_cancel     0.051370       0.05\n17         num_units_2     0.051149       0.05\n16           channel_R    -0.044603      -0.04\n18         num_units_3     0.043306       0.04\n10        prop_type_MH     0.041918       0.04\n15           channel_C     0.033347       0.03\n19         num_units_4     0.027118       0.03\n11        prop_type_PU     0.026581       0.03\n5     super_conforming     0.019510       0.02\n8   first_time_buyer_Y     0.014682       0.01\n7           metro_area     0.012525       0.01\n9         prop_type_CP    -0.012150      -0.01\n\n\n(create visualization of odds for slides***)\n\ncoef_viz= comparing_coefficients.sort_values(\"interpret\", ascending= False)\n\nplt.figure(figsize=(10, 8))\nplt.barh(coef_viz[\"variable\"], coef_viz[\"interpret\"])\nplt.title(\"by Feature (%)\")\nplt.suptitle(\"(← decrease)  Defaulting Odds  (increase →)\")\nplt.xlabel(\"(e^coefficient-1)\")\nplt.ylabel(\"\")\nplt.style.use('seaborn-v0_8')\nplt.show()\nplt.close()\n\n\n\n\n\n\n\n\nHigher credit scores reduce defaulting odds by 48%, higher debt to income ratio increases defaulting odds by 43%\n\n\n\nThe RUC curve below shows that our preliminary model (logistic regression model) has a decent predictive performance with an AUC value of 0.74. The model can correctly differentiate between default and not defaulted 74% of the time.\n\nfpr, tpr, thresholds= roc_curve(testy, y_prob)\nfig, ax= plt.subplots(figsize=(8, 6))\nax.plot(fpr, tpr, color=\"#1C1F23\", lw=2, label=f\"Logistic Regression (AUC= 0.7449)\")\nax.plot([0, 1], [0, 1], color=\"#828182\", linestyle=\"--\", label=\"Random Classifier\")\nax.set_xlabel(\"FPR\")\nax.set_ylabel(\"TPR\")\nax.set_title(\"ROC Curve- Logistic Regression\")\nax.legend(loc=\"upper left\")\nplt.style.use('seaborn-v0_8')\nplt.show()\nplt.close()",
-    "crumbs": [
-      "The Models"
-    ]
-  },
-  {
-    "objectID": "models.html#section",
-    "href": "models.html#section",
-    "title": "Model 1- Logistic Regression",
-    "section": "",
-    "text": "import pandas as pd\nimport matplotlib.pyplot as plt\n\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.metrics import classification_report, roc_auc_score, roc_curve, RocCurveDisplay\n\nLogistic regression is the better choice for our binary target variable. After scaling the ROC outputs show how efficient the model is.\n\n#-- loading clean data--\nfinal_2018= pd.read_csv(\"data/final_2018.csv\", index_col=\"loan_id\")\n\n#--without target--\nx= final_2018.drop(columns=\"any_90_dpd\")\n\n#--target only--\ny= final_2018[\"any_90_dpd\"]\n\n#--test--\ntrainx, testx, trainy, testy= train_test_split(x, y, test_size=0.2,\nrandom_state=42, stratify=y)\n\n\n#--scaling--\nscaler= StandardScaler()\ntrainx_scaled= scaler.fit_transform(trainx)\ntestx_scaled= scaler.transform(testx)\n\n#--fitting--\nlr= LogisticRegression(class_weight=\"balanced\", max_iter=1000, random_state=42)\nlr.fit(trainx_scaled, trainy)\n\n#--results--\ny_pred= lr.predict(testx_scaled)\ny_prob= lr.predict_proba(testx_scaled)[:, 1]\n\nprint(classification_report(testy, y_pred))\nprint(f\"ROC-AUC: {roc_auc_score(testy, y_prob):.4f}\")\n\n              precision    recall  f1-score   support\n\n           0       0.97      0.67      0.79     55176\n           1       0.11      0.69      0.18      3137\n\n    accuracy                           0.67     58313\n   macro avg       0.54      0.68      0.49     58313\nweighted avg       0.93      0.67      0.76     58313\n\nROC-AUC: 0.7449\n\n\n\n\n\n\ncomparing_coefficients= pd.DataFrame({\"variable\": x.columns, \"coefficient\":lr.coef_[0]}).sort_values(\"coefficient\", key=abs, ascending=False)\n\nTo make this interpretable we’ll raise eulers number to each coefficient of each variable.\n\ne=2.71828\ncomparing_coefficients[\"interpret\"]= (e ** comparing_coefficients[\"coefficient\"]).round(2)-1\nprint(comparing_coefficients)\n\n              variable  coefficient  interpret\n0         credit_score    -0.655156      -0.48\n1                  dti     0.354459       0.43\n4        num_borrowers    -0.299810      -0.26\n20      state_def_rate     0.266088       0.30\n2                  ltv     0.205881       0.23\n3     or_interest_rate     0.075333       0.08\n14         occupancy_S    -0.072380      -0.07\n13         occupancy_P    -0.064928      -0.06\n12        prop_type_SF     0.057067       0.06\n6            mi_cancel     0.051370       0.05\n17         num_units_2     0.051149       0.05\n16           channel_R    -0.044603      -0.04\n18         num_units_3     0.043306       0.04\n10        prop_type_MH     0.041918       0.04\n15           channel_C     0.033347       0.03\n19         num_units_4     0.027118       0.03\n11        prop_type_PU     0.026581       0.03\n5     super_conforming     0.019510       0.02\n8   first_time_buyer_Y     0.014682       0.01\n7           metro_area     0.012525       0.01\n9         prop_type_CP    -0.012150      -0.01\n\n\n(create visualization of odds for slides***)\n\ncoef_viz= comparing_coefficients.sort_values(\"interpret\", ascending= False)\n\nplt.figure(figsize=(10, 8))\nplt.barh(coef_viz[\"variable\"], coef_viz[\"interpret\"])\nplt.title(\"by Feature (%)\")\nplt.suptitle(\"(← decrease)  Defaulting Odds  (increase →)\")\nplt.xlabel(\"(e^coefficient-1)\")\nplt.ylabel(\"\")\nplt.style.use('seaborn-v0_8')\nplt.show()\nplt.close()\n\n\n\n\n\n\n\n\nHigher credit scores reduce defaulting odds by 48%, higher debt to income ratio increases defaulting odds by 43%\n\n\n\nThe RUC curve below shows that our preliminary model (logistic regression model) has a decent predictive performance with an AUC value of 0.74. The model can correctly differentiate between default and not defaulted 74% of the time.\n\nfpr, tpr, thresholds= roc_curve(testy, y_prob)\nfig, ax= plt.subplots(figsize=(8, 6))\nax.plot(fpr, tpr, color=\"#1C1F23\", lw=2, label=f\"Logistic Regression (AUC= 0.7449)\")\nax.plot([0, 1], [0, 1], color=\"#828182\", linestyle=\"--\", label=\"Random Classifier\")\nax.set_xlabel(\"FPR\")\nax.set_ylabel(\"TPR\")\nax.set_title(\"ROC Curve- Logistic Regression\")\nax.legend(loc=\"upper left\")\nplt.style.use('seaborn-v0_8')\nplt.show()\nplt.close()",
-    "crumbs": [
-      "The Models"
-    ]
-  },
-  {
-    "objectID": "index.html#section",
-    "href": "index.html#section",
-    "title": "Home Loan Advisor",
-    "section": "",
-    "text": "Many borrowers walk into a mortgage hoping for the best. The Home Loan Adviser is a machine learning tool, trained on real Freddie Mac mortgages, that informs the borrower where they stand before ever engaging with a lender.\n\nIts better to know your risk before your lenders do.\n\nThe interactive simulator produces a risk score in plain English, so users can examine their “what ifs?” before one of the largest decisions of their lives.",
-    "crumbs": [
-      "An Overview"
+      "MVP Slideshow"
     ]
   },
   {
@@ -220,43 +376,203 @@
     ]
   },
   {
-    "objectID": "mvp-presentation.html",
-    "href": "mvp-presentation.html",
-    "title": "Home Loan Advisor",
+    "objectID": "results.html",
+    "href": "results.html",
+    "title": "Model Performance Summary",
     "section": "",
-    "text": "Please allow a moment to load slides from Figma:",
+    "text": "model_summary\n\n\n\n\n\n\n\n\nmodel\nroc_auc\naccuracy\nprecision\nrecall\nf1\n\n\n\n\n0\nHist Gradient Boosting\n0.803878\n0.700764\n0.068105\n0.764888\n0.125074\n\n\n1\nRandom Forest\n0.799509\n0.705875\n0.068225\n0.751999\n0.125100\n\n\n2\nLogistic Regression\n0.793694\n0.706028\n0.067387\n0.740903\n0.123538\n\n\n\n\n\n\n\nThe model comparison table summarizes each classifier using ROC-AUC, accuracy, precision, recall, and F1-score. Since serious delinquency is an imbalanced outcome, accuracy alone is not enough to evaluate model performance. Recall, precision, F1-score, and ROC-AUC provide a more useful picture of how well the models identify loans that become 90 or more days past due.",
     "crumbs": [
-      "MVP Slideshow"
+      "Our Results"
     ]
   },
   {
-    "objectID": "mvp-presentation.html#version-1",
-    "href": "mvp-presentation.html#version-1",
-    "title": "Home Loan Advisor",
-    "section": "Version 1:",
-    "text": "Version 1:",
+    "objectID": "results.html#section",
+    "href": "results.html#section",
+    "title": "Model Performance Summary",
+    "section": "",
+    "text": "model_summary\n\n\n\n\n\n\n\n\nmodel\nroc_auc\naccuracy\nprecision\nrecall\nf1\n\n\n\n\n0\nHist Gradient Boosting\n0.803878\n0.700764\n0.068105\n0.764888\n0.125074\n\n\n1\nRandom Forest\n0.799509\n0.705875\n0.068225\n0.751999\n0.125100\n\n\n2\nLogistic Regression\n0.793694\n0.706028\n0.067387\n0.740903\n0.123538\n\n\n\n\n\n\n\nThe model comparison table summarizes each classifier using ROC-AUC, accuracy, precision, recall, and F1-score. Since serious delinquency is an imbalanced outcome, accuracy alone is not enough to evaluate model performance. Recall, precision, F1-score, and ROC-AUC provide a more useful picture of how well the models identify loans that become 90 or more days past due.",
     "crumbs": [
-      "MVP Slideshow"
+      "Our Results"
     ]
   },
   {
-    "objectID": "app.html",
-    "href": "app.html",
-    "title": "Home Loan Advisor",
+    "objectID": "models.html",
+    "href": "models.html",
+    "title": "Load Final Modeling Data",
     "section": "",
-    "text": "Please allow one moment while the Shiny App loads below",
+    "text": "#--package load--\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport os\n\nfrom sklearn import pipeline\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.inspection import PartialDependenceDisplay, permutation_importance\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.ensemble import RandomForestClassifier, HistGradientBoostingClassifier\nfrom sklearn.metrics import classification_report, roc_auc_score, roc_curve, confusion_matrix, precision_score, recall_score, f1_score, accuracy_score\n\n\n#--loading final data sets--\ntrain_final= pd.read_csv(\"~/projects/data/homeloanadvisor/final_model_data/train_final.csv\")\ntest_final= pd.read_csv(\"~/projects/data/homeloanadvisor/final_model_data/test_final.csv\")\n\nprint(\"Train shape:\", train_final.shape)\nprint(\"Test shape:\", test_final.shape)\n\nTrain shape: (8746063, 32)\nTest shape: (3748322, 32)",
     "crumbs": [
-      "The App"
+      "The Models"
     ]
   },
   {
-    "objectID": "app.html#section",
-    "href": "app.html#section",
-    "title": "Home Loan Advisor",
+    "objectID": "models.html#section",
+    "href": "models.html#section",
+    "title": "Load Final Modeling Data",
     "section": "",
-    "text": "Please allow one moment while the Shiny App loads below",
+    "text": "#--package load--\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport os\n\nfrom sklearn import pipeline\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.inspection import PartialDependenceDisplay, permutation_importance\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.ensemble import RandomForestClassifier, HistGradientBoostingClassifier\nfrom sklearn.metrics import classification_report, roc_auc_score, roc_curve, confusion_matrix, precision_score, recall_score, f1_score, accuracy_score\n\n\n#--loading final data sets--\ntrain_final= pd.read_csv(\"~/projects/data/homeloanadvisor/final_model_data/train_final.csv\")\ntest_final= pd.read_csv(\"~/projects/data/homeloanadvisor/final_model_data/test_final.csv\")\n\nprint(\"Train shape:\", train_final.shape)\nprint(\"Test shape:\", test_final.shape)\n\nTrain shape: (8746063, 32)\nTest shape: (3748322, 32)",
     "crumbs": [
-      "The App"
+      "The Models"
+    ]
+  },
+  {
+    "objectID": "models.html#target-variable-and-class-balance",
+    "href": "models.html#target-variable-and-class-balance",
+    "title": "Load Final Modeling Data",
+    "section": "Target Variable and Class Balance",
+    "text": "Target Variable and Class Balance\nThe target variable is any_90_dpd.\n\n1 represents a loan that became 90 or more days past due at least once during the observed performance period.\n0 represents a loan that didn’t become 90 or more days past due.\n\n\ntrain_counts= train_final[\"any_90_dpd\"].value_counts().sort_index()\ntest_counts= test_final[\"any_90_dpd\"].value_counts().sort_index()\n\nprint(\"Train target counts:\")\nprint(train_counts)\nprint(\"\\nTrain target rate:\")\nprint(train_final[\"any_90_dpd\"].value_counts(normalize=True).sort_index())\n\nprint(\"\\nTest target counts:\")\nprint(test_counts)\nprint(\"\\nTest target rate:\")\nprint(test_final[\"any_90_dpd\"].value_counts(normalize=True).sort_index())\n\nTrain target counts:\n0    8501498\n1     244565\nName: any_90_dpd, dtype: int64\n\nTrain target rate:\n0    0.972037\n1    0.027963\nName: any_90_dpd, dtype: float64\n\nTest target counts:\n0    3643508\n1     104814\nName: any_90_dpd, dtype: int64\n\nTest target rate:\n0    0.972037\n1    0.027963\nName: any_90_dpd, dtype: float64\n\n\n\ntrain_counts.plot(kind=\"bar\")\nplt.title(\"Training Target Class Counts\")\nplt.xlabel(\"any_90_dpd\")\nplt.ylabel(\"Count\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nOur target is very imbalanced because few loans become 90 or more days past due. Because of this imbalance, accuracy alone is not a useful evaluation metric. ROC-AUC, precision, recall, F1-score, and threshold behavior might prove more informative about model performance.",
+    "crumbs": [
+      "The Models"
+    ]
+  },
+  {
+    "objectID": "models.html#traintest-feature-setup",
+    "href": "models.html#traintest-feature-setup",
+    "title": "Load Final Modeling Data",
+    "section": "Train/Test Feature Setup",
+    "text": "Train/Test Feature Setup\nquarter_tag is kept in the final files for split checking, but it is removed from the matrix before modeling begins (the variable is also not numerical so it must be removed.)\n\n#--without target--\nx_train= train_final.drop(columns=[\"any_90_dpd\", \"quarter_tag\"])\nx_test= test_final.drop(columns=[\"any_90_dpd\", \"quarter_tag\"])\n\n#--target only--\ny_train= train_final[\"any_90_dpd\"]\ny_test= test_final[\"any_90_dpd\"]\n\nprint(\"x_train shape:\", x_train.shape)\nprint(\"x_test shape:\", x_test.shape)\n\nx_train shape: (8746063, 30)\nx_test shape: (3748322, 30)\n\n\nThe final modeling data is numeric and model-ready. Categorical variables were one-hot encoded during the preprocessing pipeline.",
+    "crumbs": [
+      "The Models"
+    ]
+  },
+  {
+    "objectID": "models.html#modeling-strategy",
+    "href": "models.html#modeling-strategy",
+    "title": "Load Final Modeling Data",
+    "section": "Modeling Strategy",
+    "text": "Modeling Strategy\nThis is a binary classification problem. The modeling strategy compares an interpretable baseline model (logistic regression) with more flexible classifier models.\nThe models used are:\n\nLogistic Regression\nRandom Forest Classifier\nHistogram Gradient Boosting Classifier\n\nLogistic regression is used as the baseline because it is interpretable and produces probabilities naturally. Random Forest and Histogram Gradient Boosting are included because they can capture nonlinear relationships and interactions among borrower, loan, and property characteristics. mi_cancel was dropped post script due to an error.\n\nx_train= x_train.drop(columns=[\"mi_cancel\"])\nx_test= x_test.drop(columns=[\"mi_cancel\"])",
+    "crumbs": [
+      "The Models"
+    ]
+  },
+  {
+    "objectID": "models.html#model-1-logistic-regression",
+    "href": "models.html#model-1-logistic-regression",
+    "title": "Load Final Modeling Data",
+    "section": "Model 1: Logistic Regression",
+    "text": "Model 1: Logistic Regression\n\n#-- logistic regression pipeline--\nlogistic= pipeline.Pipeline([\n (\"scaler\", StandardScaler()),\n (\"logistic\", LogisticRegression(class_weight=\"balanced\", max_iter=1000, random_state=212))\n])\n\n#-- fitting--\nlogistic.fit(x_train, y_train)\n\n#-- predictions--\nlogistic_pred= logistic.predict(x_test)\nlogistic_prob= logistic.predict_proba(x_test)[:, 1]\n\n#-- evaluation--\nlogistic_auc= roc_auc_score(y_test, logistic_prob)\n\nprint(classification_report(y_test, logistic_pred))\nprint(f\"Logistic Regression ROC-AUC: {logistic_auc:.4f}\")\n\n              precision    recall  f1-score   support\n\n           0       0.99      0.71      0.82   3643508\n           1       0.07      0.74      0.12    104814\n\n    accuracy                           0.71   3748322\n   macro avg       0.53      0.72      0.47   3748322\nweighted avg       0.96      0.71      0.80   3748322\n\nLogistic Regression ROC-AUC: 0.7937",
+    "crumbs": [
+      "The Models"
+    ]
+  },
+  {
+    "objectID": "models.html#logistic-regression-coefficients",
+    "href": "models.html#logistic-regression-coefficients",
+    "title": "Load Final Modeling Data",
+    "section": "Logistic Regression Coefficients",
+    "text": "Logistic Regression Coefficients\n\nlogistic_coef= logistic.named_steps[\"logistic\"].coef_[0]\n\ncomparing_coefficients= pd.DataFrame({\n \"variable\": x_train.columns,\n \"coefficient\": logistic_coef\n}).sort_values(\"coefficient\", key=abs, ascending=False)\n\ncomparing_coefficients[\"odds_ratio\"]= np.exp(comparing_coefficients[\"coefficient\"])\ncomparing_coefficients[\"percent_change_odds\"]= (comparing_coefficients[\"odds_ratio\"] - 1) * 100\n\ncomparing_coefficients.head(20)\n\n\n\n\n\n\n\n\nvariable\ncoefficient\nodds_ratio\npercent_change_odds\n\n\n\n\n0\ncredit_score\n-0.736024\n0.479015\n-52.098514\n\n\n7\nnum_borrowers\n-0.362578\n0.695880\n-30.412005\n\n\n2\ndti\n0.347490\n1.415511\n41.551073\n\n\n4\nltv\n0.256952\n1.292983\n29.298342\n\n\n9\nfirst_payment_year\n-0.188470\n0.828225\n-17.177450\n\n\n8\nprop_valuation\n0.188467\n1.207398\n20.739776\n\n\n16\nloan_purpose_P\n-0.187094\n0.829366\n-17.063443\n\n\n28\nstate_def_rate\n0.172039\n1.187724\n18.772404\n\n\n5\nor_interest_rate\n0.159973\n1.173479\n17.347894\n\n\n1\nmi_percent\n0.106310\n1.112167\n11.216670\n\n\n3\nupb\n0.089543\n1.093674\n9.367422\n\n\n15\nloan_purpose_N\n-0.089473\n0.914413\n-8.558719\n\n\n6\nor_loan_term\n0.083233\n1.086795\n8.679515\n\n\n24\nchannel_R\n-0.065398\n0.936695\n-6.330544\n\n\n10\nfirst_payment_month\n-0.050754\n0.950513\n-4.948708\n\n\n11\nmaturity_year\n0.042012\n1.042907\n4.290724\n\n\n20\nprop_type_SF\n0.038791\n1.039554\n3.955357\n\n\n22\noccupancy_S\n-0.030084\n0.970364\n-2.963625\n\n\n14\nfirst_time_buyer_Y\n0.029380\n1.029816\n2.981621\n\n\n18\nprop_type_MH\n0.028762\n1.029180\n2.917995\n\n\n\n\n\n\n\n\ncoef_viz= comparing_coefficients.head(20).sort_values(\"percent_change_odds\", ascending=True)\n\nplt.figure(figsize=(10, 8))\nplt.barh(coef_viz[\"variable\"], coef_viz[\"percent_change_odds\"])\nplt.title(\"Top Logistic Regression Coefficients\")\nplt.xlabel(\"Percent change in odds\")\nplt.ylabel(\"\")\nplt.tight_layout()\nplt.show()",
+    "crumbs": [
+      "The Models"
+    ]
+  },
+  {
+    "objectID": "models.html#model-2-random-forest-classifier",
+    "href": "models.html#model-2-random-forest-classifier",
+    "title": "Load Final Modeling Data",
+    "section": "Model 2: Random Forest Classifier",
+    "text": "Model 2: Random Forest Classifier\n\n#-- random forest classifier--\nforest= RandomForestClassifier(\n n_estimators=100,\n max_depth=12,\n min_samples_leaf=35,\n max_features=\"sqrt\",\n class_weight=\"balanced\",\n random_state=212,\n n_jobs=-1\n)\n\n#-- fitting--\nforest.fit(x_train, y_train)\n\n#-- predictions--\nforest_pred= forest.predict(x_test)\nforest_prob= forest.predict_proba(x_test)[:, 1]\n\n#-- evaluation--\nforest_auc= roc_auc_score(y_test, forest_prob)\n\nprint(classification_report(y_test, forest_pred))\nprint(f\"Random Forest ROC-AUC: {forest_auc:.4f}\")\n\n              precision    recall  f1-score   support\n\n           0       0.99      0.70      0.82   3643508\n           1       0.07      0.75      0.13    104814\n\n    accuracy                           0.71   3748322\n   macro avg       0.53      0.73      0.47   3748322\nweighted avg       0.96      0.71      0.80   3748322\n\nRandom Forest ROC-AUC: 0.7995\n\n\n\nforest_importance= pd.DataFrame({\n \"variable\": x_train.columns,\n \"importance\": forest.feature_importances_\n}).sort_values(\"importance\", ascending=False)\n\nforest_importance.head(20)\n\n\n\n\n\n\n\n\nvariable\nimportance\n\n\n\n\n0\ncredit_score\n0.369578\n\n\n5\nor_interest_rate\n0.150357\n\n\n2\ndti\n0.091469\n\n\n7\nnum_borrowers\n0.065783\n\n\n8\nprop_valuation\n0.064546\n\n\n9\nfirst_payment_year\n0.057647\n\n\n4\nltv\n0.045342\n\n\n28\nstate_def_rate\n0.025113\n\n\n11\nmaturity_year\n0.023727\n\n\n1\nmi_percent\n0.022689\n\n\n6\nor_loan_term\n0.015248\n\n\n15\nloan_purpose_N\n0.015078\n\n\n3\nupb\n0.013387\n\n\n16\nloan_purpose_P\n0.007171\n\n\n10\nfirst_payment_month\n0.006894\n\n\n12\nmaturity_month\n0.006263\n\n\n21\noccupancy_P\n0.005083\n\n\n14\nfirst_time_buyer_Y\n0.004314\n\n\n24\nchannel_R\n0.002321\n\n\n20\nprop_type_SF\n0.001696\n\n\n\n\n\n\n\n\ntop_forest= forest_importance.head(20).sort_values(\"importance\", ascending=True)\n\nplt.figure(figsize=(10, 8))\nplt.barh(top_forest[\"variable\"], top_forest[\"importance\"])\nplt.title(\"Random Forest Feature Importance\")\nplt.xlabel(\"Importance\")\nplt.ylabel(\"\")\nplt.tight_layout()\nplt.show()",
+    "crumbs": [
+      "The Models"
+    ]
+  },
+  {
+    "objectID": "models.html#model-3-histogram-gradient-boosting",
+    "href": "models.html#model-3-histogram-gradient-boosting",
+    "title": "Load Final Modeling Data",
+    "section": "Model 3: Histogram Gradient Boosting",
+    "text": "Model 3: Histogram Gradient Boosting\n\n#-- histogram gradient boosting classifier--\nhgb= HistGradientBoostingClassifier(max_iter=100, learning_rate=0.07, max_leaf_nodes=40, l2_regularization=0.1, random_state=212, class_weight=\"balanced\")\n\n#-- fitting--\nhgb.fit(x_train, y_train)\n\n#-- predictions--\nhgb_pred= hgb.predict(x_test)\nhgb_prob= hgb.predict_proba(x_test)[:, 1]\n\n#-- evaluation--\nhgb_auc= roc_auc_score(y_test, hgb_prob)\n\nprint(classification_report(y_test, hgb_pred))\nprint(f\"Hist Gradient Boosting ROC-AUC: {hgb_auc:.4f}\")\n\n#-- sample test data for hgb permutation importance--- a sample --\nhgb_sample= x_test.sample(n=50000, random_state=212)\ny_sample= y_test.loc[hgb_sample.index]\n\n#-- permutation importance for histogram gradient boosting--\nhgb_perm= permutation_importance(hgb, hgb_sample, y_sample, scoring=\"roc_auc\", n_repeats=3, random_state=212, n_jobs=1)\n\n#-- feature importance table--\nhgb_importance= pd.DataFrame({\n  \"variable\": hgb_sample.columns,\n  \"importance\": hgb_perm.importances_mean,\n  \"importance_std\": hgb_perm.importances_std\n}).sort_values(\"importance\", ascending=False)\n\nhgb_importance.head(20)\n\n              precision    recall  f1-score   support\n\n           0       0.99      0.70      0.82   3643508\n           1       0.07      0.76      0.13    104814\n\n    accuracy                           0.70   3748322\n   macro avg       0.53      0.73      0.47   3748322\nweighted avg       0.96      0.70      0.80   3748322\n\nHist Gradient Boosting ROC-AUC: 0.8039\n\n\n\n\n\n\n\n\n\nvariable\nimportance\nimportance_std\n\n\n\n\n0\ncredit_score\n0.117292\n0.001071\n\n\n7\nnum_borrowers\n0.020821\n0.000120\n\n\n4\nltv\n0.020700\n0.001443\n\n\n2\ndti\n0.019740\n0.001552\n\n\n5\nor_interest_rate\n0.014161\n0.000845\n\n\n9\nfirst_payment_year\n0.010201\n0.001048\n\n\n28\nstate_def_rate\n0.006335\n0.000570\n\n\n8\nprop_valuation\n0.004094\n0.000767\n\n\n16\nloan_purpose_P\n0.003492\n0.000475\n\n\n6\nor_loan_term\n0.002917\n0.000481\n\n\n10\nfirst_payment_month\n0.001502\n0.000129\n\n\n24\nchannel_R\n0.000793\n0.000148\n\n\n11\nmaturity_year\n0.000502\n0.000074\n\n\n20\nprop_type_SF\n0.000500\n0.000063\n\n\n3\nupb\n0.000454\n0.000259\n\n\n21\noccupancy_P\n0.000386\n0.000169\n\n\n1\nmi_percent\n0.000347\n0.000115\n\n\n15\nloan_purpose_N\n0.000258\n0.000215\n\n\n12\nmaturity_month\n0.000232\n0.000061\n\n\n25\nnum_units_2\n0.000108\n0.000052\n\n\n\n\n\n\n\n\n#-- for separate results page --\n\nstd_table= pd.DataFrame({\n  \"model\": [\"Logistic Regression\", \"Random Forest\", \"Hist Gradient Boosting\"],\n  \"roc_auc\": [logistic_auc, forest_auc, hgb_auc],\n  \"accuracy\": [\n    accuracy_score(y_test, logistic_pred),\n    accuracy_score(y_test, forest_pred),\n    accuracy_score(y_test, hgb_pred)],\n  \"precision\": [\n    precision_score(y_test, logistic_pred, zero_division=0),\n    precision_score(y_test, forest_pred, zero_division=0),\n    precision_score(y_test, hgb_pred, zero_division=0)],\n  \"recall\": [\n    recall_score(y_test, logistic_pred, zero_division=0),\n    recall_score(y_test, forest_pred, zero_division=0),\n    recall_score(y_test, hgb_pred, zero_division=0)],\n  \"f1\": [\n    f1_score(y_test, logistic_pred, zero_division=0),\n    f1_score(y_test, forest_pred, zero_division=0),\n    f1_score(y_test, hgb_pred, zero_division=0)]}).sort_values(\"roc_auc\", ascending=False)\n\nos.makedirs(\"results_outputs\", exist_ok=True)\n\ncomparing_coefficients.to_csv(\"results_outputs/comparing_coefficients.csv\", index=False)\nforest_importance.to_csv(\"results_outputs/forest_importance.csv\", index=False)\nhgb_importance.to_csv(\"results_outputs/hgb_importance.csv\", index=False)\nstd_table.to_csv(\"results_outputs/std_table.csv\", index=False)\n\nprint(classification_report(y_test, hgb_pred))\nprint(f\"Hist Gradient Boosting ROC-AUC: {hgb_auc:.4f}\")\n\n              precision    recall  f1-score   support\n\n           0       0.99      0.70      0.82   3643508\n           1       0.07      0.76      0.13    104814\n\n    accuracy                           0.70   3748322\n   macro avg       0.53      0.73      0.47   3748322\nweighted avg       0.96      0.70      0.80   3748322\n\nHist Gradient Boosting ROC-AUC: 0.8039",
+    "crumbs": [
+      "The Models"
+    ]
+  },
+  {
+    "objectID": "models.html#partial-dependence-plot",
+    "href": "models.html#partial-dependence-plot",
+    "title": "Load Final Modeling Data",
+    "section": "Partial Dependence Plot",
+    "text": "Partial Dependence Plot\n\n #--PDP--\nfig, ax = plt.subplots(figsize=(11, 7))\nPartialDependenceDisplay.from_estimator(hgb, x_test, features=[ \"credit_score\", \"dti\", \"ltv\", \"or_interest_rate\", \"state_def_rate\"], kind=\"average\", grid_resolution=50, ax=ax)\nplt.suptitle(\"PDP of Main Variables on Predicted Delinquency Risk\", y=1.05,fontsize=14)\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nThe partial dependence plots help interepret the HGB model which doesn’t outpur coefficients like our other two. The plots show delinquency risk",
+    "crumbs": [
+      "The Models"
+    ]
+  },
+  {
+    "objectID": "models.html#model-comparison",
+    "href": "models.html#model-comparison",
+    "title": "Load Final Modeling Data",
+    "section": "Model Comparison",
+    "text": "Model Comparison\n\nmodel_compare= pd.DataFrame({\n  \"model\": [\"Logistic Regression\", \"Random Forest\", \"Hist Gradient Boosting\"],\n  \"roc_auc\": [logistic_auc, forest_auc, hgb_auc]\n}).sort_values(\"roc_auc\", ascending=False)\n\nmodel_compare\n\n\n\n\n\n\n\n\nmodel\nroc_auc\n\n\n\n\n2\nHist Gradient Boosting\n0.803878\n\n\n1\nRandom Forest\n0.799509\n\n\n0\nLogistic Regression\n0.793694",
+    "crumbs": [
+      "The Models"
+    ]
+  },
+  {
+    "objectID": "models.html#roc-curve-comparison",
+    "href": "models.html#roc-curve-comparison",
+    "title": "Load Final Modeling Data",
+    "section": "ROC Curve Comparison",
+    "text": "ROC Curve Comparison\n\nmodel_probs= {\n  \"Logistic Regression\": logistic_prob,\n  \"Random Forest\": forest_prob,\n  \"Hist Gradient Boosting\": hgb_prob\n}\n\nmodel_aucs= {\n  \"Logistic Regression\": logistic_auc,\n  \"Random Forest\": forest_auc,\n  \"Hist Gradient Boosting\": hgb_auc\n}\n\nfig, ax= plt.subplots(figsize=(8, 6))\n\nfor model_name, model_prob in model_probs.items():\n  fpr, tpr, thresholds= roc_curve(y_test, model_prob)\n  ax.plot(fpr, tpr, lw=2, label=f\"{model_name} (AUC= {model_aucs[model_name]:.4f})\")\n\nax.plot([0, 1], [0, 1], linestyle=\"--\", label=\"Random Classifier\")\nax.set_title(\"ROC Curve Comparison\")\nax.set_xlabel(\"False Positive Rate\")\nax.set_ylabel(\"True Positive Rate\")\nax.legend(loc=\"lower right\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nThe ROC curve comparison shows how well each model separates loans that become 90+ days past due from those that do not. Because the target class is imbalanced, the final model should not be selected by ROC-AUC alone. Precision, recall, threshold behavior, interpretability, and the intended use of the app should also be considered.",
+    "crumbs": [
+      "The Models"
+    ]
+  },
+  {
+    "objectID": "models.html#threshold-based-evaluation",
+    "href": "models.html#threshold-based-evaluation",
+    "title": "Load Final Modeling Data",
+    "section": "Threshold-Based Evaluation",
+    "text": "Threshold-Based Evaluation\nFor a risk-advisory application, the default classification threshold of 0.50 may not be ideal. A lower threshold can increase recall for risky loans, but it may also increase false positives.\n\nthreshold_results= []\n\nfor threshold in [0.05, 0.10, 0.20, 0.30, 0.50]:\n  preds= (hgb_prob &gt;= threshold).astype(int)\n  threshold_results.append({\n    \"threshold\": threshold,\n    \"precision\": precision_score(y_test, preds, zero_division=0),\n    \"recall\": recall_score(y_test, preds, zero_division=0),\n    \"f1\": f1_score(y_test, preds, zero_division=0),\n    \"accuracy\": accuracy_score(y_test, preds)\n  })\n\nthreshold_results= pd.DataFrame(threshold_results)\nthreshold_results\n\n\n\n\n\n\n\n\nthreshold\nprecision\nrecall\nf1\naccuracy\n\n\n\n\n0\n0.05\n0.028678\n0.999265\n0.055756\n0.053571\n\n\n1\n0.10\n0.032173\n0.991471\n0.062324\n0.165760\n\n\n2\n0.20\n0.039964\n0.959233\n0.076731\n0.354503\n\n\n3\n0.30\n0.047910\n0.911682\n0.091036\n0.490914\n\n\n4\n0.50\n0.068105\n0.764888\n0.125074\n0.700764\n\n\n\n\n\n\n\n\nthreshold= 0.10\nhgb_pred_threshold= (hgb_prob &gt;= threshold).astype(int)\n\ncm= confusion_matrix(y_test, hgb_pred_threshold)\nprint(\"Threshold:\", threshold)\nprint(\"\\nConfusion matrix:\\n\", cm)\nprint(f\"Accuracy: {accuracy_score(y_test, hgb_pred_threshold):.3f}\")\nprint(f\"Precision: {precision_score(y_test, hgb_pred_threshold, zero_division=0):.3f}\")\nprint(f\"Recall:  {recall_score(y_test, hgb_pred_threshold, zero_division=0):.3f}\")\nprint(f\"F1-score: {f1_score(y_test, hgb_pred_threshold, zero_division=0):.3f}\")\n\nThreshold: 0.1\n\nConfusion matrix:\n [[ 517401 3126107]\n [    894  103920]]\nAccuracy: 0.166\nPrecision: 0.032\nRecall:  0.991\nF1-score: 0.062",
+    "crumbs": [
+      "The Models"
+    ]
+  },
+  {
+    "objectID": "models.html#risk-tier-function",
+    "href": "models.html#risk-tier-function",
+    "title": "Load Final Modeling Data",
+    "section": "Risk Tier Function",
+    "text": "Risk Tier Function\nFor the prototype app, the predicted probability is converted into a simple risk label. These thresholds are prototype rules and should be refined later using calibration, business context, and user-centered design.\n\ndef assign_risk_tier(probability):\n  if probability &lt; 0.05:\n    return \"Low\"\n  elif probability &lt; 0.10:\n    return \"Moderate\"\n  else:\n    return \"High\"",
+    "crumbs": [
+      "The Models"
+    ]
+  },
+  {
+    "objectID": "models.html#demo-borrower-profiles",
+    "href": "models.html#demo-borrower-profiles",
+    "title": "Load Final Modeling Data",
+    "section": "Demo Borrower Profiles",
+    "text": "Demo Borrower Profiles\nThe demo profiles are built from a typical borrower row using median feature values from the training set. Then selected values such as credit score, DTI, LTV, loan amount, and interest rate are changed to create lower-risk, moderate-risk, and higher-risk examples.\n\ndemo_base= x_train.median(numeric_only=True).to_dict()\n\nlow_risk= demo_base.copy()\nlow_risk.update({\n  \"credit_score\": 780,\n  \"dti\": 28,\n  \"ltv\": 70,\n  \"upb\": 250000,\n  \"or_interest_rate\": 3.2\n})\n\nmoderate_risk= demo_base.copy()\nmoderate_risk.update({\n  \"credit_score\": 700,\n  \"dti\": 38,\n  \"ltv\": 82,\n  \"upb\": 360000,\n  \"or_interest_rate\": 4.0\n})\n\nhigh_risk= demo_base.copy()\nhigh_risk.update({\n  \"credit_score\": 620,\n  \"dti\": 50,\n  \"ltv\": 95,\n  \"upb\": 500000,\n  \"or_interest_rate\": 5.5\n})\n\ndemo_profiles= pd.DataFrame([low_risk, moderate_risk, high_risk])\ndemo_profiles= demo_profiles[x_train.columns]\n\n\nfinal_model= hgb\n\ndemo_profiles[\"predicted_probability\"]= final_model.predict_proba(demo_profiles[x_train.columns])[:, 1]\ndemo_profiles[\"risk_tier\"]= demo_profiles[\"predicted_probability\"].apply(assign_risk_tier)\n\ndemo_display= demo_profiles[[\"credit_score\", \"ltv\", \"dti\", \"or_interest_rate\", \"predicted_probability\", \"risk_tier\"]].copy()\ndemo_display[\"predicted_probability\"]= demo_display[\"predicted_probability\"].round(3)\n\ndemo_display\n\n\n\n\n\n\n\n\ncredit_score\nltv\ndti\nor_interest_rate\npredicted_probability\nrisk_tier\n\n\n\n\n0\n780\n70\n28\n3.2\n0.248\nHigh\n\n\n1\n700\n82\n38\n4.0\n0.743\nHigh\n\n\n2\n620\n95\n50\n5.5\n0.876\nHigh\n\n\n\n\n\n\n\nThese examples show how the model could support the future Home Loan Advisor app by translating model probabilities into a simplified risk label.",
+    "crumbs": [
+      "The Models"
+    ]
+  },
+  {
+    "objectID": "models.html#final-model-choice",
+    "href": "models.html#final-model-choice",
+    "title": "Load Final Modeling Data",
+    "section": "Final Model Choice",
+    "text": "Final Model Choice\nOur final model should be selected using a combination of predictive performance and practical use. Histogram Gradient Boosting may provide stronger predictive performance, while Logistic Regression is easier to interpret. Because this project is intended to support a consumer-facing advisory tool, model outputs should be communicated carefully and should not imply certainty. A reasonable final approach is to use the best-performing model for probability estimation while keeping Logistic Regression as the interpretable baseline for explaining which loan characteristics are associated with higher or lower delinquency risk.",
+    "crumbs": [
+      "The Models"
+    ]
+  },
+  {
+    "objectID": "models.html#limitations",
+    "href": "models.html#limitations",
+    "title": "Load Final Modeling Data",
+    "section": "Limitations",
+    "text": "Limitations\nThe dataset is based on Freddie Mac historical mortgage data and may not represent all loan types or borrower populations. The target variable identifies whether a loan ever became 90+ days past due during the observed performance period, but future delinquency risk may shift under different economic conditions. The risk tiers are prototype thresholds and have not been optimized for a real business or consumer decision. The model should be interpreted as an educational risk signal rather than financial advice or a lending decision tool.",
+    "crumbs": [
+      "The Models"
+    ]
+  },
+  {
+    "objectID": "models.html#conclusion",
+    "href": "models.html#conclusion",
+    "title": "Load Final Modeling Data",
+    "section": "Conclusion",
+    "text": "Conclusion\nOur project demonstrates that Freddie Mac origination and performance data can be transformed into a model-ready dataset for predicting serious mortgage delinquency. The custom pipeline creates a larger and more defensible dataset than the initial MVP sample, while the modeling workflow shows how predicted probabilities can be turned into consumer-friendly risk tiers. The final Home Loan Advisor workflow combines data engineering, classification modeling, evaluation, and app-ready risk interpretation.",
+    "crumbs": [
+      "The Models"
     ]
   }
 ]
