@@ -271,8 +271,7 @@ zero_bal= (
     .groupby("loan_id")["zero_balance_code"]
     .last()
     .reset_index()
-    .rename(columns={"zero_balance_code": "termin_code"})
-)
+    .rename(columns={"zero_balance_code": "termin_code"}))
 
 #-- joining--
 target= target.merge(zero_bal, on="loan_id", how="left")
@@ -308,8 +307,7 @@ train_, test_= train_test_split(
     final_2018,
     test_size=0.3,
     random_state=212,
-    stratify=final_2018["any_90_dpd"]
-)
+    stratify=final_2018["any_90_dpd"])
 
 train_= train_.copy()
 test_= test_.copy()
@@ -319,8 +317,7 @@ state_def_rate= (
     train_
     .groupby("prop_state")["any_90_dpd"]
     .mean()
-    .reset_index(name="state_def_rate")
-)
+    .reset_index(name="state_def_rate"))
 
 #-- fallback rate for unseen states--
 global_def_rate= train_["any_90_dpd"].mean()
