@@ -20,6 +20,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
+import joblib
 
 from sklearn import pipeline
 from sklearn.preprocessing import StandardScaler
@@ -337,7 +338,7 @@ The ROC curve comparison shows how well each model separates loans that become 9
 
 ## Threshold-Based Evaluation
 
-For a risk-advisory application, the default classification threshold of `0.50` may not be ideal. A lower threshold can increase recall for risky loans, but it may also increase false positives.
+For a risk-advisory application, the default classification threshold of `0.50` may not be ideal. We'll check lower thresholds as they might increase recall for risky loans, but it may also increase false positives. Its worth evaluating.
 
 ```{python}
 threshold_results= []
@@ -356,17 +357,99 @@ threshold_results= pd.DataFrame(threshold_results)
 threshold_results
 ```
 
-```{python}
-threshold= 0.10
-hgb_pred_threshold= (hgb_prob >= threshold).astype(int)
+## Confusion Matrix
 
-cm= confusion_matrix(y_test, hgb_pred_threshold)
+```{python}
+
+#--conf matrix--
+
+confusion_rows = []
+threshold = 0.10
+
+#--hgb--
+hgb_pred_threshold = (hgb_prob >= threshold).astype(int)
+cm = confusion_matrix(y_test, hgb_pred_threshold)
+
+tn, fp, fn, tp = cm.ravel()
+
+confusion_rows.append({
+    "model": "Hist Gradient Boosting",
+    "threshold": threshold,
+    "tn": tn,
+    "fp": fp,
+    "fn": fn,
+    "tp": tp
+})
+
+print("Model: Hist Gradient Boosting")
 print("Threshold:", threshold)
 print("\nConfusion matrix:\n", cm)
 print(f"Accuracy: {accuracy_score(y_test, hgb_pred_threshold):.3f}")
 print(f"Precision: {precision_score(y_test, hgb_pred_threshold, zero_division=0):.3f}")
 print(f"Recall:  {recall_score(y_test, hgb_pred_threshold, zero_division=0):.3f}")
 print(f"F1-score: {f1_score(y_test, hgb_pred_threshold, zero_division=0):.3f}")
+
+```
+
+We'll run the same for the other models and save as a feature on the app.
+
+```{python}
+
+#-- logistic--
+lr_pred_threshold= (logistic_prob >= threshold).astype(int)
+cm= confusion_matrix(y_test, lr_pred_threshold)
+
+tn, fp, fn, tp = cm.ravel()
+
+confusion_rows.append({
+    "model": "Logistic Regression",
+    "threshold": threshold,
+    "tn": tn,
+    "fp": fp,
+    "fn": fn,
+    "tp": tp
+})
+
+print("Threshold:", threshold)
+print("\nConfusion matrix:\n", cm)
+print(f"Accuracy: {accuracy_score(y_test, lr_pred_threshold):.3f}")
+print(f"Precision: {precision_score(y_test, lr_pred_threshold, zero_division=0):.3f}")
+print(f"Recall:  {recall_score(y_test, lr_pred_threshold, zero_division=0):.3f}")
+print(f"F1-score: {f1_score(y_test, lr_pred_threshold, zero_division=0):.3f}")
+
+
+#-- forest--
+forest_pred_threshold= (forest_prob >= threshold).astype(int)
+cm= confusion_matrix(y_test, forest_pred_threshold)
+
+tn, fp, fn, tp = cm.ravel()
+
+confusion_rows.append({
+    "model": "Random Forest",
+    "threshold": threshold,
+    "tn": tn,
+    "fp": fp,
+    "fn": fn,
+    "tp": tp
+})
+
+print("Threshold:", threshold)
+print("\nConfusion matrix:\n", cm)
+print(f"Accuracy: {accuracy_score(y_test, forest_pred_threshold):.3f}")
+print(f"Precision: {precision_score(y_test, forest_pred_threshold, zero_division=0):.3f}")
+print(f"Recall:  {recall_score(y_test, forest_pred_threshold, zero_division=0):.3f}")
+print(f"F1-score: {f1_score(y_test, forest_pred_threshold, zero_division=0):.3f}")
+
+confusion_table = pd.DataFrame(confusion_rows)
+
+os.makedirs("results_outputs", exist_ok=True)
+
+confusion_table.to_csv(
+    "results_outputs/confusion_matrix.csv",
+    index=False
+)
+
+confusion_table
 ```
 
 ## Risk Tier Function
@@ -438,8 +521,9 @@ These examples show how the model could support the future Home Loan Advisor app
 We'll save the trained models for later use:
 
 ```{python}
-import joblib
-import os
+#| echo: true
+#| eval: false
+#| 
 
 os.makedirs("model_assets", exist_ok=True)
 
@@ -450,7 +534,7 @@ joblib.dump(hgb, "model_assets/hgb_model.joblib")
 
 ## Final Model Choice
 
-Our final model should be selected using a combination of predictive performance and practical use. Histogram Gradient Boosting may provide stronger predictive performance, while Logistic Regression is easier to interpret. Because this project is intended to support a consumer-facing advisory tool, model outputs should be communicated carefully and should not imply certainty. A reasonable final approach is to use the best-performing model for probability estimation while keeping Logistic Regression as the interpretable baseline for explaining which loan characteristics are associated with higher or lower delinquency risk.
+Our final model should be selected using a combination of predictive performance and practical use. Its justified to default to Logistic Regresion but Histogram Gradient Boosting may provide a slightly stronger performance, while Logistic Regression is easier to interpret. Because this project is intended to support a consumer-facing advisory tool, model outputs should be communicated carefully and should not imply certainty. A reasonable final approach is to use the best-performing model for probability estimation while keeping Logistic Regression as the interpretable baseline for explaining which loan characteristics are associated with higher or lower delinquency risk.
 
 ## Limitations
 

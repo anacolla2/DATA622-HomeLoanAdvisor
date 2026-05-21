@@ -1,0 +1,6 @@
+model,threshold,tn,fp,fn,tp
+Hist Gradient Boosting,0.1,517401,3126107,894,103920
+Logistic Regression,0.1,414842,3228666,787,104027
+Random Forest,0.1,296271,3347237,376,104438
+Logistic Regression,0.1,414842,3228666,787,104027
+Random Forest,0.1,296271,3347237,376,104438
