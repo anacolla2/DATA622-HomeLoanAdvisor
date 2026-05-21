@@ -435,6 +435,19 @@ demo_display
 
 These examples show how the model could support the future Home Loan Advisor app by translating model probabilities into a simplified risk label.
 
+We'll save the trained models for later use:
+
+```{python}
+import joblib
+import os
+
+os.makedirs("model_assets", exist_ok=True)
+
+joblib.dump(logistic, "model_assets/logistic_model.joblib")
+joblib.dump(forest, "model_assets/random_forest_model.joblib")
+joblib.dump(hgb, "model_assets/hgb_model.joblib")
+```
+
 ## Final Model Choice
 
 Our final model should be selected using a combination of predictive performance and practical use. Histogram Gradient Boosting may provide stronger predictive performance, while Logistic Regression is easier to interpret. Because this project is intended to support a consumer-facing advisory tool, model outputs should be communicated carefully and should not imply certainty. A reasonable final approach is to use the best-performing model for probability estimation while keeping Logistic Regression as the interpretable baseline for explaining which loan characteristics are associated with higher or lower delinquency risk.

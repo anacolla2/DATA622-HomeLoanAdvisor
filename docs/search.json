@@ -232,7 +232,7 @@
     "section": "",
     "text": "Please allow one moment while the Shiny App loads below",
     "crumbs": [
-      "The App"
+      "The App Version 1"
     ]
   },
   {
@@ -242,7 +242,7 @@
     "section": "",
     "text": "Please allow one moment while the Shiny App loads below",
     "crumbs": [
-      "The App"
+      "The App Version 1"
     ]
   },
   {
@@ -540,7 +540,7 @@
     "href": "models.html#demo-borrower-profiles",
     "title": "Load Final Modeling Data",
     "section": "Demo Borrower Profiles",
-    "text": "Demo Borrower Profiles\nThe demo profiles are built from a typical borrower row using median feature values from the training set. Then selected values such as credit score, DTI, LTV, loan amount, and interest rate are changed to create lower-risk, moderate-risk, and higher-risk examples.\n\ndemo_base= x_train.median(numeric_only=True).to_dict()\n\nlow_risk= demo_base.copy()\nlow_risk.update({\n  \"credit_score\": 780,\n  \"dti\": 28,\n  \"ltv\": 70,\n  \"upb\": 250000,\n  \"or_interest_rate\": 3.2\n})\n\nmoderate_risk= demo_base.copy()\nmoderate_risk.update({\n  \"credit_score\": 700,\n  \"dti\": 38,\n  \"ltv\": 82,\n  \"upb\": 360000,\n  \"or_interest_rate\": 4.0\n})\n\nhigh_risk= demo_base.copy()\nhigh_risk.update({\n  \"credit_score\": 620,\n  \"dti\": 50,\n  \"ltv\": 95,\n  \"upb\": 500000,\n  \"or_interest_rate\": 5.5\n})\n\ndemo_profiles= pd.DataFrame([low_risk, moderate_risk, high_risk])\ndemo_profiles= demo_profiles[x_train.columns]\n\n\nfinal_model= hgb\n\ndemo_profiles[\"predicted_probability\"]= final_model.predict_proba(demo_profiles[x_train.columns])[:, 1]\ndemo_profiles[\"risk_tier\"]= demo_profiles[\"predicted_probability\"].apply(assign_risk_tier)\n\ndemo_display= demo_profiles[[\"credit_score\", \"ltv\", \"dti\", \"or_interest_rate\", \"predicted_probability\", \"risk_tier\"]].copy()\ndemo_display[\"predicted_probability\"]= demo_display[\"predicted_probability\"].round(3)\n\ndemo_display\n\n\n\n\n\n\n\n\ncredit_score\nltv\ndti\nor_interest_rate\npredicted_probability\nrisk_tier\n\n\n\n\n0\n780\n70\n28\n3.2\n0.248\nHigh\n\n\n1\n700\n82\n38\n4.0\n0.743\nHigh\n\n\n2\n620\n95\n50\n5.5\n0.876\nHigh\n\n\n\n\n\n\n\nThese examples show how the model could support the future Home Loan Advisor app by translating model probabilities into a simplified risk label.",
+    "text": "Demo Borrower Profiles\nThe demo profiles are built from a typical borrower row using median feature values from the training set. Then selected values such as credit score, DTI, LTV, loan amount, and interest rate are changed to create lower-risk, moderate-risk, and higher-risk examples.\n\ndemo_base= x_train.median(numeric_only=True).to_dict()\n\nlow_risk= demo_base.copy()\nlow_risk.update({\n  \"credit_score\": 780,\n  \"dti\": 28,\n  \"ltv\": 70,\n  \"upb\": 250000,\n  \"or_interest_rate\": 3.2\n})\n\nmoderate_risk= demo_base.copy()\nmoderate_risk.update({\n  \"credit_score\": 700,\n  \"dti\": 38,\n  \"ltv\": 82,\n  \"upb\": 360000,\n  \"or_interest_rate\": 4.0\n})\n\nhigh_risk= demo_base.copy()\nhigh_risk.update({\n  \"credit_score\": 620,\n  \"dti\": 50,\n  \"ltv\": 95,\n  \"upb\": 500000,\n  \"or_interest_rate\": 5.5\n})\n\ndemo_profiles= pd.DataFrame([low_risk, moderate_risk, high_risk])\ndemo_profiles= demo_profiles[x_train.columns]\n\n\nfinal_model= hgb\n\ndemo_profiles[\"predicted_probability\"]= final_model.predict_proba(demo_profiles[x_train.columns])[:, 1]\ndemo_profiles[\"risk_tier\"]= demo_profiles[\"predicted_probability\"].apply(assign_risk_tier)\n\ndemo_display= demo_profiles[[\"credit_score\", \"ltv\", \"dti\", \"or_interest_rate\", \"predicted_probability\", \"risk_tier\"]].copy()\ndemo_display[\"predicted_probability\"]= demo_display[\"predicted_probability\"].round(3)\n\ndemo_display\n\n\n\n\n\n\n\n\ncredit_score\nltv\ndti\nor_interest_rate\npredicted_probability\nrisk_tier\n\n\n\n\n0\n780\n70\n28\n3.2\n0.248\nHigh\n\n\n1\n700\n82\n38\n4.0\n0.743\nHigh\n\n\n2\n620\n95\n50\n5.5\n0.876\nHigh\n\n\n\n\n\n\n\nThese examples show how the model could support the future Home Loan Advisor app by translating model probabilities into a simplified risk label.\nWe’ll save the trained models for later use:\n\nimport joblib\nimport os\n\nos.makedirs(\"model_assets\", exist_ok=True)\n\njoblib.dump(logistic, \"model_assets/logistic_model.joblib\")\njoblib.dump(forest, \"model_assets/random_forest_model.joblib\")\njoblib.dump(hgb, \"model_assets/hgb_model.joblib\")\n\n['model_assets/hgb_model.joblib']",
     "crumbs": [
       "The Models"
     ]

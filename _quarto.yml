@@ -20,8 +20,10 @@ website:
         text: Our Results
       - href: mvp-presentation.qmd
         text: MVP Slideshow
+      - href: https://homeloanadvisor.acmedia.uk/
+        text: The App Version 2
       - href: app.qmd
-        text: The App
+        text: The App Version 1
       - href: about.qmd
         text: About the Group
 

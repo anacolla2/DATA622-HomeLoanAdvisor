@@ -7,11 +7,11 @@ jupyter: python3
 
 ## ![](images/TheApp-banner.png){.section}
 
---------------------------------------------------------------------------------
+------------------------------------------------------------------------
 
 \linebreak
 
-> Please allow one moment while the Shiny App loads below
+> Please allow one moment while the First Version of our Shiny App loads below
 
 <iframe src="https://aribamandavia12.shinyapps.io/Downloads/" width="100%" height="800px" style="border:none;">
 
