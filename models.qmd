@@ -106,8 +106,8 @@ The models used are:
 Logistic regression is used as the baseline because it is interpretable and produces probabilities naturally. Random Forest and Histogram Gradient Boosting are included because they can capture nonlinear relationships and interactions among borrower, loan, and property characteristics. `mi_cancel` was dropped post script due to an error.
 
 ```{python}
-x_train= x_train.drop(columns=["mi_cancel"])
-x_test= x_test.drop(columns=["mi_cancel"])
+x_train= x_train.drop(columns=["mi_cancel"], errors="ignore")
+x_test= x_test.drop(columns=["mi_cancel"], errors="ignore")
 ```
 
 ## Model 1: Logistic Regression
@@ -284,7 +284,7 @@ print(f"Hist Gradient Boosting ROC-AUC: {hgb_auc:.4f}")
 
 ```{python}
  #--PDP--
-fig, ax = plt.subplots(figsize=(11, 7))
+fig, ax= plt.subplots(figsize=(11, 7))
 PartialDependenceDisplay.from_estimator(hgb, x_test, features=[ "credit_score", "dti", "ltv", "or_interest_rate", "state_def_rate"], kind="average", grid_resolution=50, ax=ax)
 plt.suptitle("PDP of Main Variables on Predicted Delinquency Risk", y=1.05,fontsize=14)
 plt.tight_layout()
@@ -363,14 +363,14 @@ threshold_results
 
 #--conf matrix--
 
-confusion_rows = []
-threshold = 0.10
+confusion_rows= []
+threshold= 0.10
 
 #--hgb--
-hgb_pred_threshold = (hgb_prob >= threshold).astype(int)
-cm = confusion_matrix(y_test, hgb_pred_threshold)
+hgb_pred_threshold= (hgb_prob >= threshold).astype(int)
+cm= confusion_matrix(y_test, hgb_pred_threshold)
 
-tn, fp, fn, tp = cm.ravel()
+tn, fp, fn, tp= cm.ravel()
 
 confusion_rows.append({
     "model": "Hist Gradient Boosting",
@@ -399,7 +399,7 @@ We'll run the same for the other models and save as a feature on the app.
 lr_pred_threshold= (logistic_prob >= threshold).astype(int)
 cm= confusion_matrix(y_test, lr_pred_threshold)
 
-tn, fp, fn, tp = cm.ravel()
+tn, fp, fn, tp= cm.ravel()
 
 confusion_rows.append({
     "model": "Logistic Regression",
@@ -422,7 +422,7 @@ print(f"F1-score: {f1_score(y_test, lr_pred_threshold, zero_division=0):.3f}")
 forest_pred_threshold= (forest_prob >= threshold).astype(int)
 cm= confusion_matrix(y_test, forest_pred_threshold)
 
-tn, fp, fn, tp = cm.ravel()
+tn, fp, fn, tp= cm.ravel()
 
 confusion_rows.append({
     "model": "Random Forest",
@@ -440,7 +440,7 @@ print(f"Precision: {precision_score(y_test, forest_pred_threshold, zero_division
 print(f"Recall:  {recall_score(y_test, forest_pred_threshold, zero_division=0):.3f}")
 print(f"F1-score: {f1_score(y_test, forest_pred_threshold, zero_division=0):.3f}")
 
-confusion_table = pd.DataFrame(confusion_rows)
+confusion_table= pd.DataFrame(confusion_rows)
 
 os.makedirs("results_outputs", exist_ok=True)
 
@@ -524,12 +524,23 @@ We'll save the trained models for later use:
 #| echo: true
 #| eval: false
 #| 
-
 os.makedirs("model_assets", exist_ok=True)
 
+#--saving trained models--
 joblib.dump(logistic, "model_assets/logistic_model.joblib")
 joblib.dump(forest, "model_assets/random_forest_model.joblib")
-joblib.dump(hgb, "model_assets/hgb_model.joblib")
+
+#-- HGB--
+joblib.dump(hgb, "model_assets/hgb_pipeline.joblib")
+
+#--exact features fix--
+joblib.dump(list(x_train.columns), "model_assets/hgb_feature_columns.joblib")
+
+print("Saved model assets:")
+print("model_assets/logistic_model.joblib")
+print("model_assets/random_forest_model.joblib")
+print("model_assets/hgb_pipeline.joblib")
+print("model_assets/hgb_feature_columns.joblib")
 ```
 
 ## Final Model Choice

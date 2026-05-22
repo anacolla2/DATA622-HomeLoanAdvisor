@@ -1,0 +1,289 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"\"\n",
+        "format: html\n",
+        "toc: true\n",
+        "toc-depth: 6\n",
+        "editor: visual\n",
+        "jupyter: python3\n",
+        "---\n",
+        "\n",
+        "## ![](images/TheResults-banner.png)"
+      ],
+      "id": "9a223dc2"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: false\n",
+        "#| eval: true\n",
+        "\n",
+        "import numpy as np\n",
+        "import pandas as pd\n",
+        "import matplotlib.pyplot as plt\n",
+        "\n",
+        "#-- load saved model results --\n",
+        "comparing_coefficients= pd.read_csv(\"results_outputs/comparing_coefficients.csv\")\n",
+        "forest_importance= pd.read_csv(\"results_outputs/forest_importance.csv\")\n",
+        "hgb_importance= pd.read_csv(\"results_outputs/hgb_importance.csv\")\n",
+        "model_summary= pd.read_csv(\"results_outputs/std_table.csv\")"
+      ],
+      "id": "3364582d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Model Performance Summary"
+      ],
+      "id": "1c9c672d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "model_summary"
+      ],
+      "id": "8711d1e2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "The model comparison table summarizes each classifier using ROC-AUC, accuracy, precision, recall, and F1-score. Since serious delinquency is an imbalanced outcome, accuracy alone is not enough to evaluate model performance. Recall, precision, F1-score, and ROC-AUC provide a more useful picture of how well the models identify loans that become 90 or more days past due.\n",
+        "\n",
+        "# Logistic Regression Results Summary"
+      ],
+      "id": "d1680585"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#-- readable coefficient interpretation --\n",
+        "logistic_top= comparing_coefficients.head(15).copy()\n",
+        "\n",
+        "logistic_top[\"direction\"]= np.where(\n",
+        "  logistic_top[\"percent_change_odds\"] > 0,\n",
+        "  \"raises\",\n",
+        "  \"decreases\"\n",
+        ")\n",
+        "\n",
+        "logistic_top[\"abs_percent_change\"]= logistic_top[\"percent_change_odds\"].abs()\n",
+        "\n",
+        "logistic_top[\"interpretation\"]= (\n",
+        "  logistic_top[\"variable\"] + \" \" +\n",
+        "  logistic_top[\"direction\"] +\n",
+        "  \" delinquency odds by \" +\n",
+        "  logistic_top[\"abs_percent_change\"].round(1).astype(str) +\n",
+        "  \"%.\"\n",
+        ")\n",
+        "\n",
+        "for sentence in logistic_top[\"interpretation\"]:\n",
+        "  print(sentence)"
+      ],
+      "id": "469eb3e3",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#-- coefficient display table --\n",
+        "logistic_display= logistic_top[\n",
+        "  [\"variable\", \"coefficient\", \"odds_ratio\", \"percent_change_odds\"]\n",
+        "].copy()\n",
+        "\n",
+        "logistic_display"
+      ],
+      "id": "2eb5172a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#-- logistic coefficient plot --\n",
+        "coef_viz= comparing_coefficients.head(15).sort_values(\"percent_change_odds\", ascending=True)\n",
+        "\n",
+        "plt.figure(figsize=(10, 7))\n",
+        "plt.barh(coef_viz[\"variable\"], coef_viz[\"percent_change_odds\"])\n",
+        "plt.title(\"Top Logistic Regression Coefficients\")\n",
+        "plt.xlabel(\"Percent Change in Odds\")\n",
+        "plt.ylabel(\"\")\n",
+        "plt.tight_layout()\n",
+        "plt.show()"
+      ],
+      "id": "a8fa79fc",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Logistic regression was used as the interpretable baseline model. The coefficients show the direction and strength of association between each feature and the odds of serious delinquency. Positive values increase the predicted odds of 90+ day delinquency, while negative values decrease the predicted odds.\n",
+        "\n",
+        "Because the logistic regression model used standardized numeric variables, the coefficient interpretations are based on changes in the standardized feature scale. This makes the coefficients useful for comparing relative influence across variables, but they should not be read as raw one-unit changes in the original data.\n",
+        "\n",
+        "# Random Forest Results Summary"
+      ],
+      "id": "538a9ae9"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#-- top random forest features --\n",
+        "top_forest_importance= forest_importance.head(10).copy()\n",
+        "\n",
+        "top_forest_importance[\"interpretation\"]= top_forest_importance.apply(\n",
+        "  lambda row: (\n",
+        "    f\"{row['variable']} was one of the most important variables in the random forest model, \"\n",
+        "    f\"with an importance score of {row['importance']:.4f}.\"\n",
+        "  ),\n",
+        "  axis=1\n",
+        ")\n",
+        "\n",
+        "for sentence in top_forest_importance[\"interpretation\"].head(5):\n",
+        "  print(sentence)"
+      ],
+      "id": "c446fafb",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "top_forest_importance"
+      ],
+      "id": "4ce3b93e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#-- random forest importance plot --\n",
+        "forest_viz= forest_importance.head(15).sort_values(\"importance\", ascending=True)\n",
+        "\n",
+        "plt.figure(figsize=(10, 7))\n",
+        "plt.barh(forest_viz[\"variable\"], forest_viz[\"importance\"])\n",
+        "plt.title(\"Random Forest Feature Importance\")\n",
+        "plt.xlabel(\"Importance\")\n",
+        "plt.ylabel(\"\")\n",
+        "plt.tight_layout()\n",
+        "plt.show()"
+      ],
+      "id": "5b3d593d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "The random forest model ranks variables by how much they contribute to splitting and prediction across the trees. Unlike logistic regression, these values do not show whether a variable raises or lowers delinquency risk. They only show which variables were most useful to the model.\n",
+        "\n",
+        "# Histogram Gradient Boosting Results Summary"
+      ],
+      "id": "a321ac01"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#-- top histogram gradient boosting features --\n",
+        "top_hgb_importance= hgb_importance.head(10).copy()\n",
+        "\n",
+        "top_hgb_importance[\"interpretation\"]= top_hgb_importance.apply(\n",
+        "  lambda row: (\n",
+        "    f\"{row['variable']} was one of the most important variables in the histogram gradient boosting model, \"\n",
+        "    f\"with a permutation importance score of {row['importance']:.4f}.\"\n",
+        "  ),\n",
+        "  axis=1\n",
+        ")\n",
+        "\n",
+        "for sentence in top_hgb_importance[\"interpretation\"].head(5):\n",
+        "  print(sentence)"
+      ],
+      "id": "d8301a0e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "top_hgb_importance"
+      ],
+      "id": "f54c9952",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#-- hgb permutation importance plot --\n",
+        "hgb_viz= hgb_importance.head(15).sort_values(\"importance\", ascending=True)\n",
+        "\n",
+        "plt.figure(figsize=(10, 7))\n",
+        "plt.barh(hgb_viz[\"variable\"], hgb_viz[\"importance\"])\n",
+        "plt.title(\"Histogram Gradient Boosting Permutation Importance\")\n",
+        "plt.xlabel(\"Permutation Importance\")\n",
+        "plt.ylabel(\"\")\n",
+        "plt.tight_layout()\n",
+        "plt.show()"
+      ],
+      "id": "180ae6f3",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Histogram Gradient Boosting was included because it can capture nonlinear patterns and interactions between borrower, loan, and property characteristics. Its importance values come from permutation importance, which measures how much model performance drops when a variable is shuffled. A larger drop means the model relied more heavily on that variable.\n",
+        "\n",
+        "# Model Comparison Interpretation"
+      ],
+      "id": "b8c72da2"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#-- sorted model comparison --\n",
+        "model_summary.sort_values(\"roc_auc\", ascending=False)"
+      ],
+      "id": "4f0aca37",
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "/opt/conda/envs/rstudiopy/share/jupyter/kernels/python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

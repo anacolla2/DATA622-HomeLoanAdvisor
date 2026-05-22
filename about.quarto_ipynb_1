@@ -1,0 +1,58 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"\"\n",
+        "format: html\n",
+        "editor: visual\n",
+        "jupyter: python3\n",
+        "---\n",
+        "\n",
+        "![](images/AboutOurGroup-banner.png){fig-align=\"center\"}\n",
+        "\n",
+        "--------------------------------------------------------------------------------\n",
+        "\n",
+        ":::: {.card .p-4}\n",
+        "::: {.card .card-body}\n",
+        "\\\n",
+        "![](images/Githubcard- Ariba.png){width=\"600\"}\n",
+        ":::\n",
+        "::::\n",
+        "\n",
+        ":::: {.card .p-4}\n",
+        "::: {.card .card-body}\n",
+        "\n",
+        "![](images/Github Profile Card.png){width=\"600\"}\n",
+        ":::\n",
+        "::::\n",
+        "\n",
+        ":::: {.card .p-4}\n",
+        "\n",
+        "::: {.card .card-body}\n",
+        "![![](images/Githubcard_Sabina.png)](){fig-align=\"center\"}\n",
+        ":::\n",
+        "::::\n",
+        "\n",
+        ":::: {.card .p-4}\n",
+        "::: {.card .card-body}\n",
+        "![](images/Githubcard_Jayden.png){fig-align=\"center\"}\n",
+        ":::\n",
+        "::::"
+      ],
+      "id": "e5b4fc89"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "/opt/conda/envs/rstudiopy/share/jupyter/kernels/python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

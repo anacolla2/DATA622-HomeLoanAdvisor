@@ -1,0 +1,39 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"\"\n",
+        "format: html\n",
+        "editor: visual\n",
+        "jupyter: python3\n",
+        "---\n",
+        "\n",
+        "## ![](images/TheApp-banner.png){.section}\n",
+        "\n",
+        "------------------------------------------------------------------------\n",
+        "\n",
+        "\\linebreak\n",
+        "\n",
+        "> Please allow one moment while the First Version of our Shiny App loads below\n",
+        "\n",
+        "<iframe src=\"https://aribamandavia12.shinyapps.io/Downloads/\" width=\"100%\" height=\"800px\" style=\"border:none;\">\n",
+        "\n",
+        "</iframe>"
+      ],
+      "id": "e2c601df"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "/opt/conda/envs/rstudiopy/share/jupyter/kernels/python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

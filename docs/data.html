@@ -184,8 +184,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="https://homeloanadvisor.acmedia.uk/" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Final App (Version 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./app.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">The App</span></a>
+ <span class="menu-text">The App Version 1</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -266,7 +272,7 @@ unzip "historical_data_*.zip"</code></pre>
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Origination Data</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Performance Data</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div id="210513ca" class="cell" data-execution_count="2">
+<div id="55baef2f" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
@@ -481,7 +487,7 @@ unzip "historical_data_*.zip"</code></pre>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div id="ed6b37e5" class="cell" data-execution_count="3">
+<div id="75f4edc6" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
@@ -704,7 +710,7 @@ unzip "historical_data_*.zip"</code></pre>
 <p>The next section follows the step by step evaluation, cleaning, and encoding of the Freddie Mac Data. The example shown uses 2018 Q1. The same logic was then placed into an automated script so the other quarters and years could be standardized into the same final format.</p>
 <section id="data-load-clean--origination" class="level2">
 <h2 class="anchored" data-anchor-id="data-load-clean--origination">Data Load &amp; Clean- Origination</h2>
-<div id="2c7af33b" class="cell" data-cache="true" data-execution_count="4">
+<div id="b0157c77" class="cell" data-cache="true" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- data load-- including NA values mentioned in dictionary</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>or_2018<span class="op">=</span> pd.read_csv(<span class="st">"~/projects/data/homeloanadvisor/historical_data_2018Q1.txt"</span>, sep<span class="op">=</span><span class="st">"|"</span>, header<span class="op">=</span><span class="va">None</span>, na_values<span class="op">=</span>[<span class="st">""</span>, <span class="st">"9999"</span>, <span class="st">"999"</span>, <span class="st">"9"</span>, <span class="st">"   "</span>, <span class="st">"X"</span>], low_memory<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -721,7 +727,7 @@ unzip "historical_data_*.zip"</code></pre>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>or_2018[<span class="st">"maturity_month"</span>]<span class="op">=</span> maturity.dt.month</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>For our application we will drop several variables. The HARP program helped borrowers refinance their home when their home’s value was less than their mortgage.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The data points that identify with HARP will also be dropped because the data points represent a borrower that would not typically meet Freddie Mac’s regular qualifications. Zip code will be dropped because its high cardinality is not worth keeping. We can use <code>msa</code> later for a metro or non-metro flag. <code>cltv</code> will be dropped because it is highly similar to <code>ltv</code>. We’ll keep <code>loan_id</code> as a join key.</p>
-<div id="cc3c0c39" class="cell" data-cache="true" data-execution_count="5">
+<div id="42237788" class="cell" data-cache="true" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- removing HARP--</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>or_2018<span class="op">=</span> or_2018[or_2018[<span class="st">"harp_indicator"</span>].isna()].copy()</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -733,13 +739,13 @@ unzip "historical_data_*.zip"</code></pre>
 <section id="encoding" class="level3">
 <h3 class="anchored" data-anchor-id="encoding">Encoding</h3>
 <p>The data dictionary provided by Freddie Mac specifies what the missing values are. The <code>msa</code> variable, for example, has missing values that may mean a property is not in a metropolitan area, or may actually mean “unknown”. Zip code data appears in every entry, so imputation is possible using overlap. But a simpler and more reliable approach is to code a new variable using the <code>msa</code> column as binary: metro area or not.</p>
-<div id="c5faea5d" class="cell" data-execution_count="6">
+<div id="f5f1b787" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- msa to metro area binary--</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>or_2018[<span class="st">"metro_area"</span>]<span class="op">=</span> or_2018[<span class="st">"msa"</span>].notna().astype(<span class="bu">int</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>or_2018<span class="op">=</span> or_2018.drop(columns<span class="op">=</span><span class="st">"msa"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>There are columns with low cardinality that cannot be coded as binary but are better served by one-hot encoding.</p>
-<div id="f73740d6" class="cell" data-execution_count="7">
+<div id="feab8733" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- categorical encoding--</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>categorical_cols<span class="op">=</span> [<span class="st">"first_time_buyer"</span>, <span class="st">"loan_purpose"</span>, <span class="st">"prop_type"</span>, <span class="st">"occupancy"</span>, <span class="st">"channel"</span>, <span class="st">"num_units"</span>]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -747,7 +753,7 @@ unzip "historical_data_*.zip"</code></pre>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>or_2018<span class="op">=</span> pd.get_dummies(or_2018, columns<span class="op">=</span>categorical_cols, drop_first<span class="op">=</span><span class="va">True</span>, dtype<span class="op">=</span><span class="bu">int</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Numerical variables such as <code>ltv</code> and <code>credit_score</code> are skewed and will be imputed using the median. The median imputation will be completed during the data build so every quarter of the Freddie Mac datasets is complete. The modeling report will not need to repeat this imputation for the same standardized files.</p>
-<div id="d047bd3c" class="cell" data-execution_count="8">
+<div id="e95a7dc4" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- numeric imputation--</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>numeric_impute<span class="op">=</span> [<span class="st">"credit_score"</span>, <span class="st">"dti"</span>, <span class="st">"ltv"</span>, <span class="st">"mi_percent"</span>, <span class="st">"prop_valuation"</span>, <span class="st">"upb"</span>, <span class="st">"or_interest_rate"</span>]</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -757,7 +763,7 @@ unzip "historical_data_*.zip"</code></pre>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    or_2018[col]<span class="op">=</span> or_2018[col].fillna(or_2018[col].median())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Variables that are not useful for the app or standardized modeling file will be dropped. These variables are removed consistently so every quarterly dataset follows the same final set up.</p>
-<div id="df5c4946" class="cell" data-execution_count="9">
+<div id="5c7b8471" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- dropping low-value variables--</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>or_2018[[<span class="st">"ppm"</span>, <span class="st">"super_conforming"</span>, <span class="st">"interest_only"</span>]].nunique()</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>or_2018<span class="op">=</span> or_2018.drop(columns<span class="op">=</span>[<span class="st">"ppm"</span>, <span class="st">"super_conforming"</span>, <span class="st">"interest_only"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -771,7 +777,7 @@ unzip "historical_data_*.zip"</code></pre>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#-- shape check--</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>or_2018.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="9b9a1ada" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="10">
+<div id="ca25e8ab" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="10">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <pre><code>(291562, 33)</code></pre>
@@ -784,17 +790,17 @@ unzip "historical_data_*.zip"</code></pre>
 </section>
 <section id="data-load-clean--performance" class="level2">
 <h2 class="anchored" data-anchor-id="data-load-clean--performance">Data Load &amp; Clean- Performance</h2>
-<div id="3d5091b2" class="cell" data-execution_count="11">
+<div id="21fd6dc4" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- performance load--</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>perf_2018<span class="op">=</span> pd.read_csv(<span class="st">"~/projects/data/homeloanadvisor/historical_data_time_2018Q1.txt"</span>, sep<span class="op">=</span><span class="st">"|"</span>, header<span class="op">=</span><span class="va">None</span>, na_values<span class="op">=</span>[<span class="st">""</span>, <span class="st">"9999"</span>, <span class="st">"999"</span>, <span class="st">"   "</span>, <span class="st">"X"</span>], low_memory<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>For the performance file, <code>"9"</code> was not included in the missing value list because <code>zero_balance_code = 9</code> is a real category. It represents REO disposition.</p>
-<div id="4e438453" class="cell" data-execution_count="12">
+<div id="b3c98322" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- performance column names--</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>perf_2018.columns<span class="op">=</span> [<span class="st">"loan_id"</span>, <span class="st">"report_period"</span>, <span class="st">"current_upb"</span>, <span class="st">"delinquency_status"</span>, <span class="st">"loan_age"</span>, <span class="st">"remaining_months"</span>, <span class="st">"defect_settlement_date"</span>, <span class="st">"modification_flag"</span>, <span class="st">"zero_balance_code"</span>, <span class="st">"zero_balance_effective_date"</span>, <span class="st">"current_rate"</span>, <span class="st">"current_deferred_upb"</span>, <span class="st">"ddlpi"</span>, <span class="st">"mi_recoveries"</span>, <span class="st">"net_sales_proceeds"</span>, <span class="st">"non_mi_recoveries"</span>, <span class="st">"expenses"</span>, <span class="st">"legal_costs"</span>, <span class="st">"maintenance_costs"</span>, <span class="st">"taxes_insurance"</span>, <span class="st">"misc_expenses"</span>, <span class="st">"actual_loss"</span>, <span class="st">"modification_cost"</span>, <span class="st">"step_modification_flag"</span>, <span class="st">"deferred_payment_plan"</span>, <span class="st">"eltv"</span>, <span class="st">"zero_balance_removal_upb"</span>, <span class="st">"delinquent_accrued_interest"</span>, <span class="st">"disaster_delinquency"</span>, <span class="st">"borrower_assistance"</span>, <span class="st">"current_month_mod_cost"</span>, <span class="st">"interest_bearing_upb"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Only the fields needed to construct the target variable and summarize the loan termination outcome were kept. The performance file contains repeated monthly rows for each loan, so it cannot be merged directly to the origination file without creating duplicate loan rows.</p>
-<div id="84204db0" class="cell" data-execution_count="13">
+<div id="dd53e867" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- keeping needed performance variables--</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>keeping<span class="op">=</span> [<span class="st">"loan_id"</span>, <span class="st">"report_period"</span>, <span class="st">"delinquency_status"</span>, <span class="st">"zero_balance_code"</span>]</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -803,7 +809,7 @@ unzip "historical_data_*.zip"</code></pre>
 <section id="encoding-1" class="level3">
 <h3 class="anchored" data-anchor-id="encoding-1">Encoding</h3>
 <p>The categorical variables will be mapped for interpretation. <code>zero_balance_code</code> is mapped to a readable label, while <code>delinquency_status</code> is converted into the target variable.</p>
-<div id="35ccab9e" class="cell" data-execution_count="14">
+<div id="6538192b" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- delinquency map--</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>delinquency_map<span class="op">=</span> {</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"0"</span>: <span class="st">"Current or &lt;30 Days Delinquent"</span>,</span>
@@ -830,7 +836,7 @@ unzip "historical_data_*.zip"</code></pre>
 <span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>perf_2018[<span class="st">"zero_balance_label"</span>]<span class="op">=</span> perf_2018[<span class="st">"zero_balance_code"</span>].<span class="bu">map</span>(zero_balance_map).fillna(<span class="st">"Not Applicable"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We’ll use the industry standard “90+ days delinquent”. The goal is to estimate the probability that a loan becomes 90 or more days delinquent at any point during the observed performance history.</p>
-<div id="5ed7cc63" class="cell" data-execution_count="15">
+<div id="84122871" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- target: any 90+ days delinquent--</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>dq_num<span class="op">=</span> pd.to_numeric(perf_2018[<span class="st">"delinquency_status"</span>].replace({<span class="st">"RA"</span>: <span class="dv">99</span>}), errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -844,7 +850,7 @@ unzip "historical_data_*.zip"</code></pre>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The category <code>RA</code> is defined in the dictionary as REO acquisition. These loans will be treated as 90+ days delinquent because REO acquisition reflects a severe default or foreclosure outcome. <code>zero_balance_code</code> will be useful because it tells why a loan was closed or terminated, but it will not be used as a predictor variable in the final model. It is retained for app interpretation and audit use.</p>
-<div id="9bbc208e" class="cell" data-execution_count="16">
+<div id="3eca4469" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- last observed termination code per loan--</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>zero_bal<span class="op">=</span> (</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    perf_2018[perf_2018[<span class="st">"zero_balance_code"</span>].notna()]</span>
@@ -869,7 +875,7 @@ unzip "historical_data_*.zip"</code></pre>
 </section>
 <section id="final-check" class="level3">
 <h3 class="anchored" data-anchor-id="final-check">Final Check</h3>
-<div id="934fb07b" class="cell" data-execution_count="17">
+<div id="b1a1a52f" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- final check--</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>final_2018[<span class="st">"loan_id"</span>].duplicated().<span class="bu">sum</span>()</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>final_2018.shape</span>
@@ -886,7 +892,7 @@ Name: any_90_dpd, dtype: float64</code></pre>
 <section id="state-default-rate" class="level2">
 <h2 class="anchored" data-anchor-id="state-default-rate">State Default Rate</h2>
 <p>A borrower’s property state could help output an estimate of mortgage risk because delinquency rates can vary by location. However, if state-level default rates are calculated using the entire dataset, the feature would be considered data leakage. To avoid this, state default rates were calculated using the train split, then mapped onto the train and test data.</p>
-<div id="77f040c6" class="cell" data-execution_count="18">
+<div id="92d3a317" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- train test split--</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>train_, test_<span class="op">=</span> train_test_split(</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    final_2018,</span>
@@ -914,7 +920,7 @@ Name: any_90_dpd, dtype: float64</code></pre>
 <span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>test_[<span class="st">"state_def_rate"</span>]<span class="op">=</span> test_[<span class="st">"prop_state"</span>].<span class="bu">map</span>(state_lookup).fillna(global_def_rate)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The <code>prop_state</code> variable is removed after the state-level default rate is created. <code>loan_id</code> is removed because its an identifier, and <code>termin_code</code> is removed because it represents information observed after origination.</p>
-<div id="308af87d" class="cell" data-execution_count="19">
+<div id="452ba463" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- removing identifier and audit columns--</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>train_<span class="op">=</span> train_.drop(columns<span class="op">=</span>[<span class="st">"loan_id"</span>, <span class="st">"prop_state"</span>, <span class="st">"termin_code"</span>], errors<span class="op">=</span><span class="st">"ignore"</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>test_<span class="op">=</span> test_.drop(columns<span class="op">=</span>[<span class="st">"loan_id"</span>, <span class="st">"prop_state"</span>, <span class="st">"termin_code"</span>], errors<span class="op">=</span><span class="st">"ignore"</span>)</span>
@@ -935,7 +941,7 @@ Name: any_90_dpd, dtype: float64</code></pre>
 cd ~/rstudio/DATA622-HomeLoanAdvisor
 python build_model_data.py</code></pre>
 <p>The automated script creates the final files used in the modeling section.</p>
-<div id="5d5270e6" class="cell" data-execution_count="20">
+<div id="7c518ba4" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- final model files--</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">"~/projects/data/homeloanadvisor/final_model_data/model_input_all_quarters.csv"</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">"~/projects/data/homeloanadvisor/final_model_data/train_final.csv"</span></span>
@@ -943,7 +949,7 @@ python build_model_data.py</code></pre>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">"~/projects/data/homeloanadvisor/final_model_data/state_def_rate.csv"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The script stratifies the final train/test split by quarter and <code>any_90_dpd</code>. This helps preserve both the time-period representation and the rare 90+ delinquency class in both datasets.</p>
-<div id="12b6a08f" class="cell" data-execution_count="21">
+<div id="b0846edd" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- final train/test check--</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>train_final<span class="op">=</span> pd.read_csv(<span class="st">"~/projects/data/homeloanadvisor/final_model_data/train_final.csv"</span>)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>test_final<span class="op">=</span> pd.read_csv(<span class="st">"~/projects/data/homeloanadvisor/final_model_data/test_final.csv"</span>)</span>
@@ -955,7 +961,7 @@ python build_model_data.py</code></pre>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>The Freddie Mac origination and monthly performance files were cleaned and standardized into a loan-level dataset suitable for later modeling. The origination file provided borrower, loan, and property characteristics, while the performance file was used to create the outcome variable, <code>any_90_dpd</code>, which identifies whether a loan ever became 90 or more days delinquent during the observed performance history. This keeps the final dataset focused on origination-level risk rather than monthly servicing behavior. Several variables were removed to keep the final modeling file consistent and relevant. HARP-related fields were removed because those loans represent a special refinancing program, while high-cardinality or low-value fields such as <code>zipcode</code>, seller, servicer, and selected low-variation indicators were excluded from the standardized feature set. Date fields were converted into year and month features before the original raw date columns were dropped. Missing numeric values were imputed with the median, and categorical variables were one-hot encoded so they could be used in later models. The monthly performance data was reduced to one row per loan before joining it to the origination data. This was necessary because the performance file contains repeated monthly observations for each loan, while the final modeling dataset should contain one row per loan. The final join produced a clean dataset with origination features, the <code>any_90_dpd</code> target, and a termination code retained for audit and app interpretation purposes. The termination code was not kept as a predictor in the final train/test modeling files because it represents information observed after origination. To support the interactive app, state-level default rates were calculated from the training split only, then mapped back onto the train and test datasets. This avoids data leakage by ensuring that test-set outcomes are not used to create the state-risk feature. The automated Python script applies the same cleaning rules across the available Freddie Mac quarters and saves standardized train/test files plus the <code>state_def_rate.csv</code> lookup table for the modeling report and app.</p>
+<p>The Freddie Mac origination and monthly performance files were cleaned and standardized into a loan-level dataset suitable for later modeling. The origination file provided borrower, loan, and property characteristics, while the performance file was used to create the outcome variable, <code>any_90_dpd</code>, which identifies whether a loan ever became 90 or more days delinquent. <code>state_def_rate</code> was also an engineered feature because location plays a part in mortgage risk; property values, economic stability, unemployment patterns and affordability all vary. State default rate is a good factor to include because it provides context. To avoid leakage the state default rates were calculated using only the training data.The automated Python script applies the same cleaning rules across the available Freddie Mac quarters first then merges, and completes the stratified split, calculates the rates on the training set and saves the files.HARP-related fields were removed because those loans represent a special refinancing program, while high-cardinality or low-value fields such as zipcode, seller, servicer, and selected low-variation indicators were excluded from the standardized feature set. Date fields were converted into year and month features before the original raw date columns were dropped. Missing numeric values were imputed with the median, and categorical variables were one-hot encoded so they could be used in later models.</p>
 
 
 </section>

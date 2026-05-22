@@ -312,14 +312,14 @@ train_, test_= train_test_split(
 train_= train_.copy()
 test_= test_.copy()
 
-#-- state default rate on train only--
+#--state default rate on train only--
 state_def_rate= (
     train_
     .groupby("prop_state")["any_90_dpd"]
     .mean()
     .reset_index(name="state_def_rate"))
 
-#-- fallback rate for unseen states--
+#--fallback rate for unseen states --
 global_def_rate= train_["any_90_dpd"].mean()
 
 #-- mapping train-only proportions to states--
@@ -385,4 +385,4 @@ print(test_final["any_90_dpd"].value_counts(normalize=True))
 
 ## Conclusion
 
-The Freddie Mac origination and monthly performance files were cleaned and standardized into a loan-level dataset suitable for later modeling. The origination file provided borrower, loan, and property characteristics, while the performance file was used to create the outcome variable, `any_90_dpd`, which identifies whether a loan ever became 90 or more days delinquent during the observed performance history. This keeps the final dataset focused on origination-level risk rather than monthly servicing behavior. Several variables were removed to keep the final modeling file consistent and relevant. HARP-related fields were removed because those loans represent a special refinancing program, while high-cardinality or low-value fields such as `zipcode`, seller, servicer, and selected low-variation indicators were excluded from the standardized feature set. Date fields were converted into year and month features before the original raw date columns were dropped. Missing numeric values were imputed with the median, and categorical variables were one-hot encoded so they could be used in later models. The monthly performance data was reduced to one row per loan before joining it to the origination data. This was necessary because the performance file contains repeated monthly observations for each loan, while the final modeling dataset should contain one row per loan. The final join produced a clean dataset with origination features, the `any_90_dpd` target, and a termination code retained for audit and app interpretation purposes. The termination code was not kept as a predictor in the final train/test modeling files because it represents information observed after origination. To support the interactive app, state-level default rates were calculated from the training split only, then mapped back onto the train and test datasets. This avoids data leakage by ensuring that test-set outcomes are not used to create the state-risk feature. The automated Python script applies the same cleaning rules across the available Freddie Mac quarters and saves standardized train/test files plus the `state_def_rate.csv` lookup table for the modeling report and app.
+The Freddie Mac origination and monthly performance files were cleaned and standardized into a loan-level dataset suitable for later modeling. The origination file provided borrower, loan, and property characteristics, while the performance file was used to create the outcome variable, `any_90_dpd`, which identifies whether a loan ever became 90 or more days delinquent. `state_def_rate` was also an engineered feature because location plays a part in mortgage risk; property values, economic stability, unemployment patterns and affordability all vary. State default rate is a good factor to include because it provides context. To avoid leakage the state default rates were calculated using only the training data.The automated Python script applies the same cleaning rules across the available Freddie Mac quarters first then merges, and completes the stratified split, calculates the rates on the training set and saves the files.HARP-related fields were removed because those loans represent a special refinancing program, while high-cardinality or low-value fields such as zipcode, seller, servicer, and selected low-variation indicators were excluded from the standardized feature set. Date fields were converted into year and month features before the original raw date columns were dropped. Missing numeric values were imputed with the median, and categorical variables were one-hot encoded so they could be used in later models. 

@@ -21,7 +21,7 @@ website:
       - href: mvp-presentation.qmd
         text: MVP Slideshow
       - href: https://homeloanadvisor.acmedia.uk/
-        text: The App Version 2
+        text: Final App (Version 2)
       - href: app.qmd
         text: The App Version 1
       - href: about.qmd
