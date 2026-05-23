@@ -4,30 +4,27 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 
+#-- id variables for proccessing--
 
 ORIGINATION_COLS= [
     "credit_score", "first_payment_date", "first_time_buyer", "maturity_date", "msa", "mi_percent", "num_units", "occupancy", "cltv", "dti", "upb",
     "ltv", "or_interest_rate", "channel", "ppm", "amortization", "prop_state", "prop_type", "zipcode", "loan_id", "loan_purpose", "or_loan_term",
     "num_borrowers", "seller", "servicer", "super_conforming", "pre_harp_loan_id", "program_indicator", "harp_indicator", "prop_valuation",
-    "interest_only", "mi_cancel"
-]
+    "interest_only", "mi_cancel"]
 
 PERFORMANCE_COLS= [
     "loan_id", "report_period", "current_upb", "delinquency_status", "loan_age", "remaining_months", "defect_settlement_date", "modification_flag",
     "zero_balance_code", "zero_balance_effective_date", "current_rate", "current_deferred_upb", "ddlpi", "mi_recoveries", "net_sales_proceeds",
     "non_mi_recoveries", "expenses", "legal_costs", "maintenance_costs", "taxes_insurance", "misc_expenses", "actual_loss", "modification_cost",
     "step_modification_flag", "deferred_payment_plan", "eltv", "zero_balance_removal_upb", "delinquent_accrued_interest", "disaster_delinquency",
-    "borrower_assistance", "current_month_mod_cost", "interest_bearing_upb"
-]
+    "borrower_assistance", "current_month_mod_cost", "interest_bearing_upb"]
 
 PERFORMANCE_KEEP= [
     "loan_id", "report_period", "current_upb", "delinquency_status", "loan_age", "remaining_months", "zero_balance_code", "current_rate",
-    "modification_flag", "disaster_delinquency", "borrower_assistance", "eltv", "deferred_payment_plan"
-]
+    "modification_flag", "disaster_delinquency", "borrower_assistance", "eltv", "deferred_payment_plan"]
 
 OR_DROP= [
-    "pre_harp_loan_id", "amortization", "harp_indicator", "program_indicator", "seller", "servicer", "first_payment_date", "maturity_date", "zipcode", "cltv"
-]
+    "pre_harp_loan_id", "amortization", "harp_indicator", "program_indicator", "seller", "servicer", "first_payment_date", "maturity_date", "zipcode", "cltv"]
 
 OR_ZERO_VARIANCE= ["ppm", "super_conforming", "interest_only"]
 
@@ -36,13 +33,15 @@ OR_CATEGORICAL= ["first_time_buyer", "loan_purpose", "prop_type", "occupancy", "
 OR_NUMERIC_IMPUTE= ["credit_score", "dti", "ltv", "mi_percent", "prop_valuation", "upb"]
 
 
+#-- defining cleaning function-- 
+
 def clean_origination(path):
     path= os.path.expanduser(path)
 
     df= pd.read_csv(path, sep="|", header=None, na_values=["", "9999", "999", "9", "   ", "X"], low_memory=False)
     df.columns= ORIGINATION_COLS
 
-    #-- date features--
+#-- date stuff--
     first_payment= pd.to_datetime(df["first_payment_date"], format="%Y%m", errors="coerce")
     maturity= pd.to_datetime(df["maturity_date"], format="%Y%m", errors="coerce")
 
@@ -51,10 +50,10 @@ def clean_origination(path):
     df["maturity_year"]= maturity.dt.year
     df["maturity_month"]= maturity.dt.month
 
-    #-- remove HARP loans--
+#-- dropping HARP loans--
     df= df[df["harp_indicator"].isna()].copy()
 
-    #-- drop irrelevant columns--
+#-- drop irrelevant columns--
     df= df.drop(columns=OR_DROP)
 
     #-- msa to metro area binary--
@@ -76,7 +75,7 @@ def clean_origination(path):
 
     return df
 
-
+#-- using chunks to save machine--
 def clean_performance(path, chunksize=250000):
     path= os.path.expanduser(path)
 
@@ -86,12 +85,10 @@ def clean_performance(path, chunksize=250000):
     zero_parts= []
 
     for chunk in pd.read_csv(path, sep="|", header=None, usecols=keep_idx, names=PERFORMANCE_KEEP, na_values=["", "9999", "999", "9", "   ", "X"], chunksize=chunksize, low_memory=False):
-        #-- any_90_dpd target part--
+#-- any_90_dpd target part--
         dq_num= pd.to_numeric(chunk["delinquency_status"].replace({"RA": 99}), errors="coerce")
         target_chunk= dq_num.groupby(chunk["loan_id"]).max().reset_index(name="max_dq")
         target_parts.append(target_chunk)
-
-        #-- last observed zero_balance_code part--
         zero_chunk= chunk.dropna(subset=["zero_balance_code"]).copy()
 
         if not zero_chunk.empty:
@@ -101,11 +98,11 @@ def clean_performance(path, chunksize=250000):
 
         print(f"Processed performance chunk: {chunk.shape}")
 
-    #-- combine target chunks--
+#-- target chunks--
     target= pd.concat(target_parts, ignore_index=True)
     target= target.groupby("loan_id")["max_dq"].max().ge(3).astype(int).reset_index(name="any_90_dpd")
 
-    #-- combine zero balance chunks--
+#-- combine zero balance chunks--
     if zero_parts:
         zero_bal= pd.concat(zero_parts, ignore_index=True)
         zero_bal= zero_bal.sort_values(["loan_id", "report_period"])
@@ -119,6 +116,7 @@ def clean_performance(path, chunksize=250000):
 
     return target
 
+#-- reassemble by qtr--
 
 def build_quarter(year, quarter, data_dir, out_dir):
     data_dir= os.path.expanduser(data_dir)
@@ -156,7 +154,7 @@ def build_quarter(year, quarter, data_dir, out_dir):
 
     return out_path
 
-
+#-- merge--
 def merge_all_quarters(out_dir, final_path, test_size=0.3, random_state=212):
     out_dir= os.path.expanduser(out_dir)
     final_path= os.path.expanduser(final_path)
@@ -173,7 +171,7 @@ def merge_all_quarters(out_dir, final_path, test_size=0.3, random_state=212):
     global_sum= 0
     global_count= 0
 
-    #-- first pass: split each quarter and calculate train-only state rates--
+#-- Split part 1: splot and calc by qtr train --
     for f in quarter_files:
         print(f"\nReading {f}")
         df= pd.read_csv(f, low_memory=False)
@@ -208,7 +206,7 @@ def merge_all_quarters(out_dir, final_path, test_size=0.3, random_state=212):
 
         del df, train_q, test_q
 
-    #-- calculate state default rate from train only--
+#-- full state def rate from train only all qtrs--
     state_counts= pd.concat(state_parts, ignore_index=True)
     state_def_rate= state_counts.groupby("prop_state")[["sum", "count"]].sum().reset_index()
     state_def_rate["state_def_rate"]= state_def_rate["sum"] / state_def_rate["count"]
@@ -219,7 +217,7 @@ def merge_all_quarters(out_dir, final_path, test_size=0.3, random_state=212):
 
     state_def_rate.to_csv(os.path.join(final_path, "state_def_rate.csv"), index=False)
 
-    #-- final output paths--
+#-- output--
     train_out= os.path.join(final_path, "train_final.csv")
     test_out= os.path.join(final_path, "test_final.csv")
 
@@ -234,7 +232,7 @@ def merge_all_quarters(out_dir, final_path, test_size=0.3, random_state=212):
 
     drop_cols= ["loan_id", "prop_state", "termin_code"]
 
-    #-- second pass: add state_def_rate and append train files--
+#-- second pass: add state_def_rate and append--
     print("\nWriting final train file...")
     for i, f in enumerate(train_files):
         df= pd.read_csv(f, low_memory=False)
@@ -246,7 +244,7 @@ def merge_all_quarters(out_dir, final_path, test_size=0.3, random_state=212):
 
         del df
 
-    #-- second pass: add state_def_rate and append test files--
+#-- second pass: add state_def_rate and append test files--
     print("\nWriting final test file...")
     for i, f in enumerate(test_files):
         df= pd.read_csv(f, low_memory=False)
@@ -258,7 +256,7 @@ def merge_all_quarters(out_dir, final_path, test_size=0.3, random_state=212):
 
         del df
 
-    #-- check final files lightly--
+#-- final check--
     print("\nFinal files saved:")
     print(train_out)
     print(test_out)

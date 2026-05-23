@@ -15,7 +15,7 @@
         "\n",
         "## ![](images/TheResults-banner.png)"
       ],
-      "id": "9a223dc2"
+      "id": "0ab15787"
     },
     {
       "cell_type": "code",
@@ -34,7 +34,7 @@
         "hgb_importance= pd.read_csv(\"results_outputs/hgb_importance.csv\")\n",
         "model_summary= pd.read_csv(\"results_outputs/std_table.csv\")"
       ],
-      "id": "3364582d",
+      "id": "9b11f323",
       "execution_count": null,
       "outputs": []
     },
@@ -44,7 +44,7 @@
       "source": [
         "# Model Performance Summary"
       ],
-      "id": "1c9c672d"
+      "id": "d6f41594"
     },
     {
       "cell_type": "code",
@@ -52,7 +52,7 @@
       "source": [
         "model_summary"
       ],
-      "id": "8711d1e2",
+      "id": "08bc465a",
       "execution_count": null,
       "outputs": []
     },
@@ -64,7 +64,7 @@
         "\n",
         "# Logistic Regression Results Summary"
       ],
-      "id": "d1680585"
+      "id": "7ac611c6"
     },
     {
       "cell_type": "code",
@@ -92,7 +92,7 @@
         "for sentence in logistic_top[\"interpretation\"]:\n",
         "  print(sentence)"
       ],
-      "id": "469eb3e3",
+      "id": "53c879f7",
       "execution_count": null,
       "outputs": []
     },
@@ -107,7 +107,7 @@
         "\n",
         "logistic_display"
       ],
-      "id": "2eb5172a",
+      "id": "4782e314",
       "execution_count": null,
       "outputs": []
     },
@@ -126,7 +126,7 @@
         "plt.tight_layout()\n",
         "plt.show()"
       ],
-      "id": "a8fa79fc",
+      "id": "f08e19f3",
       "execution_count": null,
       "outputs": []
     },
@@ -140,7 +140,7 @@
         "\n",
         "# Random Forest Results Summary"
       ],
-      "id": "538a9ae9"
+      "id": "c2720d82"
     },
     {
       "cell_type": "code",
@@ -160,7 +160,7 @@
         "for sentence in top_forest_importance[\"interpretation\"].head(5):\n",
         "  print(sentence)"
       ],
-      "id": "c446fafb",
+      "id": "9ca310f8",
       "execution_count": null,
       "outputs": []
     },
@@ -170,7 +170,7 @@
       "source": [
         "top_forest_importance"
       ],
-      "id": "4ce3b93e",
+      "id": "24da25ed",
       "execution_count": null,
       "outputs": []
     },
@@ -189,7 +189,7 @@
         "plt.tight_layout()\n",
         "plt.show()"
       ],
-      "id": "5b3d593d",
+      "id": "36bb524c",
       "execution_count": null,
       "outputs": []
     },
@@ -201,7 +201,7 @@
         "\n",
         "# Histogram Gradient Boosting Results Summary"
       ],
-      "id": "a321ac01"
+      "id": "c4216a6d"
     },
     {
       "cell_type": "code",
@@ -221,7 +221,7 @@
         "for sentence in top_hgb_importance[\"interpretation\"].head(5):\n",
         "  print(sentence)"
       ],
-      "id": "d8301a0e",
+      "id": "862af260",
       "execution_count": null,
       "outputs": []
     },
@@ -231,7 +231,7 @@
       "source": [
         "top_hgb_importance"
       ],
-      "id": "f54c9952",
+      "id": "b3d69807",
       "execution_count": null,
       "outputs": []
     },
@@ -250,7 +250,7 @@
         "plt.tight_layout()\n",
         "plt.show()"
       ],
-      "id": "180ae6f3",
+      "id": "a94ee5f3",
       "execution_count": null,
       "outputs": []
     },
@@ -262,7 +262,7 @@
         "\n",
         "# Model Comparison Interpretation"
       ],
-      "id": "b8c72da2"
+      "id": "1dbee959"
     },
     {
       "cell_type": "code",
@@ -271,7 +271,7 @@
         "#-- sorted model comparison --\n",
         "model_summary.sort_values(\"roc_auc\", ascending=False)"
       ],
-      "id": "4f0aca37",
+      "id": "448e50b8",
       "execution_count": null,
       "outputs": []
     }

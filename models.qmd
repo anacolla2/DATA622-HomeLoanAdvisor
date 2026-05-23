@@ -458,10 +458,12 @@ For the prototype app, the predicted probability is converted into a simple risk
 
 ```{python}
 def assign_risk_tier(probability):
-  if probability < 0.05:
+  if probability < 0.2:
     return "Low"
-  elif probability < 0.10:
+  elif probability > 0.2 < 0.5:
     return "Moderate"
+  elif probability > 0.5 < 1.5:
+    return "Elevated"
   else:
     return "High"
 ```
@@ -522,19 +524,26 @@ We'll save the trained models for later use:
 
 ```{python}
 #| echo: true
-#| eval: false
-#| 
+
 os.makedirs("model_assets", exist_ok=True)
+
+#--logistic--
+joblib.dump(logistic, "model_assets/logistic_model.joblib")
+joblib.dump(list(x_train.columns), "model_assets/logistic_feature_columns.joblib")
+
+# HGB is not a pipeline, but still needs exact feature columns
+joblib.dump(hgb, "model_assets/hgb_model.joblib")
+joblib.dump(list(x_train.columns), "model_assets/hgb_feature_columns.joblib")
 
 #--saving trained models--
 joblib.dump(logistic, "model_assets/logistic_model.joblib")
 joblib.dump(forest, "model_assets/random_forest_model.joblib")
-
-#-- HGB--
 joblib.dump(hgb, "model_assets/hgb_pipeline.joblib")
 
 #--exact features fix--
 joblib.dump(list(x_train.columns), "model_assets/hgb_feature_columns.joblib")
+#--median fix--
+joblib.dump(x_train.median(numeric_only=True).to_dict(), "model_assets/training_medians.joblib")
 
 print("Saved model assets:")
 print("model_assets/logistic_model.joblib")
@@ -549,7 +558,9 @@ Our final model should be selected using a combination of predictive performance
 
 ## Limitations
 
-The dataset is based on Freddie Mac historical mortgage data and may not represent all loan types or borrower populations. The target variable identifies whether a loan ever became 90+ days past due during the observed performance period, but future delinquency risk may shift under different economic conditions. The risk tiers are prototype thresholds and have not been optimized for a real business or consumer decision. The model should be interpreted as an educational risk signal rather than financial advice or a lending decision tool.
+The dataset is based on Freddie Mac historical mortgage data and may not represent all loan types or borrower populations. The target variable identifies whether a loan ever became 90+ days past due during the observed performance period, but future delinquency risk may shift under different economic conditions. The automated script will help prep all new Freddie Mac Data Releases for retraining the models.
+
+The models are trained on US data only. The data also does not represent mortgages that don't qualify under its standards, which may an income limit and property specifications. Freddie Mac also keeps veteran loans separate,  so by extension our app excludes the veteran population
 
 ## Conclusion
 
