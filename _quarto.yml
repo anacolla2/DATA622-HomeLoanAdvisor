@@ -5,6 +5,8 @@ project:
 website:
   title: "Home Loan Advisor"
   sidebar:
+    title: false
+    logo: images/HLA-sqaure-logo.png
     style: "docked"
     background: light
     contents:
@@ -20,10 +22,12 @@ website:
         text: Our Results
       - href: mvp-presentation.qmd
         text: MVP Slideshow
+      - href: https://aribamandavia12.shinyapps.io/Downloads/
+        text: Presenntation App (Version 3)
       - href: https://homeloanadvisor.acmedia.uk/
         text: Final App (Version 2)
       - href: app.qmd
-        text: The App Version 1
+        text: App Version 1
       - href: about.qmd
         text: About the Group
 
