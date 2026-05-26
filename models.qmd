@@ -7,7 +7,7 @@ editor: visual
 jupyter: python3
 ---
 
-## ![](images/TheModels-banner.png)
+# ![](images/TheModels-banner.png)
 
 ------------------------------------------------------------------------
 
@@ -560,7 +560,7 @@ Our final model should be selected using a combination of predictive performance
 
 The dataset is based on Freddie Mac historical mortgage data and may not represent all loan types or borrower populations. The target variable identifies whether a loan ever became 90+ days past due during the observed performance period, but future delinquency risk may shift under different economic conditions. The automated script will help prep all new Freddie Mac Data Releases for retraining the models.
 
-The models are trained on US data only. The data also does not represent mortgages that don't qualify under its standards, which may an income limit and property specifications. Freddie Mac also keeps veteran loans separate,  so by extension our app excludes the veteran population
+The models are trained on US data only. The data also does not represent mortgages that don't qualify under its standards, which may an income limit and property specifications. Freddie Mac also keeps veteran loans separate, so by extension our app excludes the veteran population
 
 ## Conclusion
 
