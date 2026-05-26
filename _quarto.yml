@@ -7,13 +7,14 @@ website:
   sidebar:
     title: false
     logo: images/HLA-sqaure-logo.png
+    logo-alt: "Home Loan Advisor Logo"
     style: "docked"
     background: light
     contents:
       - href: index.qmd
         text: An Overview
       - href: proposal.qmd
-        text: App Proposal
+        text: Project Proposal
       - href: data.qmd
         text: The Data
       - href: models.qmd
